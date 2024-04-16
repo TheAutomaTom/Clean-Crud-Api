@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34804.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whether-Advisory.XTEMPLATEX", "Whether-Advisory.XTEMPLATEX\Whether-Advisory.XTEMPLATEX.csproj", "{57F6919E-21CF-4354-9059-6BF573D398FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57F6919E-21CF-4354-9059-6BF573D398FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F6919E-21CF-4354-9059-6BF573D398FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F6919E-21CF-4354-9059-6BF573D398FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F6919E-21CF-4354-9059-6BF573D398FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E8C1D64-10F1-4312-B7ED-09B08C41011D}
+	EndGlobalSection
+EndGlobal

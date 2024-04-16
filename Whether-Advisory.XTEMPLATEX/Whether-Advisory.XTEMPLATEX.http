@@ -1,0 +1,6 @@
+@Whether_Advisory.XTEMPLATEX_HostAddress = http://localhost:5028
+
+GET {{Whether_Advisory.XTEMPLATEX_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
