@@ -1,5 +1,6 @@
 
 using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 namespace Whether_Advisory.XTEMPLATEX
 {
@@ -14,7 +15,27 @@ namespace Whether_Advisory.XTEMPLATEX
       builder.Services.AddControllers();
       // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
       builder.Services.AddEndpointsApiExplorer();
-      builder.Services.AddSwaggerGen();
+      builder.Services.AddSwaggerGen(options =>
+      {
+        options.SwaggerDoc("v1", new OpenApiInfo
+        {
+          Version = "v1",
+          Title = "Whether Advisory System",
+          Description = "Helping you hurry onto Expectations.",
+          Contact = new OpenApiContact
+          {
+            Name = "Thomas Grossi",
+            Url = new Uri("https://SurrealityCheck.org"),
+            Email = "TheAutomaTom@gmail.com"
+          }
+        });
+        var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+
+        options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
+        //options.SchemaFilter<EnumSchemaFilter>();
+
+
+      });
 
       var app = builder.Build();
 

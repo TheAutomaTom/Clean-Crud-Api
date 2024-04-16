@@ -7,6 +7,7 @@
     <RootNamespace>Whether_Advisory.XTEMPLATEX</RootNamespace>
     <UserSecretsId>ffeb7ebb-f7a0-43d9-b9ef-0b6c23257257</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

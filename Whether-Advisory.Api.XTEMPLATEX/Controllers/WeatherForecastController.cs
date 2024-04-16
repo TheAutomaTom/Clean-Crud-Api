@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Whether_Advisory.XTEMPLATEX.Controllers
 {
+  /// <summary>
+  /// Class Comment
+  /// </summary>
   [ApiController]
   [Route("[controller]")]
   public class WeatherForecastController : ControllerBase
@@ -18,6 +21,10 @@ namespace Whether_Advisory.XTEMPLATEX.Controllers
       _logger = logger;
     }
 
+    /// <summary>
+    /// Method Comment
+    /// </summary>
+    /// <returns></returns>
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
