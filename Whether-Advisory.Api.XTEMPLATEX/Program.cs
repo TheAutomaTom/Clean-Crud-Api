@@ -1,4 +1,6 @@
 
+using System.Reflection;
+
 namespace Whether_Advisory.XTEMPLATEX
 {
   public class Program
