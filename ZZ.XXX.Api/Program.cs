@@ -1,11 +1,10 @@
-using System.Reflection;
-using Microsoft.OpenApi.Models;
-using ZZ.XXX.Middleware;
 using ZZ.XXX.Application.DI;
+using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
 using ZZ.XXX.Infrastructure.DI;
+using ZZ.XXX.Middleware;
 
-namespace ZZ.XTEMPLATEX
+namespace ZZ.XXX
 {
   public class Program
   {
@@ -21,27 +20,8 @@ namespace ZZ.XTEMPLATEX
       builder.Services.AddControllers();
 
       builder.Services.AddEndpointsApiExplorer();
-      builder.Services.AddSwaggerGen(options =>
-      {
-        options.SwaggerDoc("v1", new OpenApiInfo
-        {
-          Version = "v1",
-          Title = "The Automa-Tom's Clean Architecture Template",
-          Description = "Helping you hurry onto Expectations.",
-          Contact = new OpenApiContact
-          {
-            Name = "Thomas Grossi",
-            Url = new Uri("https://SurrealityCheck.org"),
-            Email = "TheAutomaTom@gmail.com"
-          }
-        });
-        var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
-        options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
-        //options.SchemaFilter<EnumSchemaFilter>();
-
-
-      });
+      builder.Services.AddSwagger();
 
       var app = builder.Build();
 

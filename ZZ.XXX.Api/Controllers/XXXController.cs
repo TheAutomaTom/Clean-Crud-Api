@@ -3,8 +3,9 @@ using System.Threading;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using ZZ.XXX.Application.Features.XXX.GetXXXs;
+using ZZ.XXX.Controllers;
 
-namespace ZZ.XTEMPLATEX.Controllers
+namespace ZZ.XXX.Controllers
 {
   /// <summary> Class Comment </summary>
   [ApiController]
