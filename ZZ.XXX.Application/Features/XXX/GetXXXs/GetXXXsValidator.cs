@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Whether_Advisory.XXX.Application.Features.XXX.GetXXXs
+namespace ZZ.XXX.Application.Features.XXX.GetXXXs
 {
   public class GetXXXsValidator : AbstractValidator<GetXXXsRequest>
   {

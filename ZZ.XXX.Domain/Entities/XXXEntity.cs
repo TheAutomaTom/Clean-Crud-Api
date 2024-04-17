@@ -1,6 +1,6 @@
-﻿using Whether_Advisory.XXX.Domain.Common;
+﻿using ZZ.XXX.Domain.Common;
 
-namespace Whether_Advisory.XXX.Domain.Entities
+namespace ZZ.XXX.Domain.Entities
 {
   public class XXXEntity : AuditableEntity
 

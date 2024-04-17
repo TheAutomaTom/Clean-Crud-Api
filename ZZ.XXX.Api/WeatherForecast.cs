@@ -1,4 +1,4 @@
-namespace Whether_Advisory.XTEMPLATEX
+namespace ZZ.XTEMPLATEX
 {
   public class WeatherForecast
   {

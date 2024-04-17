@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Mediator;
-using Whether_Advisory.XXX.Application.Interfaces.Persistence;
-using Whether_Advisory.XXX.Domain.Common.Responses;
-using Whether_Advisory.XXX.Domain.Dtos;
-using Whether_Advisory.XXX.Domain.Entities;
+using ZZ.XXX.Application.Interfaces.Persistence;
+using ZZ.XXX.Domain.Common.Responses;
+using ZZ.XXX.Domain.Dtos;
+using ZZ.XXX.Domain.Entities;
 
-namespace Whether_Advisory.XXX.Application.Features.XXX.GetXXXs
+namespace ZZ.XXX.Application.Features.XXX.GetXXXs
 {
   public class GetXXXsHandler : IRequestHandler<GetXXXsRequest, BasicResponse<IEnumerable<XXXDto>> >
   {

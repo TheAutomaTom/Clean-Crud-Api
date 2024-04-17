@@ -1,4 +1,4 @@
-﻿namespace Whether_Advisory.XXX.Application.Interfaces.Persistence
+﻿namespace ZZ.XXX.Application.Interfaces.Persistence
 {
   public interface IAsyncRepository<T> where T : class
   {

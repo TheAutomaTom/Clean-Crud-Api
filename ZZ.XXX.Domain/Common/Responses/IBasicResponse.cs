@@ -1,4 +1,4 @@
-﻿namespace Whether_Advisory.XXX.Domain.Common.Responses
+﻿namespace ZZ.XXX.Domain.Common.Responses
 {
   public interface IBasicResponse
   {

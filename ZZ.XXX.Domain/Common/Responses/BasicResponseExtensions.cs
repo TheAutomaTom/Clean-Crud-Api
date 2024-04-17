@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using Whether_Advisory.XXX.Domain.Common.Responses;
+using ZZ.XXX.Domain.Common.Responses;
 
 public static class BasicResponseExtensions
 {

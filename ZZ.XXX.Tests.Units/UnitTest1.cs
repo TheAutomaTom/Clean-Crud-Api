@@ -1,4 +1,4 @@
-namespace Whether_Advisory.XXX.Tests.Units
+namespace ZZ.XXX.Tests.Units
 {
   public class UnitTest1
   {

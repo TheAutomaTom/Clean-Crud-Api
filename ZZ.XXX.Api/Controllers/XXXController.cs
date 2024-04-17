@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Whether_Advisory.XTEMPLATEX.Controllers
+namespace ZZ.XTEMPLATEX.Controllers
 {
   /// <summary>
   /// Class Comment

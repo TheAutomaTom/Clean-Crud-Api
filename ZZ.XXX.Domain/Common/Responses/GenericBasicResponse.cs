@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace Whether_Advisory.XXX.Domain.Common.Responses
+namespace ZZ.XXX.Domain.Common.Responses
 {
   public class BasicResponse<T> : BasicResponse
   {

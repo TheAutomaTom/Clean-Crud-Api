@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Whether_Advisory.XXX.Domain.Dtos
+namespace ZZ.XXX.Domain.Dtos
 {
   public class XXXDto
   {

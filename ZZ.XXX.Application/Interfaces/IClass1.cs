@@ -1,4 +1,4 @@
-﻿namespace Whether_Advisory.XXX.Application.Interfaces
+﻿namespace ZZ.XXX.Application.Interfaces
 {
     public interface IClass1
     {

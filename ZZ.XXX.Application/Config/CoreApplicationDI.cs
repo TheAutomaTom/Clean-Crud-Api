@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Whether_Advisory.XXX.Application.Interfaces.Persistence;
+using ZZ.XXX.Application.Interfaces.Persistence;
 
-namespace Whether_Advisory.XXX.Application.Config
+namespace ZZ.XXX.Application.Config
 {
   public static class CoreApplicationDI
   {

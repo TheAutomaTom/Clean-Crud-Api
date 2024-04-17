@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Whether_Advisory.XXX.Application.Features.XXX.GetXXXs;
+using ZZ.XXX.Application.Features.XXX.GetXXXs;
 
-namespace Whether_Advisory.XXX.Application.Features
+namespace ZZ.XXX.Application.Features
 {
   public static class MappingProfile
   {

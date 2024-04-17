@@ -1,8 +1,8 @@
-using Whether_Advisory.XXX.Application.Config;
+using ZZ.XXX.Application.Config;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 
-namespace Whether_Advisory.XTEMPLATEX
+namespace ZZ.XTEMPLATEX
 {
   public class Program
   {

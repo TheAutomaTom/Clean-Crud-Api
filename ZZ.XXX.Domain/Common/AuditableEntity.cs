@@ -1,4 +1,4 @@
-﻿namespace Whether_Advisory.XXX.Domain.Common
+﻿namespace ZZ.XXX.Domain.Common
 {
   public abstract class AuditableEntity
   {

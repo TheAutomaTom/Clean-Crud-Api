@@ -1,7 +1,7 @@
-﻿using Whether_Advisory.XXX.Application.Interfaces.Persistence;
-using Whether_Advisory.XXX.Domain.Entities;
+﻿using ZZ.XXX.Application.Interfaces.Persistence;
+using ZZ.XXX.Domain.Entities;
 
-namespace Whether_Advisory.XXX.Data.Persistence
+namespace ZZ.XXX.Data.Persistence
 {
   public class XXXRepository : IAsyncRepository<XXXEntity>
   {
