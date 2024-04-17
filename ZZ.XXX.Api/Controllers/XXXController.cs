@@ -1,4 +1,6 @@
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using ZZ.XXX.Application.Features.XXX.GetXXXs;
 
 namespace ZZ.XTEMPLATEX.Controllers
 {
@@ -10,11 +12,13 @@ namespace ZZ.XTEMPLATEX.Controllers
   public class XXXController : ControllerBase
   {
 
-    private readonly ILogger<XXXController> _logger;
+    readonly ILogger<XXXController> _logger;
+    readonly IMediator _mediator;
 
-    public XXXController(ILogger<XXXController> logger)
+    public XXXController(ILogger<XXXController> logger, IMediator mediator)
     {
       _logger = logger;
+      _mediator = mediator;
     }
 
     /// <summary>
@@ -24,7 +28,11 @@ namespace ZZ.XTEMPLATEX.Controllers
     [HttpGet]
     public IActionResult Get()
     {
-      return Ok("Noice!");
+      var result = _mediator.Send(new GetXXXsRequest());
+
+      return Ok(result);
+
+
     }
   }
 }

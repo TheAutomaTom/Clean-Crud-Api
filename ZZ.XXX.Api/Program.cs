@@ -1,6 +1,8 @@
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 using ZZ.XXX.Application.DI;
+using ZZ.XXX.Data.Config;
+using ZZ.XXX.Infrastructure.DI;
 
 namespace ZZ.XTEMPLATEX
 {
@@ -10,19 +12,20 @@ namespace ZZ.XTEMPLATEX
     {
       var builder = WebApplication.CreateBuilder(args);
 
-      builder.Services.AddCoreApplicationServices();
-
       // Add services to the container.
+      builder.Services.AddApplicationServices();
+      builder.Services.AddInfrastructureServices(builder.Configuration);
+      builder.Services.AddPersistenceServices(builder.Configuration);
 
       builder.Services.AddControllers();
-      // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
       builder.Services.AddEndpointsApiExplorer();
       builder.Services.AddSwaggerGen(options =>
       {
         options.SwaggerDoc("v1", new OpenApiInfo
         {
           Version = "v1",
-          Title = "Whether Advisory System",
+          Title = "The Automa-Tom's Clean Architecture Template",
           Description = "Helping you hurry onto Expectations.",
           Contact = new OpenApiContact
           {
@@ -51,7 +54,6 @@ namespace ZZ.XTEMPLATEX
       app.UseHttpsRedirection();
 
       app.UseAuthorization();
-
 
       app.MapControllers();
 
