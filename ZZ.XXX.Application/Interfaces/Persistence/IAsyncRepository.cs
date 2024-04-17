@@ -2,11 +2,11 @@
 {
   public interface IAsyncRepository<T> where T : class
   {
-    Task<T> GetByIdAsync(int id);
-    Task<IReadOnlyList<T>> ListAllAsync();
-    Task<T> AddAsync(Task entity);
-    Task UpdateAsync(Task entity);
-    Task DeleteAsync(Task entity);
+    Task<T> ReadById(int id);
+    Task<IReadOnlyList<T>> Read();
+    Task<int> Create(T entity);
+    Task<int> Update(T entity);
+    Task<int> Delete(T entity);
 
 
   }

@@ -3,7 +3,7 @@ using ZZ.XXX.Application.Interfaces.Persistence;
 
 namespace ZZ.XXX.Application.Config
 {
-  public static class CoreApplicationDI
+  public static class ApplicationDI
   {
     public static IServiceCollection AddCoreApplicationServices(this IServiceCollection services)
     {

@@ -29,7 +29,7 @@ namespace ZZ.XXX.Application.Features.XXX.GetXXXs
         return new BasicResponse<IEnumerable<XXXDto>>().Fail(validationResult.Errors);
       }
 
-      var xxxs = await _repository.ListAllAsync();
+      var xxxs = await _repository.Read();
       var mapped = _mapper.Map<IEnumerable<XXXDto>>(xxxs);
 
       return new BasicResponse<IEnumerable<XXXDto>>(mapped).Ok();
