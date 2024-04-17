@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34804.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whether-Advisory.XXX.Api", "Whether-Advisory.XXX.Api\Whether-Advisory.XXX.Api.csproj", "{57F6919E-21CF-4354-9059-6BF573D398FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Api", "ZZ.XXX.Api\ZZ.XXX.Api.csproj", "{57F6919E-21CF-4354-9059-6BF573D398FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{EE599AC7-61AA-4823-B826-DABA873EE44E}"
 EndProject
@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whether-Advisory.XXX.Application", "Whether-Advisory.XXX.Application\Whether-Advisory.XXX.Application.csproj", "{378773C6-EF82-436D-8968-6F94FF37885C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Application", "ZZ.XXX.Application\ZZ.XXX.Application.csproj", "{378773C6-EF82-436D-8968-6F94FF37885C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whether-Advisory.XXX.Data", "Whether-Advisory.XXX.Data\Whether-Advisory.XXX.Data.csproj", "{27110F38-7A9F-4551-A69F-A9EBC158D855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Data", "ZZ.XXX.Data\ZZ.XXX.Data.csproj", "{27110F38-7A9F-4551-A69F-A9EBC158D855}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whether-Advisory.XXX.Domain", "Whether-Advisory.XXX.Domain\Whether-Advisory.XXX.Domain.csproj", "{D6CB569A-94F0-4347-A66F-0682ED8681A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Domain", "ZZ.XXX.Domain\ZZ.XXX.Domain.csproj", "{D6CB569A-94F0-4347-A66F-0682ED8681A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54EBFDD5-23D9-49D9-8E0F-0A649A742B10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Whether-Advisory.XXX.Tests.Units", "Whether-Advisory.XXX.Tests.Units\Whether-Advisory.XXX.Tests.Units.csproj", "{0B328B6B-732E-482C-9DFA-CB320DF8A176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Tests.Units", "ZZ.XXX.Tests.Units\ZZ.XXX.Tests.Units.csproj", "{0B328B6B-732E-482C-9DFA-CB320DF8A176}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{29E572B3-255F-48D7-B93D-1CD2197724BF}"
 EndProject

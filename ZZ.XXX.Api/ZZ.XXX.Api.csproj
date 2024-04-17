@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Whether-Advisory.XXX.Application\Whether-Advisory.XXX.Application.csproj" />
+    <ProjectReference Include="..\ZZ.XXX.Application\ZZ.XXX.Application.csproj" />
   </ItemGroup>
 
 </Project>
