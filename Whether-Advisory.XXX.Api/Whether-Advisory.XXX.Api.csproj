@@ -15,4 +15,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Whether-Advisory.XXX.Application\Whether-Advisory.XXX.Application.csproj" />
+  </ItemGroup>
+
 </Project>

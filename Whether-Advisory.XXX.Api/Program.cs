@@ -1,4 +1,4 @@
-
+using Whether_Advisory.XXX.Application.Config;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 
@@ -9,6 +9,8 @@ namespace Whether_Advisory.XTEMPLATEX
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
+
+      builder.Services.AddCoreApplicationServices();
 
       // Add services to the container.
 

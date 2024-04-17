@@ -11,6 +11,7 @@ namespace Whether_Advisory.XXX.Application.Features.XXX.GetXXXs
   {
     public GetXXXsValidator()
     {
+
     }
   }
 }

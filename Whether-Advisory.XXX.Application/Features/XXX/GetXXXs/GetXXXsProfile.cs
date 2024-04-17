@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Whether_Advisory.XXX.Domain.DTOs;
 using Whether_Advisory.XXX.Domain.Entities;
+using Whether_Advisory.XXX.Domain.Dtos;
 
 namespace Whether_Advisory.XXX.Application.Features.XXX.GetXXXs
 {

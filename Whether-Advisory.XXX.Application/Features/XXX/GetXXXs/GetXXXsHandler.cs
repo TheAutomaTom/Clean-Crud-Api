@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Mediator;
 using Whether_Advisory.XXX.Application.Interfaces.Persistence;
-using Whether_Advisory.XXX.Domain.DTOs;
 using Whether_Advisory.XXX.Domain.Entities;
+using Whether_Advisory.XXX.Domain.Dtos;
 
 namespace Whether_Advisory.XXX.Application.Features.XXX.GetXXXs
 {
@@ -21,6 +21,14 @@ namespace Whether_Advisory.XXX.Application.Features.XXX.GetXXXs
 
     public async  ValueTask<GetXXXsResponse> Handle(GetXXXsRequest request, CancellationToken cancellationToken)
     {
+      var validator = new GetXXXsValidator();
+      var validationResult = await validator.ValidateAsync(request, cancellationToken);
+      if(!validationResult.IsValid)
+      {
+        var messages = validationResult.Errors.Select(e => e.ErrorMessage);
+        return new GetXXXsResponse(messages);
+      }
+
       var xxxs = await _repository.ListAllAsync();
       var mapped = _mapper.Map<IEnumerable<XXXDto>>(xxxs);
       return new GetXXXsResponse(mapped);
