@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using ZZ.XXX.Middleware;
 using ZZ.XXX.Application.DI;
 using ZZ.XXX.Data.Config;
 using ZZ.XXX.Infrastructure.DI;
@@ -56,6 +57,8 @@ namespace ZZ.XTEMPLATEX
       app.UseAuthorization();
 
       app.MapControllers();
+
+      app.UseCustomExceptionHandler();
 
       app.Run();
     }
