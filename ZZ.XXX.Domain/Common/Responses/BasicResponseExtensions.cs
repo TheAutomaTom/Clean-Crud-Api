@@ -35,7 +35,7 @@ public static class BasicResponseExtensions
   public static BasicResponse Fail(this BasicResponse response, Exception ex)
   {
     response.IsOk = false;
-    response.Exceptions ??= new List<Exception>().Append(ex);
+    response.Exception ??= new List<Exception>().Append(ex);
     return response;
   }
 

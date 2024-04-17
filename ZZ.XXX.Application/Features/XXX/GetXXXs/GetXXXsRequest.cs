@@ -9,7 +9,7 @@ using ZZ.XXX.Domain.Dtos;
 
 namespace ZZ.XXX.Application.Features.XXX.GetXXXs
 {
-  public class GetXXXsRequest : IRequest<BasicResponse<IEnumerable<XXXDto>>>
+  public class GetXXXsRequest : IRequest<GetXXXsResponse>
   {
   }
 }

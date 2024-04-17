@@ -1,17 +1,16 @@
+using Azure.Core;
+using System.Threading;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using ZZ.XXX.Application.Features.XXX.GetXXXs;
 
 namespace ZZ.XTEMPLATEX.Controllers
 {
-  /// <summary>
-  /// Class Comment
-  /// </summary>
+  /// <summary> Class Comment </summary>
   [ApiController]
   [Route("[controller]/[action]")]
   public class XXXController : ControllerBase
   {
-
     readonly ILogger<XXXController> _logger;
     readonly IMediator _mediator;
 
@@ -21,16 +20,41 @@ namespace ZZ.XTEMPLATEX.Controllers
       _mediator = mediator;
     }
 
-    /// <summary>
-    /// Method Comment
-    /// </summary>
-    /// <returns></returns>
+    /// <summary> Method Comment </summary>
     [HttpGet]
-    public IActionResult Get()
+    public async Task<ActionResult<GetXXXsRequest>> GetAll(CancellationToken ct = default)
     {
-      var result = _mediator.Send(new GetXXXsRequest());
+      try
+      {
+        /* If there were params taken, this is where the request would be validated before attempting to process. */
+        //var validator = new GetXXXsValidator();
+        //var validationResult = await validator.ValidateAsync(param, ct);
+        //if (!validationResult.IsValid)
+        //{
+        //  return new GetXXXsResponse(null) { ValidationErrors = validationResult.Errors };
+        //}
 
-      return Ok(result);
+        var result = await _mediator.Send(new GetXXXsRequest());
+        
+        if (!result.IsOk)
+        {
+          return BadRequest(result);
+        }
+
+        if(result.XXXs == null || result.XXXs.Count() == 0)
+        {
+          return NotFound();
+        }
+        
+        return Ok(result);
+
+      } 
+      catch (Exception ex)
+      {
+        var result = new GetXXXsResponse(null) { Exception = ex };
+        return StatusCode(StatusCodes.Status500InternalServerError, result);
+      }
+
 
 
     }

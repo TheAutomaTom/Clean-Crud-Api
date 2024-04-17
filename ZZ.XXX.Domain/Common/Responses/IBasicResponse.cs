@@ -2,10 +2,10 @@
 {
   public interface IBasicResponse
   {
-    bool IsOk { get; set; }
+    public bool IsOk { get; set; }
 
-    IEnumerable<string> Messages { get; set; }
+    IEnumerable<string>? Messages { get; set; }
 
-    IEnumerable<Exception>? Exceptions { get; set; }
+    Exception? Exception { get; set; }
   }
 }

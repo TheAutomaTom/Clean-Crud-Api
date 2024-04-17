@@ -7,7 +7,7 @@ using ZZ.XXX.Domain.Entities;
 
 namespace ZZ.XXX.Application.Features.XXX.GetXXXs
 {
-  public class GetXXXsHandler : IRequestHandler<GetXXXsRequest, BasicResponse<IEnumerable<XXXDto>> >
+  public class GetXXXsHandler : IRequestHandler<GetXXXsRequest, GetXXXsResponse>
   {
     //private readonly ILogger<GetXXXsHandler> _logger;
     readonly IAsyncRepository<XXXEntity> _repository;
@@ -20,19 +20,20 @@ namespace ZZ.XXX.Application.Features.XXX.GetXXXs
       
     }
 
-    public async  ValueTask<BasicResponse<IEnumerable<XXXDto>>> Handle(GetXXXsRequest request, CancellationToken cancellationToken)
+    public async  ValueTask<GetXXXsResponse> Handle(GetXXXsRequest request, CancellationToken cancellationToken)
     {
-      var validator = new GetXXXsValidator();
-      var validationResult = await validator.ValidateAsync(request, cancellationToken);
-      if(!validationResult.IsValid)
+
+      try
       {
-        return new BasicResponse<IEnumerable<XXXDto>>().Fail(validationResult.Errors);
+        var xxxs = await _repository.Read();
+        var mapped = _mapper.Map<IEnumerable<XXXDto>>(xxxs);
+
+        return new GetXXXsResponse(mapped);
+
+      } catch (Exception ex)
+      {
+        return new GetXXXsResponse(null) { Exception = ex };
       }
-
-      var xxxs = await _repository.Read();
-      var mapped = _mapper.Map<IEnumerable<XXXDto>>(xxxs);
-
-      return new BasicResponse<IEnumerable<XXXDto>>(mapped).Ok();
 
 
 

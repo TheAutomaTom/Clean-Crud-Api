@@ -4,10 +4,10 @@ namespace ZZ.XXX.Domain.Common.Responses
 {
   public class BasicResponse : IBasicResponse
   {
-    public bool IsOk { get; set; } = false;
+    public bool IsOk { get; set; }
     public IEnumerable<string>? Messages { get; set; }
     public IEnumerable<ValidationFailure>? ValidationErrors { get; set; }
-    public IEnumerable<Exception>? Exceptions { get; set; }
+    public Exception? Exception { get; set; }
 
     public BasicResponse() { }
 
@@ -20,7 +20,7 @@ namespace ZZ.XXX.Domain.Common.Responses
     public BasicResponse(Exception exception)
     {
       IsOk = false;
-      Exceptions = new List<Exception>().Append(exception);
+      Exception = exception;
     }
 
     public BasicResponse(IEnumerable<ValidationFailure> validationErrors)
