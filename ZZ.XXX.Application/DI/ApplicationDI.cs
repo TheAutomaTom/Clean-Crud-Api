@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ZZ.XXX.Application.Interfaces.Persistence;
 
-namespace ZZ.XXX.Application.Config
+namespace ZZ.XXX.Application.DI
 {
   public static class ApplicationDI
   {

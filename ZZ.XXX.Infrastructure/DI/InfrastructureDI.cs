@@ -4,8 +4,9 @@ using ZZ.XXX.Application.Interfaces.Infrastructure;
 using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Application.Models.Emails;
 using ZZ.XXX.Infrastructure.Emails;
+using ZZ.XXX.Data.Config;
 
-namespace ZZ.XXX.Data.Config
+namespace ZZ.XXX.Infrastructure.DI
 {
   public static class InfrastructureDI
   {

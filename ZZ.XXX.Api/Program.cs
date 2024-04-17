@@ -1,6 +1,6 @@
-using ZZ.XXX.Application.Config;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using ZZ.XXX.Application.DI;
 
 namespace ZZ.XTEMPLATEX
 {
