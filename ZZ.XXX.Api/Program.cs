@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using ZZ.XXX.Application.DI;
+using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
 using ZZ.XXX.Infrastructure.DI;
@@ -17,7 +19,10 @@ namespace ZZ.XXX
       builder.Services.AddInfrastructureServices(builder.Configuration);
       builder.Services.AddPersistenceServices(builder.Configuration);
 
-      builder.Services.AddControllers();
+      builder.Services.AddControllersWithViews(o =>
+      {
+        o.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+      });
 
       builder.Services.AddEndpointsApiExplorer();
 
