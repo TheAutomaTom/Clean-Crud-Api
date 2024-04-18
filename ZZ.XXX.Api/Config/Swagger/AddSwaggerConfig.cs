@@ -26,7 +26,7 @@ namespace ZZ.XXX.Config.Swagger
         });
         var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
-        options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
+        options.IncludeXmlComments(System.IO.Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
         options.SchemaFilter<EnumSchemaFilter>();
 
 
