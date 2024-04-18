@@ -12,7 +12,7 @@ namespace ZZ.XXX.Data.Persistence
     {
     }
 
-    public override async Task<IReadOnlyList<XXXEntity>> Read()
+    public override async Task<IReadOnlyList<XXXEntity>> ReadAll()
     {
       return await _dbContext.XXXs.ToListAsync();
     }

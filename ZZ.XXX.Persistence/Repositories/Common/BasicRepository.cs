@@ -23,7 +23,7 @@ namespace ZZ.XXX.Data.Persistence.Common
       return await _dbContext.Set<T>().FindAsync(id);
     }
 
-    public virtual async Task<IReadOnlyList<T>> Read()
+    public virtual async Task<IReadOnlyList<T>> ReadAll()
     {
       return await _dbContext.Set<T>().ToListAsync();
     }
