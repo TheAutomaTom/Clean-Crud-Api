@@ -4,9 +4,10 @@ using ZZ.XXX.Application.DI;
 using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
-using ZZ.XXX.DI;
 using ZZ.XXX.Infrastructure.DI;
 using ZZ.XXX.Middleware;
+using ZZ.XXX.Config;
+using Serilog;
 
 namespace ZZ.XXX
 {
@@ -15,6 +16,14 @@ namespace ZZ.XXX
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
+      var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+      var config = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddJsonFile($"appsettings.{env}.json", optional: true
+        ).Build();
+
+      builder.Services.ConfigureLogging(config, env!);
+      builder.Host.UseSerilog();
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 

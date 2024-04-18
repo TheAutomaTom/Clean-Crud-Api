@@ -1,11 +1,45 @@
-# ZZ.XXX
+﻿# TheAutomaTom's Clean Architecture Template
+### Because getting started is the hard part. 
 
-The Automa-Tom's Clean Architecture Template
+<small>Version: 240417</small>
+
+<small>Author:</small>
+- Thomas Grossi 
+- Nashville, TN 
+- TheAutomaTom@gmail.com 
+- https://www.SurrealityCheck.org
+
 
 
 <hr/>
 
 ## Initial Setup
+
+### Containers
+
+- Launch `Docker for Windows`.
+- Open an command prompt at the directory containing `compose.yaml`.
+- Run `docker compose up -d`.
+
+#### Verify Kibana Connectivity
+
+- Go to `http://localhost:5601/app/home/`
+	- Click the `☰` mushroom-burger button in the top left, then select `Management/ Stack Management`
+	- Select `Index Management`
+	- Observe your created logging index with configured primary shards and replicas
+	- Note the sane of your index for the next step.
+- Configure Logging Stream
+	- Click the `☰` mushroom-burger button in the top left, then select `Analytics/ Discover`		
+	- Select `Create data view``
+		- Set `Name` as appropriate
+		- Set `Index pattern` to `$"{name-of-your-index-before-date}-*"` __(`*` is a wildcard*)__
+					-	Example: `elk8-lab-api-*`
+		- Select `Save Data View`
+- For an example of searching for a specific error
+	- In Swagger, execute `ElasticsearchClient8/IntentionallyThrow?someParameter=666`
+	- In Kibana, search for `IntentionallyThrow`
+	- Observe the results!
+
 
 ### EF Core
 
