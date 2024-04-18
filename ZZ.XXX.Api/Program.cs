@@ -13,33 +13,33 @@ namespace ZZ.XXX
       var builder = WebApplication.CreateBuilder(args);
 
       // Add services to the container.
-      builder.Services.AddApplicationServices();
-      builder.Services.AddInfrastructureServices(builder.Configuration);
-      builder.Services.AddPersistenceServices(builder.Configuration);
+      //builder.Services.AddApplicationServices();
+      //builder.Services.AddInfrastructureServices(builder.Configuration);
+      //builder.Services.AddPersistenceServices(builder.Configuration);
 
 
-      builder.Services.AddControllers();
+      //builder.Services.AddControllers();
       builder.Services.AddGraphQL();
 
 
-      builder.Services.AddEndpointsApiExplorer();
+      //builder.Services.AddEndpointsApiExplorer();
 
-      builder.Services.AddSwagger();
+      //builder.Services.AddSwagger();
 
       var app = builder.Build();
 
       // Configure the HTTP request pipeline.
-      if (app.Environment.IsDevelopment())
-      {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-      }
+      //if (app.Environment.IsDevelopment())
+      //{
+      //  app.UseSwagger();
+      //  app.UseSwaggerUI();
+      //}
 
-      app.UseHttpsRedirection();
+      //app.UseHttpsRedirection();
 
-      app.UseAuthorization();
+      //app.UseAuthorization();
 
-      app.MapControllers();
+      //app.MapControllers();
 
       app.UseRouting();
       app.UseEndpoints(e =>
@@ -47,7 +47,7 @@ namespace ZZ.XXX
         e.MapGraphQL();
       });
 
-      app.UseCustomExceptionHandler();
+      //app.UseCustomExceptionHandler();
 
       app.Run();
     }

@@ -1,6 +1,6 @@
-using Lkq.Api.Thing2.GraphQL.Queries;
+using ZZ.XXX;
 
-namespace ZZ.XXX.DI
+namespace ZZ.XXX.Config
 {
   public static class AddGraphQLService
   {
