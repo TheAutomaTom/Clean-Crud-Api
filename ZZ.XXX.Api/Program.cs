@@ -2,7 +2,6 @@ using ZZ.XXX.Application.DI;
 using ZZ.XXX.Config;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
-using ZZ.XXX.GraphQL.Queries;
 using ZZ.XXX.Infrastructure.DI;
 using ZZ.XXX.Middleware;
 
@@ -41,12 +40,8 @@ namespace ZZ.XXX
       app.UseAuthorization();
 
       app.MapControllers();
-
       app.UseRouting();
-      app.UseEndpoints(e =>
-      {
-        e.MapGraphQL();
-      });
+      app.MapGraphQL();
 
       app.UseCustomExceptionHandler();
 
