@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using ZZ.XXX.Application.DI;
 using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
+using ZZ.XXX.DI;
 using ZZ.XXX.Infrastructure.DI;
 using ZZ.XXX.Middleware;
 
@@ -13,6 +15,8 @@ namespace ZZ.XXX
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
+
+      builder.Services.AddCorsPolicy(builder.Configuration);
 
       // Add services to the container.
       builder.Services.AddApplicationServices();
@@ -28,7 +32,11 @@ namespace ZZ.XXX
 
       builder.Services.AddSwagger();
 
-      var app = builder.Build();
+
+      //******************************************************************************************//
+      var app = builder.Build(); 
+
+      app.UseCors(CorsConfig.Policy);
 
       // Configure the HTTP request pipeline.
       if (app.Environment.IsDevelopment())
