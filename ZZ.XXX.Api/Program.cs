@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using ZZ.XXX.Application.DI;
+using ZZ.XXX.Config;
 using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
+using ZZ.XXX.GraphQL.Queries;
 using ZZ.XXX.DI;
 using ZZ.XXX.Infrastructure.DI;
 using ZZ.XXX.Middleware;
@@ -23,10 +25,13 @@ namespace ZZ.XXX
       builder.Services.AddInfrastructureServices(builder.Configuration);
       builder.Services.AddPersistenceServices(builder.Configuration);
 
+
+      builder.Services.AddControllers();
       builder.Services.AddControllersWithViews(o =>
       {
         o.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
       });
+      builder.Services.AddGraphQLConfig(builder.Configuration);
 
       builder.Services.AddEndpointsApiExplorer();
 
@@ -50,6 +55,12 @@ namespace ZZ.XXX
       app.UseAuthorization();
 
       app.MapControllers();
+
+      app.UseRouting();
+      app.UseEndpoints(e =>
+      {
+        e.MapGraphQL();
+      });
 
       app.UseCustomExceptionHandler();
 
