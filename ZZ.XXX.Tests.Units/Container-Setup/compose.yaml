@@ -14,8 +14,8 @@ services:
     volumes:
       - zz-els01-data:/usr/share/elasticsearch/data
     environment:
-      - xpack.security.enabled=false
       - discovery.type=single-node
+      - xpack.security.enabled=false
       - xpack.watcher.enabled=false
       - xpack.monitoring.collection.enabled=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
