@@ -23,6 +23,7 @@ namespace ZZ.XXX
       // Add services to the container.
       builder.Services.AddApplicationServices();
       builder.Services.AddInfrastructureServices(builder.Configuration);
+      builder.Services.AddCacheService(builder.Configuration);
       builder.Services.AddPersistenceServices(builder.Configuration);
 
 

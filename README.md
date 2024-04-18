@@ -9,7 +9,11 @@ The Automa-Tom's Clean Architecture Template
 
 ### Recommended Tooling
 
+### Caching
 
+- Redis Insight cache browsing gui
+
+  https://redis.io/insight/
 
 ### EF Core
 
@@ -19,7 +23,7 @@ The Automa-Tom's Clean Architecture Template
  
 	https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
 
-- GraphQL by HotChocolate 
+127.0.0.1:6379- GraphQL by HotChocolate 
 
 	https://chillicream.com/docs/hotchocolate/v13/get-started-with-graphql-in-net-core
 
