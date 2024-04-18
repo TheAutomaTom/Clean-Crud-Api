@@ -5,12 +5,12 @@ namespace ZZ.XXX.GraphQL.Queries
 {
   public class Query
   {
-    readonly ILogger<Query> _logger;
+    //readonly ILogger<Query> _logger;
 
-    public Query(ILogger<Query> logger)
-    {
-      _logger = logger;
-    }
+    //public Query(ILogger<Query> logger)
+    //{
+    //  _logger = logger;
+    //}
 
     //public async Task<GetXXXByIdResponse> GetXXXById(int id, [Service] IMediator mediator )
     //{
