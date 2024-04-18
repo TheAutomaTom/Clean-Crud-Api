@@ -55,12 +55,8 @@ namespace ZZ.XXX
       app.UseAuthorization();
 
       app.MapControllers();
-
       app.UseRouting();
-      app.UseEndpoints(e =>
-      {
-        e.MapGraphQL();
-      });
+      app.MapGraphQL();
 
       app.UseCustomExceptionHandler();
 
