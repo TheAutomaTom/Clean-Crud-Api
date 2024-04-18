@@ -17,7 +17,10 @@ namespace ZZ.XXX
       builder.Services.AddInfrastructureServices(builder.Configuration);
       builder.Services.AddPersistenceServices(builder.Configuration);
 
+
       builder.Services.AddControllers();
+      builder.Services.AddGraphQL();
+
 
       builder.Services.AddEndpointsApiExplorer();
 
@@ -37,6 +40,12 @@ namespace ZZ.XXX
       app.UseAuthorization();
 
       app.MapControllers();
+
+      app.UseRouting();
+      app.UseEndpoints(e =>
+      {
+        e.MapGraphQL();
+      });
 
       app.UseCustomExceptionHandler();
 

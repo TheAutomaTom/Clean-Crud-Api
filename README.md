@@ -7,11 +7,21 @@ The Automa-Tom's Clean Architecture Template
 
 ## Initial Setup
 
+### Recommended Tooling
+
+
+
 ### EF Core
 
 ##### Tech reference
 
-- Entity Framework Code-First : https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
+- Entity Framework Code-First 
+ 
+	https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
+
+- GraphQL by HotChocolate 
+
+	https://chillicream.com/docs/hotchocolate/v13/get-started-with-graphql-in-net-core
 
 ##### Standard operating procedure
 
@@ -42,3 +52,9 @@ Tasks are references allocated to The Heap.  We label a return type as a async T
 ValueTasks are Discriminated Unions which can represent one of two things: <T> or Task<T>.  This means we can still return an actual Task<T> or avoid allocating Heap memory for a Task when methods' await minor operations, such as checking a cache.
 
 <hr/>
+
+## References
+
+GraphQL Tutorial by SingletonSean
+
+https://www.youtube.com/watch?v=iOQ74eYU2U4&list=PLA8ZIAm2I03g9z705U3KWJjTv0Nccw9pj&ab_channel=SingletonSean
