@@ -23,6 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ZZ.XXX.Api\ZZ.XXX.Api.csproj" />
+    <ProjectReference Include="..\ZZ.XXX.Persistence\ZZ.XXX.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
