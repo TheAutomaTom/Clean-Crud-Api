@@ -1,0 +1,57 @@
+# To initialize containers:
+# 1. run docker desktop, 
+# 1. open a terminal at the directory containing this file, 
+# 1. run `docker compose up -d`
+networks:
+  zz-elasticnetwork:
+    driver: bridge
+services:
+  Redis:
+    container_name: zz-redis
+    image: redis:7.2.4-alpine
+    restart: always
+    environment:
+      REDIS_PWD: '${REDIS_PASS}'
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASS
+    volumes:
+      - zz-cache:/data
+
+  ZZ-Elasticsearch:
+    container_name: zz-els
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELK_STACK_VERSION}
+    networks:      
+      - zz-elasticnetwork
+    ports:
+      - ${ES_PORT}:9200
+    volumes:
+      - zz-els01-data:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+      - xpack.monitoring.collection.enabled=true
+      - xpack.security.enrollment.enabled=true
+      - xpack.reporting.kibanaServer.hostname=localhost
+      - xpack.reporting.roles.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+  
+  ZZ-Kibana:
+    container_name: zz-kibana
+    networks:      
+      - zz-elasticnetwork
+    depends_on:
+      - ZZ-Elasticsearch
+    image: docker.elastic.co/kibana/kibana:${ELK_STACK_VERSION}
+    ports:
+      - ${KIBANA_PORT}:5601
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200 
+      - ELASTICSEARCH_USERNAME=$ELASTIC_USERNAME
+      - ELASTICSEARCH_PASSWORD=$ELASTIC_PASSWORD
+volumes:
+  zz-els01-data:
+  zz-cache:
+    driver: local
