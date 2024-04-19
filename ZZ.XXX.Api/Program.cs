@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using ZZ.XXX.Application.DI;
 using ZZ.XXX.Config;
 using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
-using ZZ.XXX.GraphQL.Queries;
 using ZZ.XXX.DI;
 using ZZ.XXX.Infrastructure.DI;
 using ZZ.XXX.Middleware;
