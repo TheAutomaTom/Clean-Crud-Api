@@ -15,37 +15,25 @@
 
 ## Initial Setup
 
-### Containers
+### Recommended Tooling
 
-- Launch `Docker for Windows`.
-- Open an command prompt at the directory containing `compose.yaml`.
-- Run `docker compose up -d`.
+### Caching
 
-#### Verify Kibana Connectivity
+- Redis Insight cache browsing gui
 
-- Go to `http://localhost:5601/app/home/`
-	- Click the `☰` mushroom-burger button in the top left, then select `Management/ Stack Management`
-	- Select `Index Management`
-	- Observe your created logging index with configured primary shards and replicas
-	- Note the sane of your index for the next step.
-- Configure Logging Stream
-	- Click the `☰` mushroom-burger button in the top left, then select `Analytics/ Discover`		
-	- Select `Create data view``
-		- Set `Name` as appropriate
-		- Set `Index pattern` to `$"{name-of-your-index-before-date}-*"` __(`*` is a wildcard*)__
-					-	Example: `elk8-lab-api-*`
-		- Select `Save Data View`
-- For an example of searching for a specific error
-	- In Swagger, execute `ElasticsearchClient8/IntentionallyThrow?someParameter=666`
-	- In Kibana, search for `IntentionallyThrow`
-	- Observe the results!
-
+  https://redis.io/insight/
 
 ### EF Core
 
 ##### Tech reference
 
-- Entity Framework Code-First : https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
+- Entity Framework Code-First 
+ 
+	https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
+
+127.0.0.1:6379- GraphQL by HotChocolate 
+
+	https://chillicream.com/docs/hotchocolate/v13/get-started-with-graphql-in-net-core
 
 ##### Standard operating procedure
 
@@ -76,3 +64,9 @@ Tasks are references allocated to The Heap.  We label a return type as a async T
 ValueTasks are Discriminated Unions which can represent one of two things: <T> or Task<T>.  This means we can still return an actual Task<T> or avoid allocating Heap memory for a Task when methods' await minor operations, such as checking a cache.
 
 <hr/>
+
+## References
+
+GraphQL Tutorial by SingletonSean
+
+https://www.youtube.com/watch?v=iOQ74eYU2U4&list=PLA8ZIAm2I03g9z705U3KWJjTv0Nccw9pj&ab_channel=SingletonSean

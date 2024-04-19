@@ -1,0 +1,6 @@
+@rooturl = http://localhost:5028
+
+GET {{rooturl}}/xxx/get-all
+Accept: application/json
+
+###

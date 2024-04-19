@@ -25,7 +25,7 @@ namespace ZZ.XXX.Application.Features.XXX.GetXXXs
 
       try
       {
-        var xxxs = await _repository.Read();
+        var xxxs = await _repository.ReadAll();
         var mapped = _mapper.Map<IEnumerable<XXXDto>>(xxxs);
 
         return new GetXXXsResponse(mapped);

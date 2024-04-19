@@ -3,9 +3,9 @@ using ZZ.XXX.Application.Features.XXX.GetXXXs;
 
 namespace ZZ.XXX.Application.Features
 {
-  public static class MappingProfile
+  public class MappingProfile : Profile
   {
-    public static MapperConfiguration InitAutoMapper()
+    public MapperConfiguration InitAutoMapper()
     {
       MapperConfiguration config = new MapperConfiguration(cfg =>
       {
