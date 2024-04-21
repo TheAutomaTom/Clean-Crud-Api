@@ -14,7 +14,10 @@ namespace ZZ.XXX
   {
     public static void Main(string[] args)
     {
+      //******************************************************************************************//
       var builder = WebApplication.CreateBuilder(args);
+      //******************************************************************************************//
+
       var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
       if (env == null)
       {
@@ -31,40 +34,35 @@ namespace ZZ.XXX
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
-      // Add services to the container.
-      MediatorConfig.AddMediator(builder.Services);
-      builder.Services.AddEmailService(builder.Configuration);
-      builder.Services.AddCache(builder.Configuration);
+      // Internal services
+      builder.Services
+        .AddDbContexts(builder.Configuration)
+        .AddMeditorSupport()
+        .AddEmailService(builder.Configuration)
+        .AddCache(builder.Configuration)
+        .AddElasticsearch(config);
 
-      builder.Services.AddElasticsearch(config);
-      builder.Services.AddDbContexts(builder.Configuration);
-
+      // Exposed features
+      builder.Services.AddGraphQL(builder.Configuration);
 
       builder.Services.AddControllers();
       builder.Services.AddControllersWithViews(o =>
       {
         o.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
       });
-      builder.Services.AddGraphQL(builder.Configuration);
 
       builder.Services.AddEndpointsApiExplorer();
-
       builder.Services.AddSwagger();
 
 
       //******************************************************************************************//
       var app = builder.Build();
-      //app.UseSerilogRequestLogging();
-
+      //******************************************************************************************//
 
       app.UseCors(CorsConfig.Policy);
 
-      // Configure the HTTP request pipeline.
-      if (app.Environment.IsDevelopment())
-      {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-      }
+      app.UseSwagger();
+      app.UseSwaggerUI();
 
       app.UseHttpsRedirection();
 

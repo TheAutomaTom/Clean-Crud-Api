@@ -12,11 +12,9 @@ namespace ZZ.XXX.Data.Config
   {
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
-      services.AddDbContext<XXXDbContext>(options =>
-          options.UseSqlServer(configuration.GetConnectionString("XXXDb")));
-
-      services.AddScoped(typeof(IAsyncRepository<>), typeof(BasicRepository<>));
-
+      services.AddDbContext<XXXDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("XXXDb")));
+           
+      services.AddScoped(typeof(IAsyncRepository<>), typeof(BasicRepository<>));     
       services.AddScoped<IXXXRepository, XXXRepository>();
 
       return services;
