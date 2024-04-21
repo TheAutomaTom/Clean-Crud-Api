@@ -1,4 +1,12 @@
-# To run this: run docker desktop, open the containing folder of this file, run `cmd`, run `docker compose up -d`.
+# To initialize containers:
+# 1. run docker desktop, 
+# 1. open a terminal at the directory containing this file, 
+# 1. run `docker compose up -d`
+
+networks:
+  zz-elasticnetwork:
+    driver: bridge
+
 services:
   Redis:
     container_name: zz-redis
@@ -11,6 +19,7 @@ services:
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASS
     volumes:
       - zz-cache:/data
+
 volumes:
   zz-cache:
     driver: local

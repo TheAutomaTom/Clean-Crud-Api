@@ -1,6 +1,14 @@
-# ZZ.XXX
+﻿# TheAutomaTom's Clean Architecture Template
+### Because getting started is the hard part. 
 
-The Automa-Tom's Clean Architecture Template
+<small>Version: 240417</small>
+
+<small>Author:</small>
+- Thomas Grossi 
+- Nashville, TN 
+- TheAutomaTom@gmail.com 
+- https://www.SurrealityCheck.org
+
 
 
 <hr/>
@@ -62,3 +70,8 @@ ValueTasks are Discriminated Unions which can represent one of two things: <T> o
 GraphQL Tutorial by SingletonSean
 
 https://www.youtube.com/watch?v=iOQ74eYU2U4&list=PLA8ZIAm2I03g9z705U3KWJjTv0Nccw9pj&ab_channel=SingletonSean
+
+ELK Stack
+
+https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml
+

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZZ.XXX.Domain.Dtos
+namespace ZZ.XXX.Domain.Dtos.Elastic
 {
-  public class XXXDto
+  public class XXXEls : XXXDto
   {
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public int Id { get; set; }
   }
 }

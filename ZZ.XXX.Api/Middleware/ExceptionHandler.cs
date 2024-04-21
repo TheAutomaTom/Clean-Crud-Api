@@ -7,10 +7,14 @@ namespace ZZ.XXX.Middleware
     public class ExceptionHandler
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandler> _logger;
 
-        public ExceptionHandler(RequestDelegate next)
+
+        public ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> logger)
         {
             _next = next;
+            _logger = logger;
+
         }
 
         public async Task Invoke(HttpContext context)
@@ -36,17 +40,21 @@ namespace ZZ.XXX.Middleware
             switch (exception)
             {
                 case ValidationException validationException:
+                    _logger.LogWarning(exception, exception.Message);
                     httpStatusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.ValdationErrors);
                     break;
                 case BadRequestException badRequestException:
+                    _logger.LogWarning(exception, exception.Message);
                     httpStatusCode = HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
                     break;
                 case NotFoundException:
+                    _logger.LogWarning(exception, exception.Message);
                     httpStatusCode = HttpStatusCode.NotFound;
                     break;
                 case Exception:
+                    _logger.LogError(exception, exception.Message);
                     httpStatusCode = HttpStatusCode.BadRequest;
                     break;
             }

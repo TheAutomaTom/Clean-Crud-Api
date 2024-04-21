@@ -1,4 +1,4 @@
-namespace ZZ.XXX.DI
+namespace ZZ.XXX.Config
 {
   public static class CorsConfig
   {
