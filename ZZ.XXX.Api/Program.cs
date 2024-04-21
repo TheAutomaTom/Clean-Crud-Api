@@ -31,13 +31,6 @@ namespace ZZ.XXX
       builder.Services.ConfigureLogging(config, env);
       builder.Host.UseSerilog();
 
-      Log.Logger = new LoggerConfiguration()
-        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-        .Enrich.FromLogContext()
-        .WriteTo.Console()
-        .CreateLogger();
-
-
       builder.Services.AddCorsPolicy(builder.Configuration);
 
       // Add services to the container.

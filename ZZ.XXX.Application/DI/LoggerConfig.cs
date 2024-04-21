@@ -15,26 +15,32 @@ namespace ZZ.XXX.Application.DI
       Log.Logger = new LoggerConfiguration()
         .Enrich.FromLogContext()
         .Enrich.WithExceptionDetails()
+        .Enrich.WithMachineName()
         .WriteTo.Debug()
         .WriteTo.Console()
-        .WriteTo.Elasticsearch(
-          new ElasticsearchSinkOptions(new Uri(config["Elastic:Url"]))
-          {
-            ModifyConnectionSettings = x => x.BasicAuthentication(config["Elastic:Username"], config["Elastic:Password"]),
-            AutoRegisterTemplate = true,
-
-            // TODO: Move to Appsettings
-            IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.Replace(".", "-")}-{env}-{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss}",
-            NumberOfReplicas = 2,
-            NumberOfShards = 1
-          }
-        )
+        .WriteTo.Elasticsearch(configureElasticSink(config, env))
         .Enrich.WithProperty("Environment", env)
         .ReadFrom.Configuration(config)
         .CreateLogger();
+      
+      Log.Logger.Information($"Logger configured.");
 
     }
 
+    static ElasticsearchSinkOptions configureElasticSink(IConfiguration config, string env)
+    {
+      var url = config.GetValue<string>("Elastic:Url");
+      return new ElasticsearchSinkOptions(new Uri(url))
+      {
+        ModifyConnectionSettings = x => x.BasicAuthentication(config["Elastic:Username"], config["Elastic:Password"]),
+        AutoRegisterTemplate = true,
+        IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.Replace(".", "-")}-{env}-{DateTime.UtcNow:yyyy-MM}",
+
+        // TODO: Move to Appsettings
+        NumberOfReplicas = 1,
+        NumberOfShards = 2
+      };
+    }
 
 
   }
