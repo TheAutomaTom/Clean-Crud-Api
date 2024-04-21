@@ -2,15 +2,15 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.XXX.Application.Interfaces.Persistence;
-using ZZ.XXX.Data.Contexts;
 using ZZ.XXX.Data.Persistence;
 using ZZ.XXX.Data.Persistence.Common;
+using ZZ.XXX.Data.DbContexts;
 
 namespace ZZ.XXX.Data.Config
 {
-  public static class PersistenceDI
+  public static class DbContextConfigs
   {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
       services.AddDbContext<XXXDbContext>(options =>
           options.UseSqlServer(configuration.GetConnectionString("XXXDb")));

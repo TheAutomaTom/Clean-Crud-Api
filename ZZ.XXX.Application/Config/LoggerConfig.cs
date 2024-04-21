@@ -5,11 +5,11 @@ using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 
-namespace ZZ.XXX.Application.DI
+namespace ZZ.XXX.Application.Config
 {
   public static class LoggerConfig
   {
-    public static void ConfigureLogging(this IServiceCollection services, IConfiguration config, string env)
+    public static void AddLogger(this IServiceCollection services, IConfiguration config, string env)
     {
       // Setup Logger
       Log.Logger = new LoggerConfiguration()

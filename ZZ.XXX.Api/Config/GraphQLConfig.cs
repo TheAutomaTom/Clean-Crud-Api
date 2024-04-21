@@ -3,10 +3,10 @@ using ZZ.XXX.GraphQL.Queries;
 
 namespace ZZ.XXX.Config
 {
-  public static class AddGraphQLService
+  public static class GraphQLConfig
   {
 
-    public static IServiceCollection AddGraphQLConfig(this IServiceCollection services, IConfiguration config)
+    public static IServiceCollection AddGraphQL(this IServiceCollection services, IConfiguration config)
     {
 
       services

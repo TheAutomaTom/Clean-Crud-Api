@@ -4,7 +4,7 @@ using ZZ.XXX.Config.Swagger;
 
 namespace ZZ.XXX.Config.Swagger
 {
-  public static class AddSwaggerConfig
+  public static class SwaggerConfig
   {
 
     public static IServiceCollection AddSwagger(this IServiceCollection services)

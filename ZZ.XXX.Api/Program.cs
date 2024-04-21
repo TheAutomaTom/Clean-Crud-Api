@@ -1,14 +1,12 @@
-using Elk8.Lab.Api.DI;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
-using Serilog.Events;
-using ZZ.XXX.Application.DI;
 using ZZ.XXX.Config;
 using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
-using ZZ.XXX.Infrastructure.DI;
 using ZZ.XXX.Middleware;
+using ZZ.XXX.Application.Config;
+using ZZ.XXX.Infrastructure.Config;
 
 namespace ZZ.XXX
 {
@@ -28,18 +26,18 @@ namespace ZZ.XXX
         .AddJsonFile($"appsettings.{env}.json", optional: true
         ).Build();
 
-      builder.Services.ConfigureLogging(config, env);
+      builder.Services.AddLogger(config, env);
       builder.Host.UseSerilog();
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
       // Add services to the container.
-      builder.Services.AddApplicationServices();
-      builder.Services.AddInfrastructureServices(builder.Configuration);
-      builder.Services.AddCacheService(builder.Configuration);
+      MediatorConfig.AddMediator(builder.Services);
+      builder.Services.AddEmailService(builder.Configuration);
+      builder.Services.AddCache(builder.Configuration);
       
       builder.Services.AddElasticsearch(config);
-      builder.Services.AddPersistenceServices(builder.Configuration);
+      builder.Services.AddDbContexts(builder.Configuration);
 
 
       builder.Services.AddControllers();
@@ -47,7 +45,7 @@ namespace ZZ.XXX
       {
         o.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
       });
-      builder.Services.AddGraphQLConfig(builder.Configuration);
+      builder.Services.AddGraphQL(builder.Configuration);
 
       builder.Services.AddEndpointsApiExplorer();
 

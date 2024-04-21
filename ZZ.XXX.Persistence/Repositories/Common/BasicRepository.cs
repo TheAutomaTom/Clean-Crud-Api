@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ZZ.XXX.Application.Interfaces.Persistence;
-using ZZ.XXX.Data.Contexts;
+using ZZ.XXX.Data.DbContexts;
 
 namespace ZZ.XXX.Data.Persistence.Common
 {

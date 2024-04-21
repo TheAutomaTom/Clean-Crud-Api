@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Bogus;
 using Microsoft.EntityFrameworkCore;
-using ZZ.XXX.Data.Contexts;
 using ZZ.XXX.Domain.Entities;
+using ZZ.XXX.Data.DbContexts;
 
 namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
 {

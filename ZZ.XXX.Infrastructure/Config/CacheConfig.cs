@@ -4,11 +4,11 @@ using ZZ.XXX.Application.Interfaces.Infrastructure;
 using ZZ.XXX.Application.Models.Cache;
 using ZZ.XXX.Infrastructure.Cache;
 
-namespace ZZ.XXX.Infrastructure.DI
+namespace ZZ.XXX.Infrastructure.Config
 {
-  public static class CacheDI 
+  public static class CacheConfig 
   { 
-    public static IServiceCollection AddCacheService(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddCache(this IServiceCollection services, IConfiguration configuration)
     {
       var settings = configuration.GetSection("Cache");
       services.Configure<CacheSettings>(settings);

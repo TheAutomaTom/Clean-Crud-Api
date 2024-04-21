@@ -7,8 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ZZ.XXX.Domain.Common;
 using ZZ.XXX.Domain.Entities;
+using ZZ.XXX.Data.DbContexts;
 
-namespace ZZ.XXX.Data.Contexts
+namespace ZZ.XXX.Data.DbContexts
 {
   public class XXXDbContext : DbContext
   {

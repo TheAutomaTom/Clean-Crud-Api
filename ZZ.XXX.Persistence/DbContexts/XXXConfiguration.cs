@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
 using ZZ.XXX.Domain.Entities;
 
-namespace ZZ.XXX.Data.Contexts
+namespace ZZ.XXX.Data.DbContexts
 {
   public class XXXConfiguration : IEntityTypeConfiguration<XXXEntity>
   {

@@ -7,7 +7,7 @@ using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Data.Elastic;
 using ZZ.XXX.Domain.Dtos.Elastic;
 
-namespace Elk8.Lab.Api.DI
+namespace ZZ.XXX.Data.Config
 {
   public static class ElasticConfig
   {
