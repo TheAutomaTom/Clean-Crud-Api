@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 using ZZ.XXX.Application.Interfaces.Infrastructure;
-using ZZ.XXX.Application.Models.Cache;
+using ZZ.XXX.Domain.Models.Cache;
 
 namespace ZZ.XXX.Infrastructure.Cache
 {

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
-using ZZ.XXX.Application.Exceptions;
+using ZZ.XXX.Plumbing.Exceptions;
 
 namespace ZZ.XXX.Middleware
 {

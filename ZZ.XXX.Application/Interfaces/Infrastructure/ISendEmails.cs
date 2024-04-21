@@ -1,4 +1,4 @@
-﻿using ZZ.XXX.Application.Models.Emails;
+﻿using ZZ.XXX.Domain.Models.Emails;
 
 namespace ZZ.XXX.Application.Interfaces.Infrastructure
 {

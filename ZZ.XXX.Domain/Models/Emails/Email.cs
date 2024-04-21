@@ -1,4 +1,4 @@
-﻿namespace ZZ.XXX.Application.Models.Emails
+﻿namespace ZZ.XXX.Domain.Models.Emails
 {
   public class Email
   {

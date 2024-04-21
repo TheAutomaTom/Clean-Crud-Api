@@ -1,4 +1,4 @@
-﻿namespace ZZ.XXX.Application.Exceptions
+﻿namespace ZZ.XXX.Plumbing.Exceptions
 {
   public class BadRequestException : Exception
   {

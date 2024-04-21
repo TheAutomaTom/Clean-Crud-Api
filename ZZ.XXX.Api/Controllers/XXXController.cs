@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ZZ.XXX.Application.Features.XXX.GetXXXs;
 using ZZ.XXX.Application.Features.XXX.PostToElastic;
 using ZZ.XXX.Domain.Dtos.Elastic;
+using ZZ.XXX.Application.Features.XXX.GetAllElastic;
 
 namespace ZZ.XXX.Controllers
 {

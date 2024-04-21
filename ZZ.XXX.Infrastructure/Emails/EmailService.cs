@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using ZZ.XXX.Application.Interfaces.Infrastructure;
-using ZZ.XXX.Application.Models.Emails;
+using ZZ.XXX.Domain.Models.Emails;
 
 namespace ZZ.XXX.Infrastructure.Emails
 {

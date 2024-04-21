@@ -1,4 +1,4 @@
-﻿namespace ZZ.XXX.Application.Models.Cache
+﻿namespace ZZ.XXX.Domain.Models.Cache
 {
   public class CacheSettings
   {

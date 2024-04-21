@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.XXX.Application.Interfaces.Infrastructure;
-using ZZ.XXX.Application.Models.Emails;
 using ZZ.XXX.Infrastructure.Emails;
+using ZZ.XXX.Domain.Models.Emails;
 
 namespace ZZ.XXX.Infrastructure.Config
 {

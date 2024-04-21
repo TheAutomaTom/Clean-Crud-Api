@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.XXX.Application.Interfaces.Infrastructure;
-using ZZ.XXX.Application.Models.Cache;
 using ZZ.XXX.Infrastructure.Cache;
+using ZZ.XXX.Domain.Models.Cache;
 
 namespace ZZ.XXX.Infrastructure.Config
 {

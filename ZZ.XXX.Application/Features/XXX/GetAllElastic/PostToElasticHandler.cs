@@ -3,8 +3,10 @@ using Mediator;
 using Microsoft.Extensions.Logging;
 using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Domain.Dtos.Elastic;
+using ZZ.XXX.Application.Features.XXX.GetAllElastic;
+using ZZ.XXX.Application.Features.XXX.PostToElastic;
 
-namespace ZZ.XXX.Application.Features.XXX.PostToElastic
+namespace ZZ.XXX.Application.Features.XXX.GetAllElastic
 {
   public class PostToElasticHandler : IRequestHandler<PostToElasticRequest, PostToElasticResponse>
   {
