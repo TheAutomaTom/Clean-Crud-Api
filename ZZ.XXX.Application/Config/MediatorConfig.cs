@@ -7,7 +7,7 @@ namespace ZZ.XXX.Application.Config
     public static IServiceCollection AddMediator(this IServiceCollection services)
     {
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-      services.AddMediator(o => o.ServiceLifetime = ServiceLifetime.Transient);             
+      services.AddMediator(o => o.ServiceLifetime = ServiceLifetime.Transient);
       return services;
     }
   }

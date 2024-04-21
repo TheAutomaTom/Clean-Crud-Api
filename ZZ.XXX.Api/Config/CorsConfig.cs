@@ -5,7 +5,7 @@ namespace ZZ.XXX.Config
 
     public static string Policy = "corsPolicyName";
     public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration config)
-    {      
+    {
       var allowedHosts = config.GetSection("AllowedHosts").Get<string>();
       services.AddCors(options =>
       {
@@ -15,7 +15,7 @@ namespace ZZ.XXX.Config
             policy.WithOrigins(allowedHosts!)
             .AllowAnyHeader()
             .AllowAnyMethod();
-        });
+          });
       });
 
       return services;

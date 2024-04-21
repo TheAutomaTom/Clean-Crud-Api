@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Nest;
 using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Domain.Dtos.Elastic;
@@ -39,7 +38,7 @@ namespace ZZ.XXX.Data.Elastic
       var results = new List<XXXEls>();
       foreach (var response in responses.Documents)
       {
-        
+
         results.Add(response);
       }
       return results;

@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
+using ZZ.XXX.Application.Config;
 using ZZ.XXX.Config;
 using ZZ.XXX.Config.Routing;
 using ZZ.XXX.Config.Swagger;
 using ZZ.XXX.Data.Config;
-using ZZ.XXX.Middleware;
-using ZZ.XXX.Application.Config;
 using ZZ.XXX.Infrastructure.Config;
+using ZZ.XXX.Middleware;
 
 namespace ZZ.XXX
 {
@@ -15,12 +15,12 @@ namespace ZZ.XXX
     public static void Main(string[] args)
     {
       var builder = WebApplication.CreateBuilder(args);
-      var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");      
-      if(env == null)
+      var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+      if (env == null)
       {
         throw new Exception("Environment not set");
       }
-      
+
       var config = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
         .AddJsonFile($"appsettings.{env}.json", optional: true
@@ -35,7 +35,7 @@ namespace ZZ.XXX
       MediatorConfig.AddMediator(builder.Services);
       builder.Services.AddEmailService(builder.Configuration);
       builder.Services.AddCache(builder.Configuration);
-      
+
       builder.Services.AddElasticsearch(config);
       builder.Services.AddDbContexts(builder.Configuration);
 
@@ -53,9 +53,9 @@ namespace ZZ.XXX
 
 
       //******************************************************************************************//
-      var app = builder.Build(); 
+      var app = builder.Build();
       //app.UseSerilogRequestLogging();
-      
+
 
       app.UseCors(CorsConfig.Policy);
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Data.DbContexts;
 
@@ -15,7 +10,7 @@ namespace ZZ.XXX.Data.Persistence.Common
 
     public BasicRepository(XXXDbContext dbContext)
     {
-      _dbContext = dbContext;      
+      _dbContext = dbContext;
     }
 
     public virtual async Task<T> ReadById(int id)

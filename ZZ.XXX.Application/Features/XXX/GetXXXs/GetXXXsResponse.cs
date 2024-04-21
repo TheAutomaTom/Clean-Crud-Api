@@ -10,7 +10,7 @@ namespace ZZ.XXX.Application.Features.XXX.GetXXXs
       XXXs = xxxs;
       IsOk = XXXs != null;
     }
-    
+
     public IEnumerable<XXXDto>? XXXs { get; set; }
 
   }

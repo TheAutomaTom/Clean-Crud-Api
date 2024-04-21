@@ -1,7 +1,4 @@
-﻿using ZZ.XXX;
-using ZZ.XXX.GraphQL.Queries;
-
-namespace ZZ.XXX.GraphQL.Queries
+﻿namespace ZZ.XXX.GraphQL.Queries
 {
   public class Query
   {

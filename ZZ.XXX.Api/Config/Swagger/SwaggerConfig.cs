@@ -1,6 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
-using System.Reflection;
-using ZZ.XXX.Config.Swagger;
+﻿using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 namespace ZZ.XXX.Config.Swagger
 {

@@ -22,7 +22,7 @@ namespace ZZ.XXX.Application.Config
         .Enrich.WithProperty("Environment", env)
         .ReadFrom.Configuration(config)
         .CreateLogger();
-      
+
       Log.Logger.Information($"Logger configured.");
 
     }

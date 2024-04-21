@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZZ.XXX.Application.Interfaces.Persistence;
+using ZZ.XXX.Data.DbContexts;
 using ZZ.XXX.Data.Persistence.Common;
 using ZZ.XXX.Domain.Entities;
-using ZZ.XXX.Data.DbContexts;
 
 namespace ZZ.XXX.Data.Persistence
 {

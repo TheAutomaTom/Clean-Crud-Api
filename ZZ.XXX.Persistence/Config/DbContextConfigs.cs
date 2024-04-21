@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.XXX.Application.Interfaces.Persistence;
+using ZZ.XXX.Data.DbContexts;
 using ZZ.XXX.Data.Persistence;
 using ZZ.XXX.Data.Persistence.Common;
-using ZZ.XXX.Data.DbContexts;
 
 namespace ZZ.XXX.Data.Config
 {

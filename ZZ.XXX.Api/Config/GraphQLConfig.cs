@@ -1,4 +1,3 @@
-using ZZ.XXX;
 using ZZ.XXX.GraphQL.Queries;
 
 namespace ZZ.XXX.Config
@@ -10,7 +9,7 @@ namespace ZZ.XXX.Config
     {
 
       services
-        .AddGraphQLServer()          
+        .AddGraphQLServer()
         .AddQueryType<Query>();
       //.AddMutationType<BaseMutation>();
       //.AddMutationType<BaseSubscription>();

@@ -75,7 +75,8 @@ namespace ZZ.XXX.Controllers
 
         return Ok(results);
 
-      } catch (Exception ex)
+      }
+      catch (Exception ex)
       {
         return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
       }

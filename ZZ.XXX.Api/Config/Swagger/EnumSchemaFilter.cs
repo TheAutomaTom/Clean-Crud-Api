@@ -4,18 +4,18 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ZZ.XXX.Config.Swagger
 {
-    public class EnumSchemaFilter : ISchemaFilter
+  public class EnumSchemaFilter : ISchemaFilter
+  {
+    public void Apply(OpenApiSchema model, SchemaFilterContext context)
     {
-        public void Apply(OpenApiSchema model, SchemaFilterContext context)
-        {
-            if (context.Type.IsEnum)
-            {
-                model.Type = "string";
-                model.Enum.Clear();
-                Enum.GetNames(context.Type)
-                    .ToList()
-                    .ForEach(n => model.Enum.Add(new OpenApiString(n)));
-            }
-        }
+      if (context.Type.IsEnum)
+      {
+        model.Type = "string";
+        model.Enum.Clear();
+        Enum.GetNames(context.Type)
+            .ToList()
+            .ForEach(n => model.Enum.Add(new OpenApiString(n)));
+      }
     }
+  }
 }

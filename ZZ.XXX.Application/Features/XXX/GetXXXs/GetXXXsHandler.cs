@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Mediator;
 using ZZ.XXX.Application.Interfaces.Persistence;
-using ZZ.XXX.Domain.Common.Responses;
 using ZZ.XXX.Domain.Dtos;
 using ZZ.XXX.Domain.Entities;
 
@@ -13,14 +12,14 @@ namespace ZZ.XXX.Application.Features.XXX.GetXXXs
     readonly IAsyncRepository<XXXEntity> _repository;
     readonly IMapper _mapper;
 
-    public GetXXXsHandler( IMapper mapper, IAsyncRepository<XXXEntity> repository )//ILogger<GetXXXsHandler> _logger)
+    public GetXXXsHandler(IMapper mapper, IAsyncRepository<XXXEntity> repository)//ILogger<GetXXXsHandler> _logger)
     {
       _mapper = mapper;
       _repository = repository;
-      
+
     }
 
-    public async  ValueTask<GetXXXsResponse> Handle(GetXXXsRequest request, CancellationToken cancellationToken)
+    public async ValueTask<GetXXXsResponse> Handle(GetXXXsRequest request, CancellationToken cancellationToken)
     {
 
       try
@@ -30,7 +29,8 @@ namespace ZZ.XXX.Application.Features.XXX.GetXXXs
 
         return new GetXXXsResponse(mapped);
 
-      } catch (Exception ex)
+      }
+      catch (Exception ex)
       {
         return new GetXXXsResponse(null) { Exception = ex };
       }

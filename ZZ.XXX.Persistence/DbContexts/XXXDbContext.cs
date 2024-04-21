@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
 using ZZ.XXX.Domain.Common;
 using ZZ.XXX.Domain.Entities;
-using ZZ.XXX.Data.DbContexts;
 
 namespace ZZ.XXX.Data.DbContexts
 {
@@ -26,7 +19,7 @@ namespace ZZ.XXX.Data.DbContexts
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {      
+    {
       modelBuilder.ApplyConfigurationsFromAssembly(typeof(XXXDbContext).Assembly);
     }
 
@@ -39,7 +32,7 @@ namespace ZZ.XXX.Data.DbContexts
 
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
-            entry.Entity.CreatedBy = nameof(ZZ.XXX.Data.Persistence.XXXRepository);            
+            entry.Entity.CreatedBy = nameof(ZZ.XXX.Data.Persistence.XXXRepository);
             entry.Entity.LastModifiedDate = entry.Entity.CreatedDate; // Why can't these be null? 
             entry.Entity.LastModifiedBy = entry.Entity.CreatedBy;     // Why can't these be null? 
             break;
@@ -57,4 +50,4 @@ namespace ZZ.XXX.Data.DbContexts
 
 
   }
-  }
+}

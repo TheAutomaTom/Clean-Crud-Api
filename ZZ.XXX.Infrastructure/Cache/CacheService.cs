@@ -23,8 +23,8 @@ namespace ZZ.XXX.Infrastructure.Cache
         User = _settings.User,
         Password = _settings.Password,
         EndPoints = { _settings.Address },
-        SyncTimeout = _settings.SecondToTimeout * 1000, 
-        AsyncTimeout = _settings.SecondToTimeout * 1000, 
+        SyncTimeout = _settings.SecondToTimeout * 1000,
+        AsyncTimeout = _settings.SecondToTimeout * 1000,
         ConnectTimeout = _settings.SecondToTimeout * 1000
       };
       _defaultLifetime = new TimeSpan(0, _settings.MinutesToLive, 0);

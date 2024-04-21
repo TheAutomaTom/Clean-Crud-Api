@@ -6,8 +6,8 @@ using ZZ.XXX.Infrastructure.Cache;
 
 namespace ZZ.XXX.Infrastructure.Config
 {
-  public static class CacheConfig 
-  { 
+  public static class CacheConfig
+  {
     public static IServiceCollection AddCache(this IServiceCollection services, IConfiguration configuration)
     {
       var settings = configuration.GetSection("Cache");

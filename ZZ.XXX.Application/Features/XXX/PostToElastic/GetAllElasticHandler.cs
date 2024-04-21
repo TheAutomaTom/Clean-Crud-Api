@@ -2,11 +2,10 @@
 using Mediator;
 using Microsoft.Extensions.Logging;
 using ZZ.XXX.Application.Interfaces.Persistence;
-using ZZ.XXX.Domain.Dtos.Elastic;
 
 namespace ZZ.XXX.Application.Features.XXX.PostToElastic
 {
-  public class GetAllElasticHandler : IRequestHandler<GetAllElasticRequest, GetAllElasticResponse>
+	public class GetAllElasticHandler : IRequestHandler<GetAllElasticRequest, GetAllElasticResponse>
 	{
 		readonly IMapper _mapper;
 		readonly IXXXElasticRepository _repo;
@@ -21,9 +20,9 @@ namespace ZZ.XXX.Application.Features.XXX.PostToElastic
 
 		public async ValueTask<GetAllElasticResponse> Handle(GetAllElasticRequest request, CancellationToken cancellationToken)
 		{
-      var results = await _repo.GetAll();
+			var results = await _repo.GetAll();
 
-      return new GetAllElasticResponse(results);
+			return new GetAllElasticResponse(results);
 
 
 
