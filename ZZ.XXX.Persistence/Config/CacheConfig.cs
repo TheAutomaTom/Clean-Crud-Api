@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.XXX.Application.Interfaces.Infrastructure;
-using ZZ.XXX.Infrastructure.Cache;
 using ZZ.XXX.Domain.Models.Cache;
+using ZZ.XXX.Data.Cache;
 
-namespace ZZ.XXX.Infrastructure.Config
+namespace ZZ.XXX.Data.Config
 {
   public static class CacheConfig
   {

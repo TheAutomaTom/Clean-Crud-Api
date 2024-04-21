@@ -41,7 +41,7 @@ namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
       Assert.NotEqual(DateTime.MinValue, entity.CreatedDate);
 
 
-      var expectedName = nameof(Data.Persistence.XXXRepository);
+      var expectedName = nameof(ZZ.XXX.Data.Repositories.XXXRepository);
 
       Assert.Equal(expectedName, entity.CreatedBy);
     }

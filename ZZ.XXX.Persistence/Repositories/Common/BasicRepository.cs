@@ -2,7 +2,7 @@
 using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Data.DbContexts;
 
-namespace ZZ.XXX.Data.Persistence.Common
+namespace ZZ.XXX.Data.Repositories.Common
 {
   public class BasicRepository<T> : IAsyncRepository<T> where T : class
   {

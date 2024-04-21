@@ -32,14 +32,14 @@ namespace ZZ.XXX.Data.DbContexts
 
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
-            entry.Entity.CreatedBy = nameof(ZZ.XXX.Data.Persistence.XXXRepository);
+            entry.Entity.CreatedBy = nameof(ZZ.XXX.Data.Repositories.XXXRepository);
             entry.Entity.LastModifiedDate = entry.Entity.CreatedDate; // Why can't these be null? 
             entry.Entity.LastModifiedBy = entry.Entity.CreatedBy;     // Why can't these be null? 
             break;
 
           case EntityState.Modified:
             entry.Entity.LastModifiedDate = DateTime.Now;
-            entry.Entity.LastModifiedBy = nameof(ZZ.XXX.Data.Persistence.XXXRepository);
+            entry.Entity.LastModifiedBy = nameof(ZZ.XXX.Data.Repositories.XXXRepository);
             break;
 
         }

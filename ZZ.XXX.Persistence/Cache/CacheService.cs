@@ -3,7 +3,7 @@ using StackExchange.Redis;
 using ZZ.XXX.Application.Interfaces.Infrastructure;
 using ZZ.XXX.Domain.Models.Cache;
 
-namespace ZZ.XXX.Infrastructure.Cache
+namespace ZZ.XXX.Data.Cache
 {
   public class CacheService : ICache
   {

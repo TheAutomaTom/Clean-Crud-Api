@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZZ.XXX.Application.Interfaces.Persistence;
 using ZZ.XXX.Data.DbContexts;
-using ZZ.XXX.Data.Persistence.Common;
 using ZZ.XXX.Domain.Entities;
+using ZZ.XXX.Data.Repositories.Common;
 
-namespace ZZ.XXX.Data.Persistence
+namespace ZZ.XXX.Data.Repositories
 {
   public class XXXRepository : BasicRepository<XXXEntity>, IXXXRepository
   {
