@@ -1,11 +1,13 @@
-﻿using Serilog.Sinks.Elasticsearch;
+﻿using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using System.Reflection;
 using Serilog.Exceptions;
+using Serilog.Sinks.Elasticsearch;
 
-namespace ZZ.XXX.Config
+namespace ZZ.XXX.Application.DI
 {
-  public static class SerilogConfig
+  public static class LoggerConfig
   {
     public static void ConfigureLogging(this IServiceCollection services, IConfiguration config, string env)
     {
@@ -18,6 +20,7 @@ namespace ZZ.XXX.Config
         .WriteTo.Elasticsearch(
           new ElasticsearchSinkOptions(new Uri(config["Elastic:Url"]))
           {
+            ModifyConnectionSettings = x => x.BasicAuthentication(config["Elastic:Username"], config["Elastic:Password"]),
             AutoRegisterTemplate = true,
 
             // TODO: Move to Appsettings
@@ -29,8 +32,6 @@ namespace ZZ.XXX.Config
         .Enrich.WithProperty("Environment", env)
         .ReadFrom.Configuration(config)
         .CreateLogger();
-
-
 
     }
 
