@@ -10,7 +10,7 @@ namespace ZZ.Core.Application.Features.Cruds.CreateCrud
 {
   public class CreateCrudResponse : BasicResponse
   {
-    public CreateCrudResponse(Crud? crud = null) : base(crud != null)
+    public CreateCrudResponse(Crud? crud = null) : base()
     {
       Crud = crud;
 

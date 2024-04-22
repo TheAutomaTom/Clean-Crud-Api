@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZZ.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.Infra.Persistence.EfCore.DbContexts
+namespace ZZ.Infra.Persistence.Repositories.DbContexts
 {
   public class CrudConfiguration : IEntityTypeConfiguration<CrudEntity>
   {

@@ -5,7 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Nest;
 using ZZ.Core.Application.Interfaces.Persistence;
 using ZZ.Core.Domain._Deprecated.Elastic;
-using ZZ.Infra.Persistence.Elastic;
+using ZZ.Core.Domain.Models.Cruds.Repo;
+using ZZ.Infra.Persistence.Repositories;
 
 namespace ZZ.Infra.Persistence.Config
 {
@@ -23,7 +24,7 @@ namespace ZZ.Infra.Persistence.Config
       var settings = new ConnectionSettings(new Uri(url))
           .PrettyJson() // Return human readable search results
           .DefaultIndex(defaultIndex)
-          .DefaultMappingFor<XXXEls>(m => m.IndexName(crudIndex))
+          .DefaultMappingFor<CrudDetail>(m => m.IndexName(crudIndex))
           .BasicAuthentication(user, pass)
           //.EnableHttpCompression()
           .OnRequestCompleted(response => LogTransactions(response))
@@ -34,7 +35,7 @@ namespace ZZ.Infra.Persistence.Config
       client.Map<XXXEls>(m => m.Index(nameof(XXXEls)).AutoMap());
 
       services.AddSingleton<IElasticClient>(client);
-      services.AddScoped<IXXXElasticRepository, XXXElasticRepository>();
+      services.AddScoped<ICrudDetailRepository, CrudDetailRepository>();
 
     }
 

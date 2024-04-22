@@ -7,6 +7,7 @@ using ZZ.Api.Config.Swagger;
 using ZZ.Api.Middleware;
 using ZZ.Core.Application.Config;
 using ZZ.Infra.Services.Config;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace ZZ.Api
 {
@@ -54,6 +55,10 @@ namespace ZZ.Api
 
       builder.Services.AddEndpointsApiExplorer();
       builder.Services.AddSwagger();
+
+
+      builder.Services.AddDataProtection()
+          .PersistKeysToFileSystem(new DirectoryInfo(@"path\to\keys"));
 
 
       //******************************************************************************************//

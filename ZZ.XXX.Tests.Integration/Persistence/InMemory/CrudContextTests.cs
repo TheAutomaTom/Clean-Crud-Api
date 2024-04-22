@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
-using ZZ.Infra.Persistence.EfCore.DbContexts;
 using ZZ.Core.Domain.Models.Cruds.Repo;
+using ZZ.Infra.Persistence.Repositories.DbContexts;
 
 namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
 {
@@ -25,8 +25,8 @@ namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
     public async void SaveChangesAsync_WhenEntityAdded_ExpectAuditFieldsSet()
     {
       var faker = new Faker<CrudEntity>()
-        .RuleFor(o => o.Contact, f => f.Person.FirstName)
-        .RuleFor(o => o.Location, f => f.Name.JobTitle());
+        .RuleFor(o => o.Name, f => f.Person.FirstName)
+        .RuleFor(o => o.Department, f => f.Name.JobTitle());
 
       var entity = faker.Generate(1).First();
 
@@ -36,7 +36,7 @@ namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
       Assert.NotEqual(DateTime.MinValue, entity.CreatedDate);
 
 
-      var expectedName = nameof(ZZ.Infra.Persistence.EfCore.CrudRepository);
+      var expectedName = nameof(ZZ.Infra.Persistence.Repositories.CrudRepository);
 
       Assert.Equal(expectedName, entity.CreatedBy);
     }

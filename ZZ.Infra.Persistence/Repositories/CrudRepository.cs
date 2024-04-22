@@ -1,22 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Infra.Persistence.EfCore.Common;
-using ZZ.Infra.Persistence.EfCore.DbContexts;
 using ZZ.Core.Domain.Models.Cruds.Repo;
+using ZZ.Infra.Persistence.Repositories.Common;
+using ZZ.Infra.Persistence.Repositories.DbContexts;
 
-namespace ZZ.Infra.Persistence.EfCore
+namespace ZZ.Infra.Persistence.Repositories
 {
   public class CrudRepository : EFCoreRepository<CrudEntity>, ICrudRepository
   {
     public CrudRepository(CrudContext dbContext) : base(dbContext)
     {
-    
-    
-    
+
     }
 
-    
+
+
 
 
 

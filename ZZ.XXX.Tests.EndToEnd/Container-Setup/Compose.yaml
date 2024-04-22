@@ -3,10 +3,6 @@
 # 1. open a terminal at the directory containing this file, 
 # 1. run `docker compose up -d`
 
-networks:
-  zz-elasticnetwork:
-    driver: bridge
-
 services:
   Redis:
     container_name: zz-redis
@@ -20,6 +16,19 @@ services:
     volumes:
       - zz-cache:/data
 
+  zz-sqlserver:
+    container_name: zz-sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - ${SQL_PORT}:1433
+    environment:
+      SA_PASSWORD: ${SQL_SA_PASS}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - zz-sqldata:/var/opt/mssql
+
+
 volumes:
+  zz-sqldata:
   zz-cache:
     driver: local

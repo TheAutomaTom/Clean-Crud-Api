@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection.Emit;
+using Bogus;
+using Microsoft.EntityFrameworkCore;
 using ZZ.Core.Domain.Common;
-using ZZ.Infra.Persistence.EfCore;
-using ZZ.Infra.Persistence.EfCore.DbContexts;
 using ZZ.Core.Domain.Models.Cruds.Repo;
+using ZZ.Infra.Persistence.Repositories;
+using ZZ.Infra.Persistence.Repositories.DbContexts;
 
-namespace ZZ.Infra.Persistence.EfCore.DbContexts
+namespace ZZ.Infra.Persistence.Repositories.DbContexts
 {
   public class CrudContext : DbContext
   {
@@ -20,10 +22,35 @@ namespace ZZ.Infra.Persistence.EfCore.DbContexts
       optionsBuilder.EnableSensitiveDataLogging();
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+    protected override void OnModelCreating(ModelBuilder model)
     {
-      modelBuilder.ApplyConfigurationsFromAssembly(typeof(CrudContext).Assembly);
+
+      model.ApplyConfigurationsFromAssembly(typeof(CrudContext).Assembly);
+
+      model.Entity<CrudEntity>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+
+      });
+
+      var subscriberFaker = new Faker<CrudEntity>()
+        .RuleFor(s => s.Name, f => f.Commerce.ProductName())
+        .RuleFor(s => s.Department, f => f.Commerce.Department());
+      var fakes = subscriberFaker.Generate(10);
+
+      var i = 0;
+      foreach (var fake in fakes)
+      {
+        fake.Id = --i;
+      }
+
+      model.Entity<CrudEntity>().HasData(fakes);
+
+      base.OnModelCreating(model);
     }
+
+
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
@@ -35,8 +62,8 @@ namespace ZZ.Infra.Persistence.EfCore.DbContexts
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
             entry.Entity.CreatedBy = nameof(CrudRepository);
-            entry.Entity.LastModifiedDate = entry.Entity.CreatedDate; // Why can't these be null? 
-            entry.Entity.LastModifiedBy = entry.Entity.CreatedBy;     // Why can't these be null? 
+            entry.Entity.LastModifiedDate = null;
+            entry.Entity.LastModifiedBy = null;
             break;
 
           case EntityState.Modified:

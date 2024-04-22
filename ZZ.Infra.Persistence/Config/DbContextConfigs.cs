@@ -2,10 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Infra.Persistence.EfCore;
-using ZZ.Infra.Persistence.EfCore.Common;
-using ZZ.Infra.Persistence.EfCore.DbContexts;
 using ZZ.Infra.Persistence.Repositories;
+using ZZ.Infra.Persistence.Repositories.Common;
+using ZZ.Infra.Persistence.Repositories.DbContexts;
 
 namespace ZZ.Infra.Persistence.Config
 {
@@ -13,7 +12,8 @@ namespace ZZ.Infra.Persistence.Config
   {
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
-      services.AddDbContext<CrudContext>(options => options.UseSqlServer(configuration.GetConnectionString("CrudDb")));
+      var crudDb = configuration.GetConnectionString("CrudDb");
+      services.AddDbContext<CrudContext>(options => options.UseSqlServer(crudDb));
            
       services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));
 

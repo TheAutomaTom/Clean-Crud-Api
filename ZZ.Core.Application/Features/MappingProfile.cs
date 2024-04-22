@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ZZ.Core.Application.Features.XXX.GetXXXs;
 
 namespace ZZ.Core.Application.Features
 {
@@ -9,7 +8,7 @@ namespace ZZ.Core.Application.Features
     {
       MapperConfiguration config = new MapperConfiguration(cfg =>
       {
-        cfg.AddProfile(new GetXXXsProfile());
+        //cfg.AddProfile(new GetXXXsProfile());
 
 
       });
