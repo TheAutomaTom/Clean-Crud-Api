@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ZZ.Core.Domain.Dtos;
-using ZZ.Core.Domain.Dtos.Elastic;
+using ZZ.Core.Domain._Deprecated;
+using ZZ.Core.Domain._Deprecated.Elastic;
 
 namespace ZZ.Core.Application.Features.XXX.GetAllElastic
 {

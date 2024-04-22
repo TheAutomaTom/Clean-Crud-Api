@@ -5,7 +5,7 @@ using ZZ.Api.Controllers;
 using ZZ.Core.Application.Features.XXX.GetAllElastic;
 using ZZ.Core.Application.Features.XXX.GetXXXs;
 using ZZ.Core.Application.Features.XXX.PostToElastic;
-using ZZ.Core.Domain.Dtos.Elastic;
+using ZZ.Core.Domain._Deprecated.Elastic;
 
 namespace ZZ.Api.Controllers
 {

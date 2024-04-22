@@ -1,6 +1,6 @@
 ﻿using ZZ.Core.Domain.Common;
 
-namespace ZZ.Core.Domain.Entities
+namespace ZZ.Core.Domain._Deprecated
 {
   public class XXXEntity : AuditableEntity
   {

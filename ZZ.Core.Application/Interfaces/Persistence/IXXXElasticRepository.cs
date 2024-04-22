@@ -1,4 +1,4 @@
-﻿using ZZ.Core.Domain.Dtos.Elastic;
+﻿using ZZ.Core.Domain._Deprecated.Elastic;
 
 namespace ZZ.Core.Application.Interfaces.Persistence
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Moq;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Entities;
+using ZZ.Core.Domain._Deprecated;
 
 namespace ZZ.XXX.Tests.Units.MockData
 {

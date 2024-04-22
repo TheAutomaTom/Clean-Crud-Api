@@ -1,5 +1,5 @@
-﻿using ZZ.Core.Domain.Common.Responses;
-using ZZ.Core.Domain.Dtos;
+﻿using ZZ.Core.Domain._Deprecated;
+using ZZ.Core.Domain.Common.Responses;
 
 namespace ZZ.Core.Application.Features.XXX.GetXXXById
 {

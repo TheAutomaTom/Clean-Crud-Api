@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZZ.Core.Domain.Common;
-using ZZ.Core.Domain.Entities;
+using ZZ.Infra.Persistence.EfCore;
+using ZZ.Infra.Persistence.EfCore.DbContexts;
+using ZZ.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.Infra.Persistence.Sql.DbContexts
+namespace ZZ.Infra.Persistence.EfCore.DbContexts
 {
-  public class XXXDbContext : DbContext
+  public class CrudContext : DbContext
   {
-    public XXXDbContext(DbContextOptions<XXXDbContext> options) : base(options)
+    public CrudContext(DbContextOptions<CrudContext> options) : base(options)
     {
     }
 
-    public DbSet<XXXEntity> XXXs { get; set; }
+    public DbSet<CrudEntity> Cruds { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -20,7 +22,7 @@ namespace ZZ.Infra.Persistence.Sql.DbContexts
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      modelBuilder.ApplyConfigurationsFromAssembly(typeof(XXXDbContext).Assembly);
+      modelBuilder.ApplyConfigurationsFromAssembly(typeof(CrudContext).Assembly);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -32,14 +34,14 @@ namespace ZZ.Infra.Persistence.Sql.DbContexts
 
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
-            entry.Entity.CreatedBy = nameof(XXXRepository);
+            entry.Entity.CreatedBy = nameof(CrudRepository);
             entry.Entity.LastModifiedDate = entry.Entity.CreatedDate; // Why can't these be null? 
             entry.Entity.LastModifiedBy = entry.Entity.CreatedBy;     // Why can't these be null? 
             break;
 
           case EntityState.Modified:
             entry.Entity.LastModifiedDate = DateTime.Now;
-            entry.Entity.LastModifiedBy = nameof(XXXRepository);
+            entry.Entity.LastModifiedBy = nameof(CrudRepository);
             break;
 
         }

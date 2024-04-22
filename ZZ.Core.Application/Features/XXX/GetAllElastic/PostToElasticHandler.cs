@@ -3,7 +3,7 @@ using Mediator;
 using Microsoft.Extensions.Logging;
 using ZZ.Core.Application.Features.XXX.GetAllElastic;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Dtos.Elastic;
+using ZZ.Core.Domain._Deprecated.Elastic;
 
 namespace ZZ.Core.Application.Features.XXX.GetAllElastic
 {

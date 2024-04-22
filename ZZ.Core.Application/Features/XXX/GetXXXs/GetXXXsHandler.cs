@@ -2,8 +2,7 @@
 using Mediator;
 using ZZ.Core.Application.Features.XXX.GetXXXs;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Dtos;
-using ZZ.Core.Domain.Entities;
+using ZZ.Core.Domain._Deprecated;
 
 namespace ZZ.Core.Application.Features.XXX.GetXXXs
 {

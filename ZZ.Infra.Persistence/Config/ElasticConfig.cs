@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nest;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Dtos.Elastic;
+using ZZ.Core.Domain._Deprecated.Elastic;
 using ZZ.Infra.Persistence.Elastic;
 
 namespace ZZ.Infra.Persistence.Config
@@ -18,12 +18,12 @@ namespace ZZ.Infra.Persistence.Config
       var user = config["Elastic:Username"];
       var pass = config["Elastic:Password"];
       var defaultIndex = config["Elastic:IndexUnconfigured"];
-      var indexOfXXXs = config["Elastic:IndexOfXXXs"];
+      var crudIndex = config["Elastic:Cruds"];
 
       var settings = new ConnectionSettings(new Uri(url))
           .PrettyJson() // Return human readable search results
           .DefaultIndex(defaultIndex)
-          .DefaultMappingFor<XXXEls>(m => m.IndexName(indexOfXXXs))
+          .DefaultMappingFor<XXXEls>(m => m.IndexName(crudIndex))
           .BasicAuthentication(user, pass)
           //.EnableHttpCompression()
           .OnRequestCompleted(response => LogTransactions(response))

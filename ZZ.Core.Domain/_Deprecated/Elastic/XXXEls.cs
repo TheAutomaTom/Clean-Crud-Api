@@ -1,6 +1,4 @@
-﻿using ZZ.Core.Domain.Dtos;
-
-namespace ZZ.Core.Domain.Dtos.Elastic
+﻿namespace ZZ.Core.Domain._Deprecated.Elastic
 {
   public class XXXEls : XXXDto
   {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using ZZ.Core.Domain.Dtos;
-using ZZ.Core.Domain.Entities;
+using ZZ.Core.Domain._Deprecated;
 
 namespace ZZ.Core.Application.Features.XXX.GetXXXs
 {

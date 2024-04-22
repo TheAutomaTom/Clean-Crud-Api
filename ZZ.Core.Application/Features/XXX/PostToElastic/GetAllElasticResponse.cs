@@ -1,5 +1,5 @@
-﻿using ZZ.Core.Domain.Common.Responses;
-using ZZ.Core.Domain.Dtos.Elastic;
+﻿using ZZ.Core.Domain._Deprecated.Elastic;
+using ZZ.Core.Domain.Common.Responses;
 
 namespace ZZ.Core.Application.Features.XXX.PostToElastic
 {

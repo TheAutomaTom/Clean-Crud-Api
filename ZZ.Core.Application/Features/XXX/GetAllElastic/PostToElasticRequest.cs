@@ -1,6 +1,6 @@
 ﻿using Mediator;
 using ZZ.Core.Application.Features.XXX.GetAllElastic;
-using ZZ.Core.Domain.Dtos;
+using ZZ.Core.Domain._Deprecated;
 
 namespace ZZ.Core.Application.Features.XXX.GetAllElastic
 {

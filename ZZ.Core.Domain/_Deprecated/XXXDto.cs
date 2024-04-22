@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Domain.Dtos
+﻿namespace ZZ.Core.Domain._Deprecated
 {
   public class XXXDto
   {

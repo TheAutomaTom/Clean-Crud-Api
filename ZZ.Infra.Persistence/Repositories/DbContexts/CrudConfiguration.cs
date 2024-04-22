@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ZZ.Core.Domain.Entities;
+using ZZ.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.Infra.Persistence.Sql.DbContexts
+namespace ZZ.Infra.Persistence.EfCore.DbContexts
 {
-  public class XXXConfiguration : IEntityTypeConfiguration<XXXEntity>
+  public class CrudConfiguration : IEntityTypeConfiguration<CrudEntity>
   {
-    public void Configure(EntityTypeBuilder<XXXEntity> builder)
+    public void Configure(EntityTypeBuilder<CrudEntity> builder)
     {
       builder.HasKey(e => e.Id);
       builder.Property(e => e.Id).ValueGeneratedOnAdd();

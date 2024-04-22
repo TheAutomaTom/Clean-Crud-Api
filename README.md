@@ -21,7 +21,7 @@
 
 - Redis Insight cache browsing gui
 
-  https://redis.io/insight/
+	https://redis.io/insight/
 
 ### EF Core
 

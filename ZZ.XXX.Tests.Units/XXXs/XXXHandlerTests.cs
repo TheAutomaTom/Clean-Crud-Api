@@ -3,7 +3,7 @@ using Moq;
 using ZZ.XXX.Tests.Units.MockData;
 using ZZ.Core.Application.Features.XXX.GetXXXs;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Entities;
+using ZZ.Core.Domain._Deprecated;
 
 namespace ZZ.XXX.Tests.Units.XXXs
 {
