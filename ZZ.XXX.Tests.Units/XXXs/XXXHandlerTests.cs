@@ -1,10 +1,9 @@
 using AutoMapper;
 using Moq;
-using ZZ.XXX.Application.Features;
-using ZZ.XXX.Application.Features.XXX.GetXXXs;
-using ZZ.XXX.Application.Interfaces.Persistence;
-using ZZ.XXX.Domain.Entities;
 using ZZ.XXX.Tests.Units.MockData;
+using ZZ.Core.Application.Features.XXX.GetXXXs;
+using ZZ.Core.Application.Interfaces.Persistence;
+using ZZ.Core.Domain.Entities;
 
 namespace ZZ.XXX.Tests.Units.XXXs
 {

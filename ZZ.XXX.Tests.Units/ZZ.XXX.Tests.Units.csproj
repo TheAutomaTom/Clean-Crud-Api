@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ZZ.XXX.Application\ZZ.XXX.Application.csproj" />
+    <ProjectReference Include="..\ZZ.Core.Application\ZZ.Core.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

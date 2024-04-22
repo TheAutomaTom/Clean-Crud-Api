@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
 using Moq;
-using ZZ.XXX.Application.Interfaces.Persistence;
-using ZZ.XXX.Domain.Entities;
+using ZZ.Core.Application.Interfaces.Persistence;
+using ZZ.Core.Domain.Entities;
 
 namespace ZZ.XXX.Tests.Units.MockData
 {
