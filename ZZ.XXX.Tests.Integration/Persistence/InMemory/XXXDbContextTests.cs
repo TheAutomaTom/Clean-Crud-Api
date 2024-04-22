@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Bogus;
 using Microsoft.EntityFrameworkCore;
 using ZZ.Core.Domain.Entities;
-using ZZ.Infra.Persistence.DbContexts;
+using ZZ.Infra.Persistence.Sql.DbContexts;
 
 namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
 {
@@ -41,7 +41,7 @@ namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
       Assert.NotEqual(DateTime.MinValue, entity.CreatedDate);
 
 
-      var expectedName = nameof(ZZ.Infra.Persistence.Repositories.XXXRepository);
+      var expectedName = nameof(ZZ.Infra.Persistence.Sql.XXXRepository);
 
       Assert.Equal(expectedName, entity.CreatedBy);
     }

@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Infra.Persistence.DbContexts;
-using ZZ.Infra.Persistence.Repositories;
-using ZZ.Infra.Persistence.Repositories.Common;
+using ZZ.Infra.Persistence.Sql;
+using ZZ.Infra.Persistence.Sql.Common;
+using ZZ.Infra.Persistence.Sql.DbContexts;
 
 namespace ZZ.Infra.Persistence.Config
 {

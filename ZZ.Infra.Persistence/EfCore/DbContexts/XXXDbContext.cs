@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZZ.Core.Domain.Common;
 using ZZ.Core.Domain.Entities;
-using ZZ.Infra.Persistence.DbContexts;
 
-namespace ZZ.Infra.Persistence.DbContexts
+namespace ZZ.Infra.Persistence.Sql.DbContexts
 {
   public class XXXDbContext : DbContext
   {
@@ -33,14 +32,14 @@ namespace ZZ.Infra.Persistence.DbContexts
 
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
-            entry.Entity.CreatedBy = nameof(ZZ.Infra.Persistence.Repositories.XXXRepository);
+            entry.Entity.CreatedBy = nameof(XXXRepository);
             entry.Entity.LastModifiedDate = entry.Entity.CreatedDate; // Why can't these be null? 
             entry.Entity.LastModifiedBy = entry.Entity.CreatedBy;     // Why can't these be null? 
             break;
 
           case EntityState.Modified:
             entry.Entity.LastModifiedDate = DateTime.Now;
-            entry.Entity.LastModifiedBy = nameof(ZZ.Infra.Persistence.Repositories.XXXRepository);
+            entry.Entity.LastModifiedBy = nameof(XXXRepository);
             break;
 
         }

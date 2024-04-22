@@ -6,6 +6,7 @@ using ZZ.Api.Config.Routing;
 using ZZ.Api.Config.Swagger;
 using ZZ.Api.Middleware;
 using ZZ.Core.Application.Config;
+using ZZ.Infra.Services.Config;
 
 namespace ZZ.Api
 {

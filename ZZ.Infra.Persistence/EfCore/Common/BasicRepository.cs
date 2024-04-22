@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Infra.Persistence.DbContexts;
+using ZZ.Infra.Persistence.Sql.DbContexts;
 
-namespace ZZ.Infra.Persistence.Repositories.Common
+namespace ZZ.Infra.Persistence.Sql.Common
 {
   public class BasicRepository<T> : IAsyncRepository<T> where T : class
   {

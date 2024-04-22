@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZZ.Core.Domain.Entities;
 
-namespace ZZ.Infra.Persistence.DbContexts
+namespace ZZ.Infra.Persistence.Sql.DbContexts
 {
   public class XXXConfiguration : IEntityTypeConfiguration<XXXEntity>
   {
