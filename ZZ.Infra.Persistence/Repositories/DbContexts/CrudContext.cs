@@ -1,10 +1,9 @@
-﻿using System.Reflection.Emit;
-using Bogus;
+﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using ZZ.Core.Domain.Common;
 using ZZ.Core.Domain.Models.Cruds.Repo;
-using ZZ.Infra.Persistence.Repositories;
-using ZZ.Infra.Persistence.Repositories.DbContexts;
 
 namespace ZZ.Infra.Persistence.Repositories.DbContexts
 {
@@ -12,6 +11,25 @@ namespace ZZ.Infra.Persistence.Repositories.DbContexts
   {
     public CrudContext(DbContextOptions<CrudContext> options) : base(options)
     {
+      try
+      {
+        var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+        if (databaseCreator != null)
+        {
+          if (!databaseCreator.CanConnect())
+          {
+            databaseCreator.Create();
+          }
+          if (!databaseCreator.HasTables())
+          {
+            databaseCreator.CreateTables();
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        throw;
+      }
     }
 
     public DbSet<CrudEntity> Cruds { get; set; }
@@ -25,13 +43,13 @@ namespace ZZ.Infra.Persistence.Repositories.DbContexts
 
     protected override void OnModelCreating(ModelBuilder model)
     {
-
       model.ApplyConfigurationsFromAssembly(typeof(CrudContext).Assembly);
 
       model.Entity<CrudEntity>(entity =>
       {
         entity.HasKey(e => e.Id);
-
+        entity.Property(e => e.LastModifiedBy).IsRequired(false);
+        entity.Property(e => e.LastModifiedDate).IsRequired(false);
       });
 
       var subscriberFaker = new Faker<CrudEntity>()
@@ -62,8 +80,6 @@ namespace ZZ.Infra.Persistence.Repositories.DbContexts
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
             entry.Entity.CreatedBy = nameof(CrudRepository);
-            entry.Entity.LastModifiedDate = null;
-            entry.Entity.LastModifiedBy = null;
             break;
 
           case EntityState.Modified:
