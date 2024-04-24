@@ -23,7 +23,7 @@ namespace ZZ.Api
       if (env == null)
       {
         // Set the default environment to Development
-        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
+        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Test");
         env ??= Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
       }
 

@@ -1,33 +1,49 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System.Reflection;
+using System.Xml;
+using CsvHelper.Configuration;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Testcontainers.MsSql;
 using ZZ.Api;
 using ZZ.Infra.Persistence.Repositories.DbContexts;
+using ZZ.XXX.Tests.EndToEnd.Config;
 
 namespace ZZ.XXX.Tests.EndToEnd
 {
   internal class CrudWebApplicationFactory : WebApplicationFactory<Program>
   {
-    private readonly string _env;
+    readonly string _env;
+    public static MsSqlContainer _msSqlContainer
+        = new MsSqlBuilder().WithName($"MockMsSql_{DateTime.Now.ToString("yyMMddHmmss")}").Build();
 
-    public CrudWebApplicationFactory(string environment = "Development")
+    public CrudWebApplicationFactory(string environment = "Test")
     {
       _env = environment;
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-      builder.UseEnvironment("Development");
-      var appsettingsPath = Directory.GetCurrentDirectory();
+      /* Testcontainers Setup */
+      // Launch Testcontainers' mock MsSql Server.
+      var launchContainerTask = _msSqlContainer.StartAsync();
+      launchContainerTask.Wait();
+      // Detect its random address, and rewrite AppSettings.test file before HostBuilder reads it.
+      var testContainerConnectionString = _msSqlContainer.GetConnectionString();
+      var settingsFixer = new AppSettingsWriter(_getProjectDirectory);
+      settingsFixer.AddOrUpdateAppSetting("Test", "GeneralDb", testContainerConnectionString);
 
+
+      /* Test Server Setup */
       var config = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddJsonFile($"appsettings.{_env}.json", optional: true
+        .AddJsonFile($"appsettings.{_env}.json", optional: true, reloadOnChange: true
         ).Build();
+
 
       builder.ConfigureTestServices(services =>
       {
@@ -53,6 +69,7 @@ namespace ZZ.XXX.Tests.EndToEnd
 
     }
 
+
     static CrudContext createCrudContext(IServiceCollection services)
     {
       var provider = services.BuildServiceProvider();
@@ -63,5 +80,16 @@ namespace ZZ.XXX.Tests.EndToEnd
 
 
 
+    static string _getProjectDirectory
+    {
+      get
+      {
+        var codeBase = Assembly.GetExecutingAssembly().Location;
+        var uri = new UriBuilder(codeBase);
+        var root = Uri.UnescapeDataString(uri.Path);
+        var assembly = Path.GetDirectoryName(root);
+        return $@"{assembly}..\..\..\..\..\{Assembly.GetCallingAssembly().GetName().Name}";
+      }
+    }
   }
 }

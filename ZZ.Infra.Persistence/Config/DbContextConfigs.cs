@@ -13,7 +13,8 @@ namespace ZZ.Infra.Persistence.Config
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
       
-      var crudDb = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
+      //var crudDb = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
+      var crudDb = $"{configuration.GetConnectionString("GeneralDb")}";
 
       services.AddDbContext<CrudContext>(options => options.UseSqlServer(crudDb));
            
