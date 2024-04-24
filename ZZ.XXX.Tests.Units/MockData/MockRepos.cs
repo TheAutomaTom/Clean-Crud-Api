@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoFixture;
-using Bogus;
+﻿using Bogus;
 using Moq;
 using ZZ.Core.Application.Interfaces.Persistence;
 using ZZ.Core.Domain.Models.Cruds;
@@ -14,7 +8,6 @@ namespace ZZ.XXX.Tests.Units.MockData
 {
   public class MockRepos
   {
-
     readonly static Random _rando = new Random();
 
     public static Mock<ICrudRepository> MockCrudRepository()
@@ -26,12 +19,21 @@ namespace ZZ.XXX.Tests.Units.MockData
         .RuleFor(s => s.Department, f => f.Commerce.Department());
       var fakes = faker.Generate(10);
 
-      var data = faker.Generate(10);
+      var entities = faker.Generate(10);
 
       var repo = new Mock<ICrudRepository>();
-      repo.Setup(repo => repo.ReadAll()).ReturnsAsync(data);
 
-      repo.Setup(repo => repo.Create(It.IsAny<CrudEntity>())).ReturnsAsync(1);
+      // Spec each method you want access to
+      repo.Setup(repo => repo.ReadAll()).ReturnsAsync(entities);
+
+      repo.Setup(repo => repo.ReadById(It.IsAny<int>()))
+        .ReturnsAsync((int id) => entities.FirstOrDefault(e => e.Id == id));
+
+      repo.Setup(repo => repo.Create(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
+
+      repo.Setup(repo => repo.Update(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
+
+      repo.Setup(repo => repo.Delete(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
 
       return repo;
     }
@@ -56,9 +58,18 @@ namespace ZZ.XXX.Tests.Units.MockData
       }
 
       var repo = new Mock<ICrudDetailRepository>();
+
+      // Spec each method you want access to
       repo.Setup(repo => repo.ReadAll()).ReturnsAsync(details);
 
-      repo.Setup(repo => repo.Create(It.IsAny<CrudDetail>())).ReturnsAsync(1);
+      repo.Setup(repo => repo.ReadById(It.IsAny<int>()))
+        .ReturnsAsync((int id) => details.FirstOrDefault(e => e.Id == id));
+
+      repo.Setup(repo => repo.Create(It.IsAny<CrudDetail>())).ReturnsAsync((CrudDetail entity) => entity.Id);
+
+      repo.Setup(repo => repo.Update(It.IsAny<CrudDetail>())).ReturnsAsync((CrudDetail entity) => entity.Id);
+
+      repo.Setup(repo => repo.Delete(It.IsAny<CrudDetail>())).ReturnsAsync((CrudDetail entity) => entity.Id);
 
       return repo;
     }
