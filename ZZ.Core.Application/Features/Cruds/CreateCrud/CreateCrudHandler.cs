@@ -37,7 +37,7 @@ namespace ZZ.Core.Application.Features.Cruds.CreateCrud
 
       try
       {
-        var entity = new Crud(request.Name, request.Location);
+        var entity = new Crud(request.Name, request.Department);
         var createdId = await _entities.Create(entity);
         if (createdId == 0)
         {
