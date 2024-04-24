@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using Bogus;
+﻿using System.Net.Http.Json;
 using ZZ.Core.Application.Features.Cruds.CreateCrud;
-using ZZ.XXX.Tests.EndToEnd.Config;
 using static ZZ.XXX.Tests.EndToEnd.Mocks.BogusGenerators;
 
 namespace ZZ.XXX.Tests.EndToEnd

@@ -22,7 +22,9 @@ namespace ZZ.Api
       var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
       if (env == null)
       {
-        throw new Exception("Environment not set");
+        // Set the default environment to Development
+        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
+        env ??= Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
       }
 
       var config = new ConfigurationBuilder()
