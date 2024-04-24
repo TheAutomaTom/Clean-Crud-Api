@@ -33,7 +33,11 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\ZZ.Core.Application\ZZ.Core.Application.csproj" />
 	  <ProjectReference Include="..\ZZ.Infra.Persistence\ZZ.Infra.Persistence.csproj" />
-	  <ProjectReference Include="..\ZZ.Infra.Services\ZZ.Infra.Services.csproj" />
+	  <ProjectReference Include="..\ZZ.Infra.Services\ZZ.Infra.Services.csproj" />		
+	</ItemGroup>  
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="ZZ.XXX.Tests.EndToEnd" />		
 	</ItemGroup>  
 
 </Project>
