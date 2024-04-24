@@ -9,13 +9,11 @@ namespace ZZ.XXX.Tests.Units.XXXs
 {
   public class CrudHandlerTests
   {
-    readonly IMediator _mediator;
     readonly Mock<ICrudRepository> _repoE;
     readonly Mock<ICrudDetailRepository> _repoD;
 
-    public CrudHandlerTests(IMediator mediator)
+    public CrudHandlerTests()
     {
-      _mediator = mediator;
       _repoE = MockRepos.MockCrudRepository();
       _repoD = MockRepos.MockCrudDetailRepository(_repoE);
       //var configurationProvider = new MapperConfiguration(cfg =>
@@ -32,7 +30,7 @@ namespace ZZ.XXX.Tests.Units.XXXs
       var logger = Mock.Of<ILogger<CreateCrudHandler>>();
 
 
-      var handler = new CreateCrudHandler(logger, _mediator, _repoE.Object, _repoD.Object);
+      var handler = new CreateCrudHandler(logger, _repoE.Object, _repoD.Object);
       var result = await handler.Handle(new CreateCrudRequest(), CancellationToken.None);
 
       Assert.True(result.IsOk)

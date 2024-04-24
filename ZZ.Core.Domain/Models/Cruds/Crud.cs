@@ -6,17 +6,10 @@ namespace ZZ.Core.Domain.Models.Cruds
   {
     public CrudDetail Detail { get; set; }
 
-    ///// <summary> A complete Crud with all properties. </summary>
-    //public Crud(CrudEntity entity, CrudDetail detail) : base(entity)
-    //{
-    //  Detail = detail;
-    //}
 
     /// <summary> For creating a new Crud without an Id. </summary>
     public Crud(string department, string name) : base(department, name)
     {
-
-
 
     }
 
@@ -26,6 +19,9 @@ namespace ZZ.Core.Domain.Models.Cruds
     {
       Detail = detail;
     }
+    
+    /// <summary> Primarily for mocking libraries</summary>
+    public Crud(){ }
 
   }
 }

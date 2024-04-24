@@ -15,5 +15,8 @@ namespace ZZ.Core.Domain.Models.Cruds.Repo
       Tags = tags;
     }
 
+    /// <summary> Primarily for mocking libraries  </summary>
+    public CrudDetail() { }
+
   }
 }

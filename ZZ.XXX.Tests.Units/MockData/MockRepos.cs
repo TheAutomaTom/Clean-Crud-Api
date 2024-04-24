@@ -36,6 +36,7 @@ namespace ZZ.XXX.Tests.Units.MockData
         (CrudEntity entity) => { 
           var newEntity = new CrudEntity(entity.Id, entity.Department, entity.Name);
           cruds.Add(new Crud(newEntity.Id, newEntity, null));
+          
           return newEntity.Id;
       });
 
