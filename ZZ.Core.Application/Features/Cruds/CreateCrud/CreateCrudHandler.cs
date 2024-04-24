@@ -11,13 +11,11 @@ namespace ZZ.Core.Application.Features.Cruds.CreateCrud
   {
     readonly ICrudDetailRepository _details;
     readonly ICrudRepository _entities;
-    readonly IMediator _mediator;
     readonly ILogger<CreateCrudHandler> _logger;
 
-    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, IMediator mediator, ICrudRepository entities, ICrudDetailRepository details)
+    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, ICrudRepository entities, ICrudDetailRepository details)
     {
       _logger = logger;
-      _mediator = mediator;
       _entities = entities;
       _details = details;
     }
