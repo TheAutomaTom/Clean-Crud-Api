@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
-using ZZ.Core.Domain.Models.Cruds.Repo;
 using ZZ.Infra.Persistence.Repositories.DbContexts;
+using ZZ.Core.Domain.Models.Cruds.Repo;
 
 namespace ZZ.XXX.Tests.Integration.Persistence.InMemory
 {

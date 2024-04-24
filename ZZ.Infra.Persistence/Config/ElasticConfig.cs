@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nest;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain._Deprecated.Elastic;
 using ZZ.Core.Domain.Models.Cruds.Repo;
 using ZZ.Infra.Persistence.Repositories;
 
@@ -32,7 +31,8 @@ namespace ZZ.Infra.Persistence.Config
 
       var client = new ElasticClient(settings);
 
-      client.Map<XXXEls>(m => m.Index(nameof(XXXEls)).AutoMap());
+      // This may be redundant because of .DefaultMappingFor<CrudDetail>(m => m.IndexName(crudIndex)) above.
+      client.Map<CrudDetail>(m => m.Index(crudIndex).AutoMap()); 
 
       services.AddSingleton<IElasticClient>(client);
       services.AddScoped<ICrudDetailRepository, CrudDetailRepository>();

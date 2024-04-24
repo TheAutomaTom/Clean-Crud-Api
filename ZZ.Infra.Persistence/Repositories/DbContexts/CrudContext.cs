@@ -52,10 +52,10 @@ namespace ZZ.Infra.Persistence.Repositories.DbContexts
         entity.Property(e => e.LastModifiedDate).IsRequired(false);
       });
 
-      var subscriberFaker = new Faker<CrudEntity>()
+      var faker = new Faker<CrudEntity>()
         .RuleFor(s => s.Name, f => f.Commerce.ProductName())
         .RuleFor(s => s.Department, f => f.Commerce.Department());
-      var fakes = subscriberFaker.Generate(10);
+      var fakes = faker.Generate(10);
 
       var i = 0;
       foreach (var fake in fakes)

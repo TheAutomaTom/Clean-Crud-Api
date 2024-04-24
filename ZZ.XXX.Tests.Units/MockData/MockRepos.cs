@@ -4,55 +4,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
+using Bogus;
 using Moq;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain._Deprecated;
+using ZZ.Core.Domain.Models.Cruds;
+using ZZ.Core.Domain.Models.Cruds.Repo;
 
 namespace ZZ.XXX.Tests.Units.MockData
 {
   public class MockRepos
   {
-    //public static IAsyncRepository<XXXEntity> GetXXXRepo()
-    //{
-    //  int id = 0;
-    //  var faker = new Bogus.Faker<XXXEntity>()
-    //    .RuleFor(o => o.Id, f => ++id)
-    //    .RuleFor(o => o.Name, f => f.Person.FirstName)
-    //    .RuleFor(o => o.Description, f => f.Lorem.Sentence());
 
-    //  var data = faker.Generate(10);
+    readonly static Random _rando = new Random();
 
-    //  var fixture = new Fixture();
-
-    //  var repo = fixture.Create<IXXXRepository>();
-
-    //  foreach(var fake in data)
-    //  {
-    //    repo.Create(fake);
-    //  }
-
-    //  return repo;
-    //}  
-
-    public static Mock<IAsyncRepository<XXXEntity>> GetXXXRepository()
+    public static Mock<ICrudRepository> MockCrudRepository()
     {
 
       int id = 0;
-      var faker = new Bogus.Faker<XXXEntity>()
-        .RuleFor(o => o.Id, f => ++id)
-        .RuleFor(o => o.Name, f => f.Person.FirstName)
-        .RuleFor(o => o.Description, f => f.Lorem.Sentence());
+      var faker = new Faker<Crud>()
+        .RuleFor(s => s.Name, f => f.Commerce.ProductName())
+        .RuleFor(s => s.Department, f => f.Commerce.Department());
+      var fakes = faker.Generate(10);
 
       var data = faker.Generate(10);
 
-      var repo = new Mock<IAsyncRepository<XXXEntity>>();
+      var repo = new Mock<ICrudRepository>();
       repo.Setup(repo => repo.ReadAll()).ReturnsAsync(data);
 
-      repo.Setup(repo => repo.Create(It.IsAny<XXXEntity>())).ReturnsAsync(1);
+      repo.Setup(repo => repo.Create(It.IsAny<CrudEntity>())).ReturnsAsync(1);
+
+      return repo;
+    }
+    
+
+    public static Mock<ICrudDetailRepository> MockCrudDetailRepository(Mock<ICrudRepository> crudRepo)
+    {
+
+      var entities = crudRepo.Object.ReadAll().Result.ToList();
+
+      var faker = new Faker<CrudDetail>()
+        .RuleFor(x => x.Id, 0)
+        .RuleFor(x => x.Description, f => f.Lorem.Lines(_rando.Next(3,15)))
+        .RuleFor(x => x.Tags, f => f.Lorem.Words(_rando.Next(1, 8)));
+
+
+      var details = faker.Generate(entities.Count);
+
+      for (int i = 0; i < entities.Count; i++)
+      {
+        details[i].Id = entities[i].Id;
+      }
+
+      var repo = new Mock<ICrudDetailRepository>();
+      repo.Setup(repo => repo.ReadAll()).ReturnsAsync(details);
+
+      repo.Setup(repo => repo.Create(It.IsAny<CrudDetail>())).ReturnsAsync(1);
 
       return repo;
     }
 
 
   }
-  }
+}
