@@ -33,11 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.Core.Plumbing", "ZZ.Core
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{EF059781-AF01-4EA1-9F3A-02F2DFFFA79A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54EBFDD5-23D9-49D9-8E0F-0A649A742B10}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.Infra.Persistence", "ZZ.Infra.Persistence\ZZ.Infra.Persistence.csproj", "{27110F38-7A9F-4551-A69F-A9EBC158D855}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.Infra.Services", "ZZ.Infra.Services\ZZ.Infra.Services.csproj", "{BEA14F3B-6A1A-4973-A5A9-F7BC33C48F0A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54EBFDD5-23D9-49D9-8E0F-0A649A742B10}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Tests.Units", "ZZ.XXX.Tests.Units\ZZ.XXX.Tests.Units.csproj", "{0B328B6B-732E-482C-9DFA-CB320DF8A176}"
 EndProject
