@@ -13,7 +13,7 @@ namespace ZZ.Core.Domain.Models.Cruds
     //}
 
     /// <summary> For creating a new Crud without an Id. </summary>
-    public Crud(string location, string contact) : base(location, contact)
+    public Crud(string department, string name) : base(department, name)
     {
 
 

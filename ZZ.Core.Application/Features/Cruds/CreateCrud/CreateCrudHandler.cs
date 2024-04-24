@@ -9,10 +9,10 @@ namespace ZZ.Core.Application.Features.Cruds.CreateCrud
 {
   public class CreateCrudHandler : IRequestHandler<CreateCrudRequest, CreateCrudResponse>
   {
-    private readonly ICrudDetailRepository _details;
-    private readonly ICrudRepository _entities;
-    private readonly IMediator _mediator;
-    private readonly ILogger<CreateCrudHandler> _logger;
+    readonly ICrudDetailRepository _details;
+    readonly ICrudRepository _entities;
+    readonly IMediator _mediator;
+    readonly ILogger<CreateCrudHandler> _logger;
 
     public CreateCrudHandler(ILogger<CreateCrudHandler> logger, IMediator mediator, ICrudRepository entities, ICrudDetailRepository details)
     {

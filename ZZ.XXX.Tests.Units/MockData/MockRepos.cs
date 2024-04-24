@@ -17,23 +17,31 @@ namespace ZZ.XXX.Tests.Units.MockData
       var faker = new Faker<Crud>()
         .RuleFor(s => s.Name, f => f.Commerce.ProductName())
         .RuleFor(s => s.Department, f => f.Commerce.Department());
-      var fakes = faker.Generate(10);
 
-      var entities = faker.Generate(10);
+      var cruds = faker.Generate(10);
 
       var repo = new Mock<ICrudRepository>();
 
       // Spec each method you want access to
-      repo.Setup(repo => repo.ReadAll()).ReturnsAsync(entities);
 
-      repo.Setup(repo => repo.ReadById(It.IsAny<int>()))
-        .ReturnsAsync((int id) => entities.FirstOrDefault(e => e.Id == id));
+      repo.Setup(repo => repo.ReadAll()).ReturnsAsync(
+        cruds.Select(e => new CrudEntity(e.Id, e.Department, e.Name)).ToList()
+        );
 
-      repo.Setup(repo => repo.Create(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
+      repo.Setup(repo => repo.ReadById(It.IsAny<int>())).ReturnsAsync(
+        (int id) => cruds.FirstOrDefault(e => e.Id == id)
+        );
 
-      repo.Setup(repo => repo.Update(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
+      repo.Setup(repo => repo.Create(It.IsAny<CrudEntity>())).ReturnsAsync(
+        (CrudEntity entity) => { 
+          var newEntity = new CrudEntity(entity.Id, entity.Department, entity.Name);
+          cruds.Add(new Crud(newEntity.Id, newEntity, null));
+          return newEntity.Id;
+      });
 
-      repo.Setup(repo => repo.Delete(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
+      //repo.Setup(repo => repo.Update(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
+
+      //repo.Setup(repo => repo.Delete(It.IsAny<CrudEntity>())).ReturnsAsync((CrudEntity entity) => entity.Id);
 
       return repo;
     }

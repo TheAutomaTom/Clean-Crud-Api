@@ -1,10 +1,8 @@
-using AutoMapper;
 using Mediator;
 using Microsoft.Extensions.Logging;
 using Moq;
 using ZZ.Core.Application.Features.Cruds.CreateCrud;
 using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Models.Cruds.Repo;
 using ZZ.XXX.Tests.Units.MockData;
 
 namespace ZZ.XXX.Tests.Units.XXXs

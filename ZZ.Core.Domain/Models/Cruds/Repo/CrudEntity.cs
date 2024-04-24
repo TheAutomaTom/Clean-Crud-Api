@@ -10,6 +10,14 @@ namespace ZZ.Core.Domain.Models.Cruds.Repo
     public CrudEntity(){ }
 
     /// <summary> Called when creating a completed Crud. </summary>
+    public CrudEntity(int id, string department, string name)
+    {
+      Id = id;
+      Department = department;
+      Name = name;
+    }
+
+    /// <summary> Called when creating a completed Crud. </summary>
     public CrudEntity(int id, CrudEntity entity)
     {
       Id = id;
