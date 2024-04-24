@@ -34,6 +34,9 @@
 - GraphQL by HotChocolate 
 
 	https://chillicream.com/docs/hotchocolate/v13/get-started-with-graphql-in-net-core
+			
+- Bogus data generator 		
+	https://github.com/bchavez/Bogus
 
 ##### Standard operating procedure
 
