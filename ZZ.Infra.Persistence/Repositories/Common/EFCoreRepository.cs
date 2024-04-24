@@ -18,6 +18,7 @@ namespace ZZ.Infra.Persistence.Repositories.Common
     {
       _dbContext.Entry(item).State = EntityState.Added;
       await _dbContext.SaveChangesAsync();
+
       return item.Id;
     }
 

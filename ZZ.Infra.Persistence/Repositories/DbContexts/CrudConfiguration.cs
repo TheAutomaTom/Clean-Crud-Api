@@ -10,10 +10,6 @@ namespace ZZ.Infra.Persistence.Repositories.DbContexts
     {
       builder.HasKey(e => e.Id);
       builder.Property(e => e.Id).ValueGeneratedOnAdd();
-      builder.Property(e => e.CreatedDate).IsRequired();
-      builder.Property(e => e.CreatedBy).IsRequired();
-      builder.Property(e => e.LastModifiedDate).IsRequired();
-      builder.Property(e => e.LastModifiedBy).IsRequired();
     }
   }
 }

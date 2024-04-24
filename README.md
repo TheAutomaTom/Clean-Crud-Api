@@ -31,15 +31,14 @@
  
 	https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/workflows/new-database
 
-127.0.0.1:6379- GraphQL by HotChocolate 
+- GraphQL by HotChocolate 
 
 	https://chillicream.com/docs/hotchocolate/v13/get-started-with-graphql-in-net-core
 
 ##### Standard operating procedure
 
-1. In PackageManager window, select .Data project as "Default project" on dropdown menu.
-1. EntityFrameworkCore\add-migration initial_OutboundStaging -o Migrations/OutboundStaging -Context OutboundContext
-1. EntityFrameworkCore\add-migration initial_SubscriberContext -o Migrations/Subscribers -Context SubscriberContext
+1. In PackageManager window, select .Persistence as "Default project" on dropdown menu.
+1. EntityFrameworkCore\add-migration initial_Cruds -o Migrations/Cruds -Context CrudContext
 
 ##### Example docker connection string
 

@@ -4,7 +4,6 @@ namespace ZZ.Core.Domain.Models.Cruds.Repo
 {
   public class CrudEntity : AuditableEntity
   {
-    public int Id { get; set; }
     public string Department { get; set; }
     public string Name { get; set; }
 
@@ -19,10 +18,10 @@ namespace ZZ.Core.Domain.Models.Cruds.Repo
     }
     
     /// <summary> Called when creating a new Crud without an Id, yet. </summary>
-    public CrudEntity(string location, string contact)
+    public CrudEntity(string department, string name)
     {
-      Department = location;
-      Name = contact;
+      Department = department;
+      Name = name;
     }
 
   }

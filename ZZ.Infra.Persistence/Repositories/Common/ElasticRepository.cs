@@ -19,6 +19,11 @@ namespace ZZ.Infra.Persistence.Repositories.Common
       var indexRequest = new IndexRequest<T>(item);
       var result = await _client.IndexAsync(indexRequest);
 
+      if(result.ServerError != null)
+      {
+        throw new Exception(result.ServerError.Error.Reason);
+      }
+
       return Int32.Parse(result.Id);
 
     }

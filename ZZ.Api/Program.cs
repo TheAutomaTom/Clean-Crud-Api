@@ -58,7 +58,7 @@ namespace ZZ.Api
 
 
       builder.Services.AddDataProtection()
-          .PersistKeysToFileSystem(new DirectoryInfo(@"path\to\keys"));
+          .PersistKeysToFileSystem(new DirectoryInfo(@"..\Docker\keys"));
 
 
       //******************************************************************************************//

@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
 using ZZ.Core.Plumbing.Exceptions;
-using ZZ.Api.Middleware;
 
 namespace ZZ.Api.Middleware
 {

@@ -12,7 +12,9 @@ namespace ZZ.Infra.Persistence.Config
   {
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
-      var crudDb = configuration.GetConnectionString("CrudDb");
+      
+      var crudDb = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
+
       services.AddDbContext<CrudContext>(options => options.UseSqlServer(crudDb));
            
       services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));

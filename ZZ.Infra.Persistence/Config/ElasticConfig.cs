@@ -19,7 +19,7 @@ namespace ZZ.Infra.Persistence.Config
       var user = config["Elastic:Username"];
       var pass = config["Elastic:Password"];
       var defaultIndex = config["Elastic:IndexUnconfigured"];
-      var crudIndex = config["Elastic:Cruds"];
+      var crudIndex = config["Elastic:CrudIndex"];
 
       var settings = new ConnectionSettings(new Uri(url))
           .PrettyJson() // Return human readable search results
