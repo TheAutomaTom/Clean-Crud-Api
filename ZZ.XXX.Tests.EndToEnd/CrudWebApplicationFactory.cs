@@ -37,7 +37,6 @@ namespace ZZ.XXX.Tests.EndToEnd
       var settingsFixer = new AppSettingsWriter(_getProjectDirectory);
       settingsFixer.AddOrUpdateAppSetting("Test", "GeneralDb", testContainerConnectionString);
 
-
       /* Test Server Setup */
       var config = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

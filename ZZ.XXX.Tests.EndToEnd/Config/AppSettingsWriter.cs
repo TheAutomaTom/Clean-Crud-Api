@@ -26,6 +26,12 @@
 
         File.WriteAllText(filePath, result);
 
+        text = File.ReadAllText(filePath);
+
+        if (!text.Contains(value)) {
+          throw new Exception($"Failed to update appsettings.{env}.json while preparing test container.");
+        }
+
       }
       catch (Exception ex)
       {
