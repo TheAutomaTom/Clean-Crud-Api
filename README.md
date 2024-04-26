@@ -25,7 +25,7 @@
 
 ### EF Core
 
-##### Tech reference
+##### Technical references
 
 - Entity Framework Code-First 
  
@@ -37,6 +37,13 @@
 			
 - Bogus data generator 		
 	https://github.com/bchavez/Bogus
+
+- Testcontainers
+
+	https://www.atomicjar.com/category/testcontainers/
+
+
+- 
 
 ##### Standard operating procedure
 
