@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.DataProtection;
 
 namespace ZZ.Api
 {
-  internal class Program
+  public class Program
   {
     public static void Main(string[] args)
     {

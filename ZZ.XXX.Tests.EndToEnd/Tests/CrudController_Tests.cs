@@ -1,19 +1,18 @@
 ﻿using System.Net.Http.Json;
+using E2E.Tests.Integration.Api_to_Testcontainer_Tests;
 using ZZ.Core.Application.Features.Cruds.CreateCrud;
 using static ZZ.XXX.Tests.EndToEnd.Mocks.BogusGenerators;
 
-namespace ZZ.XXX.Tests.EndToEnd
+namespace ZZ.XXX.Tests.EndToEnd.Tests
 {
   public class CrudController_Tests
   {
-
-
     [Fact]
     public async Task CreateCrud_IsOk()
     {
       /* Arrange */
       // Load server into memory
-      var app = new CrudWebApplicationFactory();
+      var app = new E2ETestingWebAppFactory();
 
       // Create client to send request to api
       var client = app.CreateClient();
