@@ -6,8 +6,8 @@ using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
 using CCA.Core.Application.Config;
-using CCA.Infra.Services.Config;
-using CCA.Infra.Persistence.Config;
+using CCA.Data.Persistence.Config;
+using CCA.Data.Infra.Config;
 
 namespace CCA.Api
 {

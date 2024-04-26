@@ -1,4 +1,4 @@
-﻿using CCA.Core.Plumbing.Models.Emails;
+﻿using CCA.Core.Infra.Models.Emails;
 
 namespace CCA.Core.Application.Interfaces.Infrastructure
 {
