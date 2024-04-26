@@ -12,11 +12,20 @@ namespace ZZ.Infra.Persistence.Config
   {
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
-      
-      //var crudDb = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
-      var crudDb = $"{configuration.GetConnectionString("GeneralDb")}";
+      string connectionString;
 
-      services.AddDbContext<CrudContext>(options => options.UseSqlServer(crudDb));
+
+      var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+      if (env == "Test")
+      {
+        connectionString = Environment.GetEnvironmentVariable("GeneralDb-Testing");
+      }
+      else
+      {
+        connectionString = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
+      }
+
+      services.AddDbContext<CrudContext>(options => options.UseSqlServer(connectionString));
            
       services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));
 
