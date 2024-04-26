@@ -1,0 +1,21 @@
+﻿using Microsoft.Extensions.Options;
+using CCA.Core.Application.Interfaces.Infrastructure;
+using CCA.Core.Plumbing.Models.Emails;
+
+namespace CCA.Infra.Services.Emails
+{
+  public class EmailService : ISendEmails
+  {
+    public EmailSettings Settings { get; }
+
+    public EmailService(IOptions<EmailSettings> settings)
+    {
+      Settings = settings.Value;
+    }
+
+    public Task<bool> SendEmail(Email email)
+    {
+      throw new NotImplementedException();
+    }
+  }
+}
