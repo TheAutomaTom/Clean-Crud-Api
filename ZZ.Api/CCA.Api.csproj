@@ -31,9 +31,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ZZ.Core.Application\ZZ.Core.Application.csproj" />
-	  <ProjectReference Include="..\ZZ.Infra.Persistence\ZZ.Data.Persistence.csproj" />
-	  <ProjectReference Include="..\ZZ.Infra.Services\ZZ.Data.Infra.csproj" />		
+	  <ProjectReference Include="..\ZZ.Core.Application\CCA.Core.Application.csproj" />
+	  <ProjectReference Include="..\ZZ.Infra.Persistence\CCA.Data.Persistence.csproj" />
+	  <ProjectReference Include="..\ZZ.Infra.Services\CCA.Data.Infra.csproj" />		
 	</ItemGroup>  
 	
 	<ItemGroup>

@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ZZ.Core.Application\ZZ.Core.Application.csproj" />
+		<ProjectReference Include="..\ZZ.Core.Application\CCA.Core.Application.csproj" />
 	</ItemGroup>
 
 
