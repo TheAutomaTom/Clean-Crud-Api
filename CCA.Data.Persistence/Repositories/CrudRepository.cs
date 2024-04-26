@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories.Common;
-using CCA.Data.Persistence.Repositories.DbContexts;
+using CCA.Core.Infra.Models.Search;
+using CCA.Data.Persistence.Config.DbContexts;
 
 namespace CCA.Data.Persistence.Repositories
 {
@@ -15,6 +16,17 @@ namespace CCA.Data.Persistence.Repositories
     }
 
 
+    public async Task<IReadOnlyList<CrudEntity>> Read(Paging paging = default, DateRange dateRange = default)
+    {
+      var results = await _dbContext.Cruds
+        .Take(paging.CountPer)
+        .Where(c =>
+          (c.CreatedDate >= dateRange.From || c.LastModifiedDate >= dateRange.From)
+          && (c.CreatedDate <= dateRange.Until || c.LastModifiedDate <= dateRange.Until)
+        ).ToListAsync();
+
+      return results;
+    }
 
 
 

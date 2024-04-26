@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 using CCA.Core.Domain.Common;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories;
-using CCA.Data.Persistence.Repositories.DbContexts;
 
-namespace CCA.Data.Persistence.Repositories.DbContexts
+namespace CCA.Data.Persistence.Config.DbContexts
 {
   public class CrudContext : DbContext
   {
@@ -62,7 +61,7 @@ namespace CCA.Data.Persistence.Repositories.DbContexts
       var i = 0;
       foreach (var fake in fakes)
       {
-        fake.Id = --i;
+        fake.Id = ++i;
       }
 
       model.Entity<CrudEntity>().HasData(fakes);

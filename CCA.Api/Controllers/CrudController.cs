@@ -1,6 +1,8 @@
 ﻿using CCA.Core.Application.Ancillary;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Features.Cruds.ReadCruds;
 using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.Models.Search;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,9 +48,26 @@ namespace CCA.Api.Controllers
         results.Add(result.Crud!);
       }
 
-      return Ok(new {Count= results.Count, Cruds= results});
+      return Ok(new { Count = results.Count, Cruds = results });
     }
+
+
+
+    [HttpGet]
+    public async Task<IActionResult> Read(int page = 1, int perPage = 1, DateTime? updatedFrom = null, DateTime? updatedUntil = null)
+    {
+      updatedFrom = updatedFrom ?? DateTime.MinValue;
+      updatedUntil = updatedUntil ?? DateTime.MaxValue;
+
+
+      var request = new ReadCrudsRequest(new Paging(page, perPage), new DateRange(updatedFrom, updatedUntil));
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
+
 
 
   }
 }
+

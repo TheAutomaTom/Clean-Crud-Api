@@ -15,6 +15,13 @@ namespace CCA.Core.Domain.Models.Cruds.Repo
       Tags = tags;
     }
 
+    public CrudDetail(CrudDetail cd) 
+    { 
+      Id = cd.Id;
+      Description = cd.Description;
+      Tags = cd.Tags;
+    }
+
     /// <summary> Primarily for mocking libraries  </summary>
     public CrudDetail() { }
 

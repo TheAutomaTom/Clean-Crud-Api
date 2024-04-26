@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Common;
-using CCA.Data.Persistence.Repositories.DbContexts;
+using CCA.Data.Persistence.Config.DbContexts;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {

@@ -5,7 +5,7 @@ namespace CCA.Data.Persistence.Repositories.Common
 {
   public class ElasticRepository<T> : IAsyncRepository<T> where T : class
   {
-    readonly IElasticClient _client;
+    protected readonly IElasticClient _client;
 
     public ElasticRepository(IElasticClient client)
     {

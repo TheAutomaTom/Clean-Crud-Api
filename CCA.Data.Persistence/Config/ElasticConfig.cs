@@ -1,11 +1,11 @@
 ﻿using System.Text;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Data.Persistence.Repositories;
 using Elasticsearch.Net;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nest;
-using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Data.Persistence.Repositories;
 
 namespace CCA.Data.Persistence.Config
 {

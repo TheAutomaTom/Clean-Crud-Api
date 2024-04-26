@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Data.Persistence.Repositories;
 using CCA.Data.Persistence.Repositories.Common;
-using CCA.Data.Persistence.Repositories.DbContexts;
+using CCA.Data.Persistence.Config.DbContexts;
 
 namespace CCA.Data.Persistence.Config
 {
