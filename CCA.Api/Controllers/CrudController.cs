@@ -1,5 +1,6 @@
 ﻿using CCA.Core.Application.Ancillary;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Features.Cruds.ReadCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Search;
@@ -65,6 +66,17 @@ namespace CCA.Api.Controllers
 
       return Ok(result);
     }
+
+
+    [HttpGet]
+    public async Task<IActionResult> ReadById(int id)
+    {
+      var request = new ReadCrudByIdRequest(id);
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
+
 
 
 

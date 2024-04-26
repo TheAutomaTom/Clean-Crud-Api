@@ -22,12 +22,12 @@ namespace CCA.Data.Persistence.Repositories.Common
       return item.Id;
     }
 
-    public virtual async Task<T> ReadById(int id)
+    public virtual async Task<T> Read(int id)
     {
       return await _dbContext.Set<T>().FindAsync(id);
     }
 
-    public virtual async Task<IReadOnlyList<T>> ReadAll()
+    public virtual async Task<IReadOnlyList<T>> Read()
     {
       return await _dbContext.Set<T>().ToListAsync();
     }

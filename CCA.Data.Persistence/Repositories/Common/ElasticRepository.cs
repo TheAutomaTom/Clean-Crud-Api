@@ -1,5 +1,7 @@
 ﻿using Nest;
 using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Domain.Models.Cruds;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
@@ -27,7 +29,7 @@ namespace CCA.Data.Persistence.Repositories.Common
 
     }
 
-    public async Task<IReadOnlyList<T>> ReadAll()
+    public async Task<IReadOnlyList<T>> Read()
     {
       var responses = _client.Search<T>(s =>
           s.Query(q => q
@@ -37,16 +39,21 @@ namespace CCA.Data.Persistence.Repositories.Common
       var results = new List<T>();
       foreach (var response in responses.Documents)
       {
-
         results.Add(response);
       }
       return results;
 
     }
 
-    public async Task<T> ReadById(int id)
+    public async Task<T> Read(int id)
     {
-      throw new NotImplementedException();
+        var response = await _client.GetAsync<CrudDetail>(id);
+        if (response.Source != null)
+        {
+          return response.Source as T;
+        }
+      return null;
+
     }
 
     public async Task<int> Update(T item)
