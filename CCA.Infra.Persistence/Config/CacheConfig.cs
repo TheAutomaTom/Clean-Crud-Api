@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZZ.Core.Application.Interfaces.Infrastructure;
-using ZZ.Core.Plumbing.Models.Cache;
-using ZZ.Infra.Persistence.Cache;
+using CCA.Core.Application.Interfaces.Infrastructure;
+using CCA.Core.Plumbing.Models.Cache;
+using CCA.Infra.Persistence.Cache;
 
-namespace ZZ.Infra.Persistence.Config
+namespace CCA.Infra.Persistence.Config
 {
   public static class CacheConfig
   {

@@ -1,8 +1,8 @@
 ﻿using Bogus;
-using ZZ.Core.Domain.Models.Cruds;
-using ZZ.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.XXX.Tests.EndToEnd.Mocks
+namespace CCA.Tests.EndToEnd.Mock
 {
   internal static class BogusGenerators
   {

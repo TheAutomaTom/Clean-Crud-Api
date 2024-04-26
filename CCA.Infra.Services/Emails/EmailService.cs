@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
-using ZZ.Core.Application.Interfaces.Infrastructure;
-using ZZ.Core.Plumbing.Models.Emails;
+using CCA.Core.Application.Interfaces.Infrastructure;
+using CCA.Core.Plumbing.Models.Emails;
 
-namespace ZZ.Infra.Services.Emails
+namespace CCA.Infra.Services.Emails
 {
   public class EmailService : ISendEmails
   {

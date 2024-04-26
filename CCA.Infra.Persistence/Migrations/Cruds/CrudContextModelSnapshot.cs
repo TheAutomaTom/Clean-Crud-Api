@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ZZ.Infra.Persistence.Repositories.DbContexts;
+using CCA.Infra.Persistence.Repositories.DbContexts;
 
 #nullable disable
 
-namespace ZZ.Infra.Persistence.Migrations.Cruds
+namespace CCA.Infra.Persistence.Migrations.Cruds
 {
     [DbContext(typeof(CrudContext))]
     partial class CrudContextModelSnapshot : ModelSnapshot

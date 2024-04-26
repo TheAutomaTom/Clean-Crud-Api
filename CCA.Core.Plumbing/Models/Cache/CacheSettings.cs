@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Plumbing.Models.Cache
+﻿namespace CCA.Core.Plumbing.Models.Cache
 {
   public class CacheSettings
   {

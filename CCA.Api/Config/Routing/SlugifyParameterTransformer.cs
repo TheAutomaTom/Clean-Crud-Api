@@ -4,7 +4,7 @@
 
 using System.Text.RegularExpressions;
 
-namespace ZZ.Api.Config.Routing;
+namespace CCA.Api.Config.Routing;
 public class SlugifyParameterTransformer : IOutboundParameterTransformer
 {
   public string TransformOutbound(object value)

@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Plumbing.Models.Emails
+﻿namespace CCA.Core.Plumbing.Models.Emails
 {
   public class Email
   {

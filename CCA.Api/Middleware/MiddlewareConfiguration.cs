@@ -1,6 +1,6 @@
-﻿using ZZ.Api.Middleware;
+﻿using CCA.Api.Middleware;
 
-namespace ZZ.Api.Middleware
+namespace CCA.Api.Middleware
 {
   public static class MiddlewareConfiguration
   {

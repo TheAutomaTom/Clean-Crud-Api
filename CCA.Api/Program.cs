@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
-using ZZ.Infra.Persistence.Config;
-using ZZ.Api.Config;
-using ZZ.Api.Config.Routing;
-using ZZ.Api.Config.Swagger;
-using ZZ.Api.Middleware;
-using ZZ.Core.Application.Config;
-using ZZ.Infra.Services.Config;
 using Microsoft.AspNetCore.DataProtection;
+using CCA.Api.Config;
+using CCA.Api.Config.Routing;
+using CCA.Api.Config.Swagger;
+using CCA.Api.Middleware;
+using CCA.Core.Application.Config;
+using CCA.Infra.Services.Config;
+using CCA.Infra.Persistence.Config;
 
-namespace ZZ.Api
+namespace CCA.Api
 {
   public class Program
   {

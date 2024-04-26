@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace ZZ.Core.Application.Features
+namespace CCA.Core.Application.Features
 {
   public class MappingProfile : Profile
   {

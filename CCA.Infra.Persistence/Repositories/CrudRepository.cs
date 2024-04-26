@@ -1,11 +1,11 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Models.Cruds.Repo;
-using ZZ.Infra.Persistence.Repositories.Common;
-using ZZ.Infra.Persistence.Repositories.DbContexts;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Infra.Persistence.Repositories.Common;
+using CCA.Infra.Persistence.Repositories.DbContexts;
 
-namespace ZZ.Infra.Persistence.Repositories
+namespace CCA.Infra.Persistence.Repositories
 {
   public class CrudRepository : EFCoreRepository<CrudEntity>, ICrudRepository
   {

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace ZZ.Core.Plumbing.TypeUtilities
+namespace CCA.Core.Plumbing.TypeUtilities
 {
   public class BoolConverter : JsonConverter<bool>
   {

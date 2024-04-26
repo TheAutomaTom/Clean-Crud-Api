@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using System.Text.Json;
-using ZZ.Core.Plumbing.Exceptions;
+using CCA.Api.Middleware;
+using CCA.Core.Plumbing.Exceptions;
 
-namespace ZZ.Api.Middleware
+namespace CCA.Api.Middleware
 {
   public class ExceptionHandler
   {

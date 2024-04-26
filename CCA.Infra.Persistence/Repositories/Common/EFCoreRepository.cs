@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Common;
-using ZZ.Infra.Persistence.Repositories.DbContexts;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Common;
+using CCA.Infra.Persistence.Repositories.DbContexts;
 
-namespace ZZ.Infra.Persistence.Repositories.Common
+namespace CCA.Infra.Persistence.Repositories.Common
 {
   public class EFCoreRepository<T> : IAsyncRepository<T> where T : AuditableEntity
   {

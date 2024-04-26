@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<RootNamespace>ZZ.Api</RootNamespace>
+		<RootNamespace>CCA.Api</RootNamespace>
 		<UserSecretsId>ffeb7ebb-f7a0-43d9-b9ef-0b6c23257257</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -31,13 +31,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ZZ.Core.Application\CCA.Core.Application.csproj" />
-	  <ProjectReference Include="..\ZZ.Infra.Persistence\CCA.Data.Persistence.csproj" />
-	  <ProjectReference Include="..\ZZ.Infra.Services\CCA.Data.Infra.csproj" />		
+	  <ProjectReference Include="..\CCA.Core.Application\CCA.Core.Application.csproj" />
+	  <ProjectReference Include="..\CCA.Infra.Persistence\CCA.Data.Persistence.csproj" />
+	  <ProjectReference Include="..\CCA.Infra.Services\CCA.Data.Infra.csproj" />		
 	</ItemGroup>  
 	
 	<ItemGroup>
-		<InternalsVisibleTo Include="ZZ.XXX.Tests.EndToEnd" />		
+		<InternalsVisibleTo Include="CCA.XXX.Tests.EndToEnd" />		
 	</ItemGroup>  
 
 </Project>

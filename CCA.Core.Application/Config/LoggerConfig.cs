@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 
-namespace ZZ.Core.Application.Config
+namespace CCA.Core.Application.Config
 {
   public static class LoggerConfig
   {

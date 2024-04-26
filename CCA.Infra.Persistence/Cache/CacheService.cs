@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using StackExchange.Redis;
-using ZZ.Core.Application.Interfaces.Infrastructure;
-using ZZ.Core.Plumbing.Models.Cache;
+using CCA.Core.Application.Interfaces.Infrastructure;
+using CCA.Core.Plumbing.Models.Cache;
 
-namespace ZZ.Infra.Persistence.Cache
+namespace CCA.Infra.Persistence.Cache
 {
   public class CacheService : ICache
   {

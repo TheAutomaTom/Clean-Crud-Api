@@ -3,11 +3,11 @@ using Elasticsearch.Net;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nest;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Models.Cruds.Repo;
-using ZZ.Infra.Persistence.Repositories;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Infra.Persistence.Repositories;
 
-namespace ZZ.Infra.Persistence.Config
+namespace CCA.Infra.Persistence.Config
 {
   public static class ElasticConfig
   {

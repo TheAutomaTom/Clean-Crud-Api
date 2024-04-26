@@ -1,8 +1,9 @@
 ﻿using Mediator;
 using Microsoft.AspNetCore.Mvc;
-using ZZ.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Api.Controllers;
+using CCA.Core.Application.Features.Cruds.CreateCrud;
 
-namespace ZZ.Api.Controllers
+namespace CCA.Api.Controllers
 {
   /// <summary> Basic C.R.U.D. operations on an example object. </summary>
   [ApiController]

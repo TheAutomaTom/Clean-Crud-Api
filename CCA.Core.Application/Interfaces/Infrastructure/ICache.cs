@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Application.Interfaces.Infrastructure
+﻿namespace CCA.Core.Application.Interfaces.Infrastructure
 {
   public interface ICache
   {

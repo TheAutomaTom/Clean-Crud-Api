@@ -1,6 +1,6 @@
-using ZZ.Api.GraphQL.Queries;
+using CCA.Api.GraphQL.Queries;
 
-namespace ZZ.Api.Config
+namespace CCA.Api.Config
 {
   public static class GraphQLConfig
   {

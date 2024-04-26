@@ -1,12 +1,12 @@
 ﻿using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using E2E.Tests.Integration.Api_to_Testcontainer_Tests;
 using Testcontainers.MsSql;
-using ZZ.Core.Application.Features.Cruds.CreateCrud;
-using static ZZ.XXX.Tests.EndToEnd.Mocks.BogusGenerators;
+using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Tests.EndToEnd.Config;
+using static CCA.Tests.EndToEnd.Mock.BogusGenerators;
 
-namespace ZZ.XXX.Tests.EndToEnd.Tests
+namespace CCA.Tests.EndToEnd.Tests
 {
   public class CrudController_Tests : IDisposable
   {

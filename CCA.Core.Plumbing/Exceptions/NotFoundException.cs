@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Plumbing.Exceptions
+﻿namespace CCA.Core.Plumbing.Exceptions
 {
   public class NotFoundException : Exception
   {

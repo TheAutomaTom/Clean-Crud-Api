@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ZZ.Api\CCA.Api.csproj" />
+    <ProjectReference Include="..\CCA.Api\CCA.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

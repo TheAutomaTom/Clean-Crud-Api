@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.OpenApi.Models;
-using ZZ.Api.Config.Swagger;
+using CCA.Api.Config.Swagger;
 
-namespace ZZ.Api.Config.Swagger
+namespace CCA.Api.Config.Swagger
 {
   public static class SwaggerConfig
   {

@@ -2,14 +2,14 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<RootNamespace>ZZ.Core.Application</RootNamespace>
+		<RootNamespace>CCA.Core.Application</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ZZ.Core.Domain\CCA.Core.Domain.csproj" />
-		<ProjectReference Include="..\ZZ.Core.Plumbing\CCA.Core.Infra.csproj" />
+		<ProjectReference Include="..\CCA.Core.Domain\CCA.Core.Domain.csproj" />
+		<ProjectReference Include="..\CCA.Core.Plumbing\CCA.Core.Infra.csproj" />
 	</ItemGroup>
 	
 	

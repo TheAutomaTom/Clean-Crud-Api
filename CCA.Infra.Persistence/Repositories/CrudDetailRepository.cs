@@ -1,9 +1,9 @@
 ﻿using Nest;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Infra.Persistence.Repositories.Common;
-using ZZ.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Infra.Persistence.Repositories.Common;
 
-namespace ZZ.Infra.Persistence.Repositories
+namespace CCA.Infra.Persistence.Repositories
 {
   public class CrudDetailRepository : ElasticRepository<CrudDetail>, ICrudDetailRepository
   {

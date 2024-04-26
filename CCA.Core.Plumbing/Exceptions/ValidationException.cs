@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace ZZ.Core.Plumbing.Exceptions
+namespace CCA.Core.Plumbing.Exceptions
 {
   public class ValidationException : Exception
   {

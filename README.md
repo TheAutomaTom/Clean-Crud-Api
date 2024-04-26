@@ -1,5 +1,5 @@
-﻿# TheAutomaTom's Clean Architecture Template
-### Because getting started is the hard part. 
+﻿# Clean Crud Architecture
+### Just a _"Basic C.R.U.D. Api"_ using Clean Architecture principles
 
 <small>Version: 240417</small>
 

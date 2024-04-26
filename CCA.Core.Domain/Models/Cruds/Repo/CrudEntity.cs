@@ -1,6 +1,7 @@
-﻿using ZZ.Core.Domain.Common;
+﻿using CCA.Core.Domain.Common;
+using CCA.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.Core.Domain.Models.Cruds.Repo
+namespace CCA.Core.Domain.Models.Cruds.Repo
 {
   public class CrudEntity : AuditableEntity
   {

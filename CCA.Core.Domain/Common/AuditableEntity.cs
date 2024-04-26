@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Domain.Common
+﻿namespace CCA.Core.Domain.Common
 {
   public abstract class AuditableEntity
   {

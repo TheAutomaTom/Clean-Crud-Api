@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using CCA.Api;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
-using ZZ.Api;
 
-namespace E2E.Tests.Integration.Api_to_Testcontainer_Tests
+namespace CCA.Tests.EndToEnd.Config
 {
   public class E2ETestingWebAppFactory : WebApplicationFactory<Program>
   {

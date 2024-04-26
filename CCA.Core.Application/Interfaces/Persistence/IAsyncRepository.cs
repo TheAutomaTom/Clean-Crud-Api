@@ -1,4 +1,4 @@
-﻿namespace ZZ.Core.Application.Interfaces.Persistence
+﻿namespace CCA.Core.Application.Interfaces.Persistence
 {
   public interface IAsyncRepository<T> where T : class
   {

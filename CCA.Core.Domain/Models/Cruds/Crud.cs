@@ -1,6 +1,6 @@
-﻿using ZZ.Core.Domain.Models.Cruds.Repo;
+﻿using CCA.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.Core.Domain.Models.Cruds
+namespace CCA.Core.Domain.Models.Cruds
 {
   public class Crud : CrudEntity
   {

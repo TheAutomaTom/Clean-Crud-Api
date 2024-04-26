@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ZZ.Core.Application.Config
+namespace CCA.Core.Application.Config
 {
   public static class MediatorConfig
   {

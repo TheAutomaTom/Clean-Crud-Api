@@ -1,8 +1,7 @@
 ﻿using Nest;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Common;
+using CCA.Core.Application.Interfaces.Persistence;
 
-namespace ZZ.Infra.Persistence.Repositories.Common
+namespace CCA.Infra.Persistence.Repositories.Common
 {
   public class ElasticRepository<T> : IAsyncRepository<T> where T : class
   {

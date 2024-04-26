@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Infra.Persistence.Repositories;
-using ZZ.Infra.Persistence.Repositories.Common;
-using ZZ.Infra.Persistence.Repositories.DbContexts;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Infra.Persistence.Repositories;
+using CCA.Infra.Persistence.Repositories.Common;
+using CCA.Infra.Persistence.Repositories.DbContexts;
 
-namespace ZZ.Infra.Persistence.Config
+namespace CCA.Infra.Persistence.Config
 {
   public static class DbContextConfigs
   {

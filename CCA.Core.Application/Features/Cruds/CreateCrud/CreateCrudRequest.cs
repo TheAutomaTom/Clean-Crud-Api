@@ -1,7 +1,7 @@
 ﻿using Mediator;
-using ZZ.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Features.Cruds.CreateCrud;
 
-namespace ZZ.Core.Application.Features.Cruds.CreateCrud
+namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
   public class CreateCrudRequest : IRequest<CreateCrudResponse>
   {

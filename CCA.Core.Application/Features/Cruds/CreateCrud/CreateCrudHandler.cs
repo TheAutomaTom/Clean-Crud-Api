@@ -1,11 +1,12 @@
 ﻿using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
-using ZZ.Core.Application.Interfaces.Persistence;
-using ZZ.Core.Domain.Models.Cruds;
-using ZZ.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Domain.Models.Cruds.Repo;
 
-namespace ZZ.Core.Application.Features.Cruds.CreateCrud
+namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
   public class CreateCrudHandler : IRequestHandler<CreateCrudRequest, CreateCrudResponse>
   {

@@ -1,4 +1,4 @@
-namespace ZZ.Api.Config
+namespace CCA.Api.Config
 {
   public static class CorsConfig
   {

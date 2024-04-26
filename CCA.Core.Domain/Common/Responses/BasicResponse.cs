@@ -1,7 +1,6 @@
 ﻿using FluentValidation.Results;
-using ZZ.Core.Domain.Common.Responses;
 
-namespace ZZ.Core.Domain.Common.Responses
+namespace CCA.Core.Domain.Common.Responses
 {
   public class BasicResponse
   {

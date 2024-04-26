@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<RootNamespace>ZZ.Infra.Services</RootNamespace>
+		<RootNamespace>CCA.Infra.Services</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ZZ.Core.Application\CCA.Core.Application.csproj" />
+		<ProjectReference Include="..\CCA.Core.Application\CCA.Core.Application.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

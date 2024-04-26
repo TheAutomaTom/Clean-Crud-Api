@@ -1,4 +1,4 @@
-﻿namespace ZZ.Api.GraphQL.Queries
+﻿namespace CCA.Api.GraphQL.Queries
 {
   public class Query
   {
