@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 
-namespace CCA.Core.Application.Config
+namespace CCA.Core.Plumbing.Config
 {
   public static class LoggerConfig
   {

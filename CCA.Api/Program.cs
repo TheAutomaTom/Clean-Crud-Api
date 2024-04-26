@@ -5,7 +5,6 @@ using CCA.Api.Config;
 using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
-using CCA.Core.Application.Config;
 using CCA.Infra.Services.Config;
 using CCA.Infra.Persistence.Config;
 
