@@ -1,4 +1,4 @@
-﻿namespace CCA.Core.Plumbing.Exceptions
+﻿namespace CCA.Core.Infra.Exceptions
 {
   public class BadRequestException : Exception
   {

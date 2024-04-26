@@ -1,4 +1,4 @@
-﻿namespace CCA.Core.Plumbing.Models.Emails
+﻿namespace CCA.Core.Infra.Models.Emails
 {
   public class EmailSettings
   {

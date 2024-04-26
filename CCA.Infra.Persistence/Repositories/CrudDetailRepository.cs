@@ -1,9 +1,10 @@
 ﻿using Nest;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Infra.Persistence.Repositories.Common;
+using CCA.Data.Persistence.Repositories.Common;
+using CCA.Core.Domain.Models.Cruds;
 
-namespace CCA.Infra.Persistence.Repositories
+namespace CCA.Data.Persistence.Repositories
 {
   public class CrudDetailRepository : ElasticRepository<CrudDetail>, ICrudDetailRepository
   {
@@ -13,10 +14,9 @@ namespace CCA.Infra.Persistence.Repositories
 
     }
 
-
-
-
-
-
+    public Task<IReadOnlyList<Crud>> Read(IEnumerable<CrudEntity> entities)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

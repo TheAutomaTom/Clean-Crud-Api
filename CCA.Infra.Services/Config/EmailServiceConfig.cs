@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Plumbing.Models.Emails;
-using CCA.Infra.Services.Emails;
+using CCA.Data.Infra.Emails;
+using CCA.Core.Infra.Models.Emails;
 
-namespace CCA.Infra.Services.Config
+namespace CCA.Data.Infra.Config
 {
   public static class EmailServiceConfig
   {

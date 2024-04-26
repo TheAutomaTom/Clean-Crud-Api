@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace CCA.Core.Plumbing.TypeUtilities
+namespace CCA.Core.Infra.TypeUtilities
 {
   /// <summary>
   /// Intended to be used in conjunction with a DescriptionAttribute on each possible enum value.

@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Nest;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Infra.Persistence.Repositories;
+using CCA.Data.Persistence.Repositories;
 
-namespace CCA.Infra.Persistence.Config
+namespace CCA.Data.Persistence.Config
 {
   public static class ElasticConfig
   {

@@ -1,12 +1,13 @@
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Serilog;
-using Microsoft.AspNetCore.DataProtection;
 using CCA.Api.Config;
 using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
-using CCA.Infra.Services.Config;
-using CCA.Infra.Persistence.Config;
+using CCA.Core.Infra.Config;
+using CCA.Data.Infra.Config;
+using CCA.Data.Persistence.Config;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Serilog;
 
 namespace CCA.Api
 {
@@ -39,7 +40,7 @@ namespace CCA.Api
       // Internal services
       builder.Services
         .AddDbContexts(builder.Configuration)
-        .AddMeditorSupport()
+        .AddMediatorSupport()
         .AddCache(builder.Configuration)
         .AddElasticsearch(config);
 

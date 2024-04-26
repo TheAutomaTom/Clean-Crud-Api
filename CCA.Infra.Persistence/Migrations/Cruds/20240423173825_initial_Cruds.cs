@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace CCA.Infra.Persistence.Migrations.Cruds
+namespace CCA.Data.Persistence.Migrations.Cruds
 {
     /// <inheritdoc />
     public partial class initial_Cruds : Migration

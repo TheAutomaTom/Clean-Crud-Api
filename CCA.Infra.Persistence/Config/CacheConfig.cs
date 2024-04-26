@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Plumbing.Models.Cache;
-using CCA.Infra.Persistence.Cache;
+using CCA.Data.Persistence.Cache;
+using CCA.Core.Infra.Models.Cache;
 
-namespace CCA.Infra.Persistence.Config
+namespace CCA.Data.Persistence.Config
 {
   public static class CacheConfig
   {

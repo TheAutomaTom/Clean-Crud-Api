@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using CCA.Infra.Persistence.Repositories.DbContexts;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
 #nullable disable
 
-namespace CCA.Infra.Persistence.Migrations.Cruds
+namespace CCA.Data.Persistence.Migrations.Cruds
 {
     [DbContext(typeof(CrudContext))]
     [Migration("20240423173825_initial_Cruds")]

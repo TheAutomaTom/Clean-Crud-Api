@@ -2,11 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Infra.Persistence.Repositories;
-using CCA.Infra.Persistence.Repositories.Common;
-using CCA.Infra.Persistence.Repositories.DbContexts;
+using CCA.Data.Persistence.Repositories;
+using CCA.Data.Persistence.Repositories.Common;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
-namespace CCA.Infra.Persistence.Config
+namespace CCA.Data.Persistence.Config
 {
   public static class DbContextConfigs
   {

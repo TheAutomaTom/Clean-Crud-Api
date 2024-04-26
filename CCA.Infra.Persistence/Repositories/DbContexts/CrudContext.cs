@@ -1,13 +1,11 @@
 ﻿using Bogus;
+using CCA.Core.Domain.Common;
+using CCA.Core.Domain.Models.Cruds.Repo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
-using CCA.Core.Domain.Common;
-using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Infra.Persistence.Repositories;
-using CCA.Infra.Persistence.Repositories.DbContexts;
 
-namespace CCA.Infra.Persistence.Repositories.DbContexts
+namespace CCA.Data.Persistence.Repositories.DbContexts
 {
   public class CrudContext : DbContext
   {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Plumbing.Models.Cache;
+using CCA.Core.Infra.Models.Cache;
 
-namespace CCA.Infra.Persistence.Cache
+namespace CCA.Data.Persistence.Cache
 {
   public class CacheService : ICache
   {

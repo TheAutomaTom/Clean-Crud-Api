@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using CCA.Api.Middleware;
-using CCA.Core.Plumbing.Exceptions;
+using CCA.Core.Infra.Exceptions;
 
 namespace CCA.Api.Middleware
 {

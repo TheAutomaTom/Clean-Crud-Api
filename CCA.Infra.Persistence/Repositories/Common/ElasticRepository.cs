@@ -1,7 +1,7 @@
 ﻿using Nest;
 using CCA.Core.Application.Interfaces.Persistence;
 
-namespace CCA.Infra.Persistence.Repositories.Common
+namespace CCA.Data.Persistence.Repositories.Common
 {
   public class ElasticRepository<T> : IAsyncRepository<T> where T : class
   {
@@ -27,7 +27,7 @@ namespace CCA.Infra.Persistence.Repositories.Common
 
     }
 
-    public async Task<IReadOnlyList<T>> ReadAll()
+    public async Task<IReadOnlyList<T>> Read()
     {
       var responses = _client.Search<T>(s =>
           s.Query(q => q

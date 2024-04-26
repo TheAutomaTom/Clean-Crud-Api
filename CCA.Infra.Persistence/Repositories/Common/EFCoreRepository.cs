@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Common;
-using CCA.Infra.Persistence.Repositories.DbContexts;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
-namespace CCA.Infra.Persistence.Repositories.Common
+namespace CCA.Data.Persistence.Repositories.Common
 {
   public class EFCoreRepository<T> : IAsyncRepository<T> where T : AuditableEntity
   {
@@ -27,7 +27,7 @@ namespace CCA.Infra.Persistence.Repositories.Common
       return await _dbContext.Set<T>().FindAsync(id);
     }
 
-    public virtual async Task<IReadOnlyList<T>> ReadAll()
+    public virtual async Task<IReadOnlyList<T>> Read()
     {
       return await _dbContext.Set<T>().ToListAsync();
     }

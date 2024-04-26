@@ -1,4 +1,4 @@
-﻿namespace CCA.Core.Plumbing.Models.Cache
+﻿namespace CCA.Core.Infra.Models.Cache
 {
   public class CacheSettings
   {

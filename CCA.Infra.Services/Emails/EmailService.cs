@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Plumbing.Models.Emails;
+using CCA.Core.Infra.Models.Emails;
 
-namespace CCA.Infra.Services.Emails
+namespace CCA.Data.Infra.Emails
 {
   public class EmailService : ISendEmails
   {
