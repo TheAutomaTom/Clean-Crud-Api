@@ -26,6 +26,42 @@ namespace CCA.Api.Controllers
 
       return Ok(result);
     }
+    
+
+    [HttpGet]
+    public async Task<IActionResult> Read([FromBody] CreateCrudRequest request)
+    {
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
+    
+
+    [HttpGet]
+    public async Task<IActionResult> ReadById([FromBody] CreateCrudRequest request)
+    {
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
+    
+
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] CreateCrudRequest request)
+    {
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
+    
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete([FromBody] CreateCrudRequest request)
+    {
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
 
 
   }
