@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\CCA.Core.Domain\CCA.Core.Domain.csproj" />
-		<ProjectReference Include="..\CCA.Core.Plumbing\CCA.Core.Infra.csproj" />
+		<ProjectReference Include="..\CCA.Core.Infra\CCA.Core.Infra.csproj" />
 	</ItemGroup>
 	
 	
