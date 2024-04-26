@@ -41,6 +41,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests (2)", "Tests (2)", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.Tests.Units", "ZZ.Tests.Units\ZZ.Tests.Units.csproj", "{0B328B6B-732E-482C-9DFA-CB320DF8A176}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.XXX.Tests.Units", "ZZ.XXX.Tests.Units\ZZ.XXX.Tests.Units.csproj", "{B375FFC3-8ACF-45E8-BF00-8538FE87900E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests (3)", "Tests (3)", "{10B9411D-C6CA-45ED-978B-3E4E1C3B9130}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.Tests.Integration", "ZZ.Tests.Integration\ZZ.Tests.Integration.csproj", "{7132B8B6-3466-4F77-AAE8-6F4687B6F315}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZ.Tests.EndToEnd", "ZZ.Tests.EndToEnd\ZZ.Tests.EndToEnd.csproj", "{6CDAA0B3-1265-410E-8BCA-CE5D6861A92A}"

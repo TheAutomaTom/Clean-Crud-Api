@@ -1,0 +1,34 @@
+# To initialize containers:
+# 1. run docker desktop, 
+# 1. open a terminal at the directory containing this file, 
+# 1. run `docker compose up -d`
+
+services:
+  Redis:
+    container_name: zz-redis
+    image: redis:7.2.4-alpine
+    restart: always
+    environment:
+      REDIS_PWD: '${REDIS_PASS}'
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASS
+    volumes:
+      - zz-cache:/data
+
+  zz-sqlserver:
+    container_name: zz-sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - ${SQL_PORT}:1433
+    environment:
+      SA_PASSWORD: ${SQL_SA_PASS}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - zz-sqldata:/var/opt/mssql
+
+
+volumes:
+  zz-sqldata:
+  zz-cache:
+    driver: local
