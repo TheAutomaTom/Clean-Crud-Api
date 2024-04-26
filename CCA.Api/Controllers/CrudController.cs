@@ -1,5 +1,6 @@
 ﻿using CCA.Core.Application.Ancillary;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Features.Cruds.DeleteCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCruds;
 using CCA.Core.Domain.Models.Cruds;
@@ -72,6 +73,16 @@ namespace CCA.Api.Controllers
     public async Task<IActionResult> ReadById(int id)
     {
       var request = new ReadCrudByIdRequest(id);
+      var result = await _mediator.Send(request);
+
+      return Ok(result);
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteById(int id)
+    {
+      var request = new DeleteCrudByIdRequest(id);
       var result = await _mediator.Send(request);
 
       return Ok(result);

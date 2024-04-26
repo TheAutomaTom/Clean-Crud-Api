@@ -63,7 +63,34 @@ namespace CCA.Data.Persistence.Repositories.Common
 
     public async Task<int> Delete(T item)
     {
-      throw new NotImplementedException();
+      var deleteRequest = new DeleteRequest<T>(item);
+      var result = await _client.DeleteAsync(deleteRequest);
+
+      if(result.ServerError != null)
+      {
+        throw new Exception(result.ServerError.Error.Reason);
+      }
+
+      return result.IsValid ? 1 : 0;
+
+
     }
+
+    public async Task<int> Delete(int id)
+    {
+      var deleteRequest = new DeleteRequest<T>(id);
+      var result = await _client.DeleteAsync(deleteRequest);
+
+      if (result.ServerError != null)
+      {
+        throw new Exception(result.ServerError.Error.Reason);
+      }
+
+      return result.IsValid ? 1 : 0;
+    }
+
+
+
+
   }
 }

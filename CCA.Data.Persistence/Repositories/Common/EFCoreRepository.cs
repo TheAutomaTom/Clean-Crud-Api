@@ -2,6 +2,8 @@
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Common;
 using CCA.Data.Persistence.Config.DbContexts;
+using Nest;
+using System.Net;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
@@ -40,10 +42,32 @@ namespace CCA.Data.Persistence.Repositories.Common
 
     public virtual async Task<int> Delete(T item)
     {
-      _dbContext.Set<T>().Remove(item);
-      return await _dbContext.SaveChangesAsync();
+      var entity = _dbContext.Set<T>().Local.FirstOrDefault(entry => entry.Id.Equals(item.Id));
 
+      if (entity == null)
+      {
+        return 0;
+      }
+
+      _dbContext.Remove(entity);
+      return await _dbContext.SaveChangesAsync();
     }
+
+
+
+    public async Task<int> Delete(int id)
+    {
+      var entity = _dbContext.Set<T>().Local.FirstOrDefault(entry => entry.Id.Equals(id));
+
+      if (entity == null)
+      {
+        return 0;
+      }
+
+      _dbContext.Remove(entity);
+      return await _dbContext.SaveChangesAsync();
+    }
+
 
 
 

@@ -28,6 +28,17 @@ namespace CCA.Data.Persistence.Repositories
       return results;
     }
 
+    public async Task<int> Delete(int id)
+    {
+      var entity = await _dbContext.Cruds.FindAsync(id);
+      if (entity == null)
+      {
+        return 0;
+      }
+
+      _dbContext.Cruds.Remove(entity);
+      return await _dbContext.SaveChangesAsync();
+    }
 
 
 

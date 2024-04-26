@@ -37,17 +37,8 @@ namespace CCA.Data.Persistence.Repositories
     }
 
 
-    //IEnumerable<CrudDetail> processResults(ISearchResponse<CrudDetail> response)
-    //{
-    //  var results = new List<CrudDetail>();
-    //  if (response != null && response.IsValid)
-    //  {
-    //    results = response.Documents.Select(doc => new CrudDetail(doc)).ToList();
 
-    //    return results;
 
-    //  }
-    //}
 
 
 

@@ -7,6 +7,7 @@
     Task<T> Read(int id);
     Task<int> Update(T item);
     Task<int> Delete(T item);
+    Task<int> Delete(int id);
 
 
   }
