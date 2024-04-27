@@ -1,3 +1,4 @@
+using Azure.Core;
 using CCA.Api.Config;
 using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
@@ -7,6 +8,8 @@ using CCA.Data.Infra.Config;
 using CCA.Data.Persistence.Config;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
+using Microsoft.Extensions.Options;
 using Serilog;
 
 namespace CCA.Api
@@ -32,16 +35,24 @@ namespace CCA.Api
         .AddJsonFile($"appsettings.{env}.json", optional: true
         ).Build();
 
+
       builder.Services.AddLogger(config, env);
       builder.Host.UseSerilog();
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
-      builder.Services.AddOutputCache(o => o
-        .AddBasePolicy(x => x.Expire(TimeSpan.FromMinutes(
+      builder.Services.AddOutputCache(o => {
+        o.AddBasePolicy(x => x.Expire(TimeSpan.FromMinutes(
             Convert.ToInt32(builder.Configuration["Cache:MinutesToLive"])
-          )))
-        );
+          )));
+        o.AddBasePolicy(builder => builder
+          .With(c => c.HttpContext.Request.Path.StartsWithSegments("/read"))
+          .Tag("Crud-Reader"));
+        }
+      );
+
+      //builder.Services.AddDistributedOutputCache(config);
+
       // Internal services
       builder.Services
         .AddDbContexts(builder.Configuration)
@@ -79,18 +90,14 @@ namespace CCA.Api
 
       app.UseCors(CorsConfig.Policy);
       app.UseHttpsRedirection();
-
+      app.UseAuthorization();
 
       app.UseSwagger();
       app.UseSwaggerUI();
-      app.UseAuthorization();
-
-
 
       app.MapControllers();
       app.UseRouting();
       app.MapGraphQL();
-
 
       //* Middleware *****************************************************************************//
       //app.UseCustomExceptionHandler();

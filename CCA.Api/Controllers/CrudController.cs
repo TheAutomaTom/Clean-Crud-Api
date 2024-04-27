@@ -7,6 +7,8 @@ using CCA.Core.Application.Features.Cruds.UpdateCrud;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Results;
 using CCA.Core.Infra.Models.Search;
+using HotChocolate.Types;
+using HotChocolate.Utilities;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -20,17 +22,21 @@ namespace CCA.Api.Controllers
   {
     readonly ILogger<CrudController> _logger;
     readonly IMediator _mediator;
+    IOutputCacheStore _cache;
 
-    public CrudController(ILogger<CrudController> logger, IMediator mediator)
+    public CrudController(ILogger<CrudController> logger, IMediator mediator, IOutputCacheStore cache)
     {
       _logger = logger;
       _mediator = mediator;
+      _cache = cache;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateCrudRequest request)
+    public async Task<IActionResult> Create([FromBody] CreateCrudRequest request, CancellationToken ct = default)
     {
       var result = await _mediator.Send(request);
+
+      await _cache.EvictByTagAsync("Crud-Reader", ct);
 
       return Ok(result);
     }
@@ -39,7 +45,7 @@ namespace CCA.Api.Controllers
     /// <param name="count"> The number of new Cruds to create. </param>
     /// <returns> Newly created Cruds. </returns>
     [HttpPost]
-    public async Task<IActionResult> SeedDb(int count)
+    public async Task<IActionResult> SeedDb(int count, CancellationToken ct = default)
     {
       var faker = new CrudMocker();
       var cruds = faker.Generate(count);
@@ -49,22 +55,21 @@ namespace CCA.Api.Controllers
       {
         var request = new CreateCrudRequest(crud);
         var result = await _mediator.Send(request);
-
         results.Add(result.Data!);
       }
 
+      await _cache.EvictByTagAsync("Crud-Reader", ct);
       return Ok(new { Count = results.Count, Cruds = results });
     }
 
 
 
     [HttpGet]
-    [OutputCache]
-    public async Task<IActionResult> Read(int page = 1, int perPage = 10, DateTime? updatedFrom = null, DateTime? updatedUntil = null)
+    [OutputCache(Tags =["Crud-Reader"])]
+    public async Task<IActionResult> Read(int page = 1, int perPage = 10, DateTime? updatedFrom = null, DateTime? updatedUntil = null, CancellationToken ct = default)
     {
       updatedFrom = updatedFrom ?? DateTime.MinValue;
       updatedUntil = updatedUntil ?? DateTime.MaxValue;
-
 
       var request = new ReadCrudsRequest(new Paging(page, perPage), new DateRange(updatedFrom, updatedUntil));
       var result = await _mediator.Send(request);
@@ -74,7 +79,7 @@ namespace CCA.Api.Controllers
 
 
     [HttpGet]
-    [OutputCache]
+    [OutputCache(Tags = ["Crud-Reader"])]
     public async Task<IActionResult> ReadById(int id)
     {
       var request = new ReadCrudByIdRequest(id);
@@ -85,7 +90,7 @@ namespace CCA.Api.Controllers
 
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateCrudRequest request)
+    public async Task<IActionResult> Update([FromBody] UpdateCrudRequest request, CancellationToken ct = default)
     {
       var result = await _mediator.Send(request);
 
@@ -95,17 +100,19 @@ namespace CCA.Api.Controllers
         var create = new CreateCrudRequest(request);
         result = await _mediator.Send(create);
       }
-        return Ok(result);
+      await _cache.EvictByTagAsync("Crud-Reader", ct);
+      return Ok(result);
     }
 
 
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteById(int id)
+    public async Task<IActionResult> DeleteById(int id, CancellationToken ct = default)
     {
       var request = new DeleteCrudByIdRequest(id);
       var result = await _mediator.Send(request);
 
+      await _cache.EvictByTagAsync("Crud-Reader", ct);
       return Ok(result);
     }
 
