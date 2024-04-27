@@ -59,6 +59,11 @@ namespace CCA.Api
       builder.Services.AddSwagger();
 
 
+      // New .Net 8 replacement for custom Exception Middleware
+      builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+      builder.Services.AddProblemDetails();
+
+      // Required for some Docker server stuff.
       builder.Services.AddDataProtection()
           .PersistKeysToFileSystem(new DirectoryInfo(@"..\Docker\keys"));
 
@@ -80,7 +85,12 @@ namespace CCA.Api
       app.UseRouting();
       app.MapGraphQL();
 
-      app.UseCustomExceptionHandler();
+
+      //* Middleware *****************************************************************************//
+      //app.UseCustomExceptionHandler();
+      app.UseExceptionHandler(); // GlobalExceptionHandler
+
+      //******************************************************************************************//
 
       app.Run();
     }
