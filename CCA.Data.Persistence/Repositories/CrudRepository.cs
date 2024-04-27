@@ -5,14 +5,17 @@ using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories.Common;
 using CCA.Core.Infra.Models.Search;
 using CCA.Data.Persistence.Config.DbContexts;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
 
 namespace CCA.Data.Persistence.Repositories
 {
   public class CrudRepository : EFCoreRepository<CrudEntity>, ICrudRepository
   {
-    public CrudRepository(CrudContext dbContext) : base(dbContext)
+    readonly ILogger<CrudRepository> _logger;
+    public CrudRepository(ILogger<CrudRepository> logger, CrudContext dbContext) : base(logger, dbContext)
     {
-
+      _logger = logger;
     }
 
 

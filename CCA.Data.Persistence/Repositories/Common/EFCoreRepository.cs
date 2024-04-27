@@ -2,24 +2,37 @@
 using CCA.Core.Infra.Models.Common;
 using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Logging;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
   public class EFCoreRepository<T> : IAsyncRepository<T> where T : AuditableEntity
   {
+    readonly ILogger<EFCoreRepository<T>> _logger;
     protected readonly CrudContext _dbContext;
 
-    public EFCoreRepository(CrudContext dbContext)
+    public EFCoreRepository(ILogger<EFCoreRepository<T>> logger, CrudContext dbContext)
     {
+      _logger = logger;
       _dbContext = dbContext;
     }
     
     public virtual async Task<int> Create(T item)
     {
-      _dbContext.Entry(item).State = EntityState.Added;
-      await _dbContext.SaveChangesAsync();
+      try
+      {
 
-      return item.Id;
+        _dbContext.Entry(item).State = EntityState.Added;
+        await _dbContext.SaveChangesAsync();
+        return item.Id;
+      }
+      catch (DbUpdateConcurrencyException ex)
+      {
+        _dbContext.Entry(item).State = EntityState.Detached;
+        return 0;
+      }
+
     }
 
     public virtual async Task<T> Read(int id)
@@ -34,9 +47,18 @@ namespace CCA.Data.Persistence.Repositories.Common
 
     public virtual async Task<bool> Update(T item)
     {
-      _dbContext.Entry(item).State = EntityState.Modified;
-      var result = await _dbContext.SaveChangesAsync();
-      return result > 0;
+      try
+      {
+        _dbContext.Entry(item).State = EntityState.Modified;
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
+      } catch (DbUpdateConcurrencyException ex)
+      {
+        // Ef Core throws when there is no entity to change.
+        _dbContext.Entry(item).State = EntityState.Detached;
+        _logger.LogError(ex, $"Failed to update Entity ID# {item.Id}.");
+        return false;
+      }
     }
 
     public virtual async Task<int> Delete(T item)

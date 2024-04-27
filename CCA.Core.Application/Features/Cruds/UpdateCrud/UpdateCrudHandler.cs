@@ -3,13 +3,12 @@ using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Infra.Models.Results;
-using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
 namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {
-  public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, Result>
+  public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, Result<Crud>>
   {
     readonly ICrudDetailRepository _details;
     readonly ICrudRepository _entities;
@@ -22,16 +21,14 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
       _details = details;
     }
 
-    public async ValueTask<Result> Handle(UpdateCrudRequest request, CancellationToken cancellationToken)
+    public async ValueTask<Result<Crud>> Handle(UpdateCrudRequest request, CancellationToken cancellationToken)
     {
-
       // Validate request
       var validator = new UpdateCrudValidator();
       var validationResult = await validator.ValidateAsync(request);
-
       if (validationResult.Errors.Count > 0)
       {
-        return Result.Fail(validationResult.Errors);
+        return Result<Crud>.Fail(validationResult.Errors);
       }
 
 
@@ -53,30 +50,23 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 
         };
 
-        var errors = new List<Error>();
-
         var entityUpdate = await _entities.Update(toUpdate);
         if (!entityUpdate)
         {
-          errors.Add(new Error("UpdateCrudHandler", $"{nameof(_entities)} Failed to update entity ID# {request.Id}."));
+          return Result<Crud>.Fail(new Error("UpdateCrudHandler",CommonError.DoesNotExist.ToString()));
         }
 
         var detailUpdate = await _details.Update(toUpdate.Detail);
         if (!detailUpdate)
         {
-          errors.Add(new Error("UpdateCrudHandler", $"{nameof(_details)} Failed to update detail ID# {request.Id}."));
+          return Result<Crud>.Fail(new Error("UpdateCrudHandler", $"{nameof(_entities)} Failed to update Detail ID# {request.Id}.  There may be remnants of an Entity without Detail saved."));
         }
 
-        if(errors.Any())
-        {
-          return Result.Fail(errors);
-        }
-
-        return Result.Ok();
+        return Result<Crud>.Ok(toUpdate);
       }
       catch (Exception ex)
       {
-        return Result.Fail(ex);
+        return Result<Crud>.Fail(ex);
       }
 
 

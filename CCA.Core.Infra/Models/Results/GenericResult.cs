@@ -8,7 +8,10 @@ namespace CCA.Core.Infra.Models.Responses
     public T? Data { get; set; } = default(T);
 
     bool _isOk { get; set; } = true;
-    public bool IsOk => ValidationErrors!.Count() == 0 && Exception == null;
+    public bool IsOk => 
+      ValidationErrors?.Count() == 0 
+      && Errors?.Count() == 0 
+      && Exception == null;
 
     public IEnumerable<ValidationFailure>? ValidationErrors { get; set; } = new List<ValidationFailure>();
     public IEnumerable<Error> Errors { get; }

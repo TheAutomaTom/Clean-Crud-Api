@@ -5,6 +5,7 @@ using CCA.Core.Application.Features.Cruds.ReadCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCruds;
 using CCA.Core.Application.Features.Cruds.UpdateCrud;
 using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.Models.Results;
 using CCA.Core.Infra.Models.Search;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,7 @@ namespace CCA.Api.Controllers
         var request = new CreateCrudRequest(crud);
         var result = await _mediator.Send(request);
 
-        results.Add(result.Crud!);
+        results.Add(result.Data!);
       }
 
       return Ok(new { Count = results.Count, Cruds = results });
@@ -85,13 +86,10 @@ namespace CCA.Api.Controllers
     {
       var result = await _mediator.Send(request);
 
-      // If the item did not exist, create it.
-      if (result.Exception != null)
+      if (result.Errors.FirstOrDefault().desc == CommonError.DoesNotExist.ToString())
       {
-
-
+        // If the item did not exist, create it with next typical Id.
         var create = new CreateCrudRequest(request);
-
         result = await _mediator.Send(create);
       }
         return Ok(result);
@@ -99,7 +97,7 @@ namespace CCA.Api.Controllers
 
 
 
-    [HttpGet]
+    [HttpDelete]
     public async Task<IActionResult> DeleteById(int id)
     {
       var request = new DeleteCrudByIdRequest(id);

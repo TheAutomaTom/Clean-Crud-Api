@@ -73,6 +73,11 @@ namespace CCA.Data.Persistence.Config.DbContexts
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
+#if DEBUG
+      // This was helpful when diagnosing the "create new if no entity exists to update" issue.
+      var count = ChangeTracker.Entries<AuditableEntity>().Count();
+#endif
+
       foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
       {
         switch (entry.State)

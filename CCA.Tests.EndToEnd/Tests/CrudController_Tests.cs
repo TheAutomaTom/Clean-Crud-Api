@@ -5,6 +5,8 @@ using Testcontainers.MsSql;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Tests.EndToEnd.Config;
 using static CCA.Tests.EndToEnd.Mock.BogusGenerators;
+using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.Models.Responses;
 
 namespace CCA.Tests.EndToEnd.Tests
 {
@@ -63,12 +65,12 @@ namespace CCA.Tests.EndToEnd.Tests
       /* Assert */
       Assert.True(response.IsSuccessStatusCode);
 
-      var result = await response.Content.ReadFromJsonAsync<CreateCrudResponse>();
+      var result = await response.Content.ReadFromJsonAsync<Result<Crud>>();
       Assert.NotNull(result);
       Assert.True(result.IsOk);
 
-      Assert.NotNull(result.Crud);
-      Assert.True(result.Crud.Id > 0);
+      Assert.NotNull(result.Data);
+      Assert.True(result.Data.Id > 0);
 
 
 
