@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Data.Persistence.Config.DbContexts
 {

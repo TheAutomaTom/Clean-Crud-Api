@@ -1,10 +1,10 @@
 ﻿using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Search;
-using CCA.Core.Infra.Models.Common;
+using CCA.Core.Infra.Models.Responses;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCruds
 {
-  public class ReadCrudsResponse : BasicResponse
+  public class ReadCrudsResponse : Result
   {
     public ReadCrudsResponse()
     {

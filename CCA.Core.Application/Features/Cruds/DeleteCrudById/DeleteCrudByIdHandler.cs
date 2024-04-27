@@ -1,13 +1,14 @@
 ﻿using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Infra.Models.Responses;
+using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
-using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {
-  public class DeleteCrudByIdHandler : IRequestHandler<DeleteCrudByIdRequest, BasicResponse>
+  public class DeleteCrudByIdHandler : IRequestHandler<DeleteCrudByIdRequest, Result>
   {
     readonly ICrudDetailRepository _details;
     readonly ICrudRepository _entities;
@@ -20,49 +21,44 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
       _details = details;
     }
 
-    public async ValueTask<BasicResponse> Handle(DeleteCrudByIdRequest request, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(DeleteCrudByIdRequest request, CancellationToken cancellationToken)
     {
       var validator = new DeleteCrudByIdValidator();
       var validationResult = await validator.ValidateAsync(request);
 
       if (validationResult.Errors.Count > 0)
       {
-        var errors = new List<ValidationFailure>();
-        foreach (var error in validationResult.Errors)
-        {
-          errors.Add(error);
-        }
-        return new BasicResponse() { ValidationErrors = errors };
+        return Result.Fail(validationResult.Errors);
       }
 
       try
       {
-        var messages = new List<string>();
+        var errors = new List<Error>();
 
         var entityAttempt = await _entities.Delete(request.Id);
         if (entityAttempt == 0)
         {
-          messages.Append($"{nameof(_entities)} Failed to delete entity ID# {request.Id}.");
+          errors.Add( new Error("DeleteCrudByIdHandler", $"{nameof(_entities)} Failed to delete entity ID# {request.Id}."));
         }
 
         var detailAttempt = await _details.Delete(request.Id);
         if (detailAttempt == 0)
         {
-          messages.Append($"{nameof(_details)} Failed to delete detail ID# {request.Id}.");
+          errors.Add(new Error("DeleteCrudByIdHandler", $"{nameof(_details)} Failed to delete detail ID# {request.Id}."));
+          
         }
 
-        if (messages.Any())
+        if (errors.Any())
         {
-          return new BasicResponse(new Exception(String.Join("  ", messages)));
+          return Result.Fail(errors);
         }
 
-        return new BasicResponse() { Messages = new string[] { $"Crud ID# {request.Id} deleted." } };
+        return Result.Ok();
 
       }
       catch (Exception ex)
       {
-        var response = new CreateCrudResponse() { Exception = ex };
-        return response;
+        return Result.Fail(ex);
       }
     }
 

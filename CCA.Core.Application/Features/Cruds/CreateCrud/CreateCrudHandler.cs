@@ -1,6 +1,7 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Infra.Models.Responses;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
@@ -59,6 +60,7 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
       {
         var response = new CreateCrudResponse() { Exception = ex };
         return response;
+        //return Result.Fail(ex);
       }
     }
 

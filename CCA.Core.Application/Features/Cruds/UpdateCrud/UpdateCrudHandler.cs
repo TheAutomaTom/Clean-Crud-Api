@@ -1,14 +1,15 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Infra.Models.Responses;
+using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
-using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {
-  public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, BasicResponse>
+  public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, Result>
   {
     readonly ICrudDetailRepository _details;
     readonly ICrudRepository _entities;
@@ -21,7 +22,7 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
       _details = details;
     }
 
-    public async ValueTask<BasicResponse> Handle(UpdateCrudRequest request, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(UpdateCrudRequest request, CancellationToken cancellationToken)
     {
 
       // Validate request
@@ -30,19 +31,13 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 
       if (validationResult.Errors.Count > 0)
       {
-        var errors = new List<ValidationFailure>();
-        foreach (var error in validationResult.Errors)
-        {
-          errors.Add(error);
-        }
-        return new BasicResponse() { ValidationErrors = errors };
+        return Result.Fail(validationResult.Errors);
       }
 
 
       // Attempt process
       try
       {
-          var messages = new List<string>();
 
         var toUpdate = new Crud()
         {
@@ -58,25 +53,30 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 
         };
 
+        var errors = new List<Error>();
+
         var entityUpdate = await _entities.Update(toUpdate);
         if (!entityUpdate)
         {
-          messages.Append($"{nameof(_entities)} Failed to update entity ID# {request.Id}.");
-
+          errors.Add(new Error("UpdateCrudHandler", $"{nameof(_entities)} Failed to update entity ID# {request.Id}."));
         }
 
         var detailUpdate = await _details.Update(toUpdate.Detail);
         if (!detailUpdate)
         {
-          messages.Append($"{nameof(_details)} Failed to update detail ID# {request.Id}.");
+          errors.Add(new Error("UpdateCrudHandler", $"{nameof(_details)} Failed to update detail ID# {request.Id}."));
         }
 
-        return new BasicResponse() { Messages = new string[] { $"Crud ID# {request.Id} deleted." } };
+        if(errors.Any())
+        {
+          return Result.Fail(errors);
+        }
+
+        return Result.Ok();
       }
       catch (Exception ex)
       {
-        var response = new BasicResponse() { Exception = ex };
-        return response;
+        return Result.Fail(ex);
       }
 
 
