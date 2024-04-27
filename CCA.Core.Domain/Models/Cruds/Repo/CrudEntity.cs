@@ -5,8 +5,8 @@ namespace CCA.Core.Domain.Models.Cruds.Repo
 {
   public class CrudEntity : AuditableEntity
   {
-    public string Department { get; set; }
     public string Name { get; set; }
+    public string Department { get; set; }
 
     public CrudEntity() { }
 

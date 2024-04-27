@@ -1,10 +1,9 @@
-﻿using FluentValidation.Results;
-using Mediator;
-using Microsoft.Extensions.Logging;
-using CCA.Core.Application.Features.Cruds.CreateCrud;
-using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
+using FluentValidation.Results;
+using Mediator;
+using Microsoft.Extensions.Logging;
 
 namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {

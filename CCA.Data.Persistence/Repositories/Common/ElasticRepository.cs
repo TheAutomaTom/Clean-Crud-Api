@@ -2,10 +2,12 @@
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.Models.Emails;
+using CCA.Core.Domain.Common;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
-  public class ElasticRepository<T> : IAsyncRepository<T> where T : class
+  public class ElasticRepository<T> : IAsyncRepository<T> where T : AuditableEntity
   {
     protected readonly IElasticClient _client;
 
@@ -56,9 +58,24 @@ namespace CCA.Data.Persistence.Repositories.Common
 
     }
 
-    public async Task<int> Update(T item)
+    public async Task<bool> Update(T item)
     {
-      throw new NotImplementedException();
+
+      // I think the intent of <T, K> is to allow for smaller Dtos to be sent as updates to T.
+      var request = new UpdateRequest<T, T>(item.Id)
+      {
+        Doc = item
+      };
+
+
+      var result = await _client.UpdateAsync(request);
+
+      if (result.ServerError != null)
+      {
+        throw new Exception(result.ServerError.Error.Reason);
+      }
+
+      return result.IsValid;
     }
 
     public async Task<int> Delete(T item)

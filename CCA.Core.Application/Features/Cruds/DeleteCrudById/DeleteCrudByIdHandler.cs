@@ -39,14 +39,14 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
       {
         var messages = new List<string>();
 
-        var deletedEntity = await _entities.Delete(request.Id);
-        if (deletedEntity == 0)
+        var entityAttempt = await _entities.Delete(request.Id);
+        if (entityAttempt == 0)
         {
           messages.Append($"{nameof(_entities)} Failed to delete entity ID# {request.Id}.");
         }
 
-        var deletedDetail = await _details.Delete(request.Id);
-        if (deletedDetail == 0)
+        var detailAttempt = await _details.Delete(request.Id);
+        if (detailAttempt == 0)
         {
           messages.Append($"{nameof(_details)} Failed to delete detail ID# {request.Id}.");
         }
@@ -56,7 +56,7 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
           return new BasicResponse(new Exception(String.Join("  ", messages)));
         }
 
-        return new BasicResponse() {Messages = new string[] { $"Crud ID# {request.Id} deleted."} };
+        return new BasicResponse() { Messages = new string[] { $"Crud ID# {request.Id} deleted." } };
 
       }
       catch (Exception ex)

@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Domain.Models.Cruds.Responses;
 
 namespace CCA.Core.Application.Ancillary
 {
@@ -16,15 +17,6 @@ namespace CCA.Core.Application.Ancillary
 
     public CrudMocker()
     {
-      //_crudEntityFaker = new Faker<CrudEntity>()
-      //  .RuleFor(s => s.Name, f => f.Commerce.ProductName())
-      //  .RuleFor(s => s.Department, f => f.Commerce.Department());
-
-      //_crudDetailFaker = new Faker<CrudDetail>()
-      //  .RuleFor(x => x.Id, 0)
-      //  .RuleFor(x => x.Description, f => f.Lorem.Lines(_descLength))
-      //  .RuleFor(x => x.Tags, f => f.Lorem.Words(_tagsCount));
-
       _crudFaker = new Faker<Crud>()
           .RuleFor(c => c.Id, f => f.Random.Int())
           .RuleFor(c => c.Name, f => f.Commerce.ProductName())
@@ -38,23 +30,18 @@ namespace CCA.Core.Application.Ancillary
     }
 
     /// <summary> This method ensures the CrudDetail.Id matches it's CrudEntity.Id </summary>
-    public IEnumerable<Crud> Generate(int count = 1)
+    public IEnumerable<CrudUpdate> Generate(int count = 1)
     {
       var fakes = _crudFaker.Generate(count);
-      var results = new List<Crud>();
+      var results = new List<CrudUpdate>();
       foreach (var crud in fakes)
       {
-        results.Add(new Crud()
+        results.Add(new CrudUpdate()
         {
-          Id = crud.Id,
           Name = crud.Name,
           Department = crud.Department,
-          Detail = new CrudDetail()
-          {
-            Id = crud.Id,
-            Description = crud.Detail.Description,
-            Tags = crud.Detail.Tags
-          }
+          Description = crud.Detail.Description,
+          Tags = crud.Detail.Tags
         });
       }
 

@@ -7,5 +7,10 @@ namespace CCA.Core.Application.Interfaces.Persistence
   public interface ICrudDetailRepository : IAsyncRepository<CrudDetail>
   {
     Task<IReadOnlyList<Crud>> Read(IEnumerable<CrudEntity> entities);
+
+
+    Task<bool> Update(CrudDetail detail);
+
+
   }
 }

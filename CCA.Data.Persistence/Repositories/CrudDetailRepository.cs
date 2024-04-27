@@ -37,6 +37,27 @@ namespace CCA.Data.Persistence.Repositories
     }
 
 
+    public async Task<bool> Update(CrudDetail detail)
+    {
+
+      // I think the intent of <T, K> is to allow for smaller Dtos to be sent as updates to T.
+      var request = new UpdateRequest<CrudDetail, CrudDetail>(detail.Id)
+      {
+        Doc = detail
+      };
+
+      
+      var result = await _client.UpdateAsync(request);
+
+      if (result.ServerError != null)
+      {
+        throw new Exception(result.ServerError.Error.Reason);
+      }
+
+      return result.IsValid;
+
+    }
+
 
 
 

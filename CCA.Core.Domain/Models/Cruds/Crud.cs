@@ -4,6 +4,8 @@ namespace CCA.Core.Domain.Models.Cruds
 {
   public class Crud : CrudEntity
   {
+    public Crud() { }
+
     public CrudDetail Detail { get; set; }
 
 
@@ -28,7 +30,6 @@ namespace CCA.Core.Domain.Models.Cruds
     }
 
     /// <summary> Primarily for mocking libraries</summary>
-    public Crud() { }
 
   }
 }

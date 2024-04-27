@@ -34,10 +34,11 @@ namespace CCA.Data.Persistence.Repositories.Common
       return await _dbContext.Set<T>().ToListAsync();
     }
 
-    public virtual async Task<int> Update(T item)
+    public virtual async Task<bool> Update(T item)
     {
       _dbContext.Entry(item).State = EntityState.Modified;
-      return await _dbContext.SaveChangesAsync();
+      var result = await _dbContext.SaveChangesAsync();
+      return result > 0;
     }
 
     public virtual async Task<int> Delete(T item)

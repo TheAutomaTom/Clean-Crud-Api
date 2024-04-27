@@ -3,7 +3,10 @@ using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Core.Application.Features.Cruds.DeleteCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCruds;
+using CCA.Core.Application.Features.Cruds.UpdateCrud;
 using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Domain.Models.Cruds.Responses;
 using CCA.Core.Infra.Models.Search;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
@@ -77,6 +80,24 @@ namespace CCA.Api.Controllers
 
       return Ok(result);
     }
+
+
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] UpdateCrudRequest request)
+    {
+      var result = await _mediator.Send(request);
+
+      // If the item did not exist, create it.
+      if (result.Exception != null)
+      {
+
+        var create = new CreateCrudRequest(request);
+
+        result = await _mediator.Send(create);
+      }
+        return Ok(result);
+    }
+
 
 
     [HttpGet]
