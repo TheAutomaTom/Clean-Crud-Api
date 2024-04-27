@@ -45,7 +45,7 @@ namespace CCA.Api.Controllers
     /// <param name="count"> The number of new Cruds to create. </param>
     /// <returns> Newly created Cruds. </returns>
     [HttpPost]
-    public async Task<IActionResult> SeedDb(int count, CancellationToken ct = default)
+    public async Task<IActionResult> SeedDb(int count = 3, CancellationToken ct = default)
     {
       var faker = new CrudMocker();
       var cruds = faker.Generate(count);

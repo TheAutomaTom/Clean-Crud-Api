@@ -7,7 +7,7 @@
     public string Password { get; set; } = string.Empty;
     public string Address { get; set; } = string.Empty;
     public int MinutesToLive { get; set; } = 5;
-    public int SecondToTimeout { get; set; } = 5;
+    public int MillisecondsToTimeout { get; set; } = 5000;
 
   }
 }
