@@ -37,6 +37,11 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
+      builder.Services.AddOutputCache(o => o
+        .AddBasePolicy(x => x.Expire(TimeSpan.FromMinutes(
+            Convert.ToInt32(builder.Configuration["Cache:MinutesToLive"])
+          )))
+        );
       // Internal services
       builder.Services
         .AddDbContexts(builder.Configuration)
@@ -73,13 +78,14 @@ namespace CCA.Api
       //******************************************************************************************//
 
       app.UseCors(CorsConfig.Policy);
+      app.UseHttpsRedirection();
+
 
       app.UseSwagger();
       app.UseSwaggerUI();
-
-      app.UseHttpsRedirection();
-
       app.UseAuthorization();
+
+
 
       app.MapControllers();
       app.UseRouting();
@@ -89,6 +95,7 @@ namespace CCA.Api
       //* Middleware *****************************************************************************//
       //app.UseCustomExceptionHandler();
       app.UseExceptionHandler(); // GlobalExceptionHandler
+      app.UseOutputCache();
 
       //******************************************************************************************//
 

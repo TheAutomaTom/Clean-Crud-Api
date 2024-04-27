@@ -9,6 +9,7 @@ using CCA.Core.Infra.Models.Results;
 using CCA.Core.Infra.Models.Search;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace CCA.Api.Controllers
 {
@@ -58,7 +59,8 @@ namespace CCA.Api.Controllers
 
 
     [HttpGet]
-    public async Task<IActionResult> Read(int page = 1, int perPage = 1, DateTime? updatedFrom = null, DateTime? updatedUntil = null)
+    [OutputCache]
+    public async Task<IActionResult> Read(int page = 1, int perPage = 10, DateTime? updatedFrom = null, DateTime? updatedUntil = null)
     {
       updatedFrom = updatedFrom ?? DateTime.MinValue;
       updatedUntil = updatedUntil ?? DateTime.MaxValue;
@@ -72,6 +74,7 @@ namespace CCA.Api.Controllers
 
 
     [HttpGet]
+    [OutputCache]
     public async Task<IActionResult> ReadById(int id)
     {
       var request = new ReadCrudByIdRequest(id);
