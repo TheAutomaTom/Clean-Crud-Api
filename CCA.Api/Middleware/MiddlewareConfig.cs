@@ -2,7 +2,7 @@
 
 namespace CCA.Api.Middleware
 {
-  public static class MiddlewareConfiguration
+  public static class MiddlewareConfig
   {
     //public static IApplicationBuilder UseCustomExceptionHandler(this IApplicationBuilder builder)
     //{

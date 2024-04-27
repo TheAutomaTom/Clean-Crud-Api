@@ -60,7 +60,7 @@ namespace CCA.Api
 
 
       // New .Net 8 replacement for custom Exception Middleware
-      builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+      builder.Services.AddExceptionHandler<ExceptionHandlerConfig>();
       builder.Services.AddProblemDetails();
 
       // Required for some Docker server stuff.

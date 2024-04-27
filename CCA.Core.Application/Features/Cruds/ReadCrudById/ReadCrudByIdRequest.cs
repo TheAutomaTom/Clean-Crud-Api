@@ -1,5 +1,4 @@
 ﻿using CCA.Core.Application.Features.Cruds.ReadCruds;
-using CCA.Core.Domain.Common.Responses;
 using Mediator;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCrudById

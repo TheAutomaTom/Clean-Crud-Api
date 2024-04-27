@@ -1,5 +1,5 @@
-﻿using CCA.Core.Domain.Common.Responses;
-using CCA.Core.Domain.Models.Cruds;
+﻿using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {

@@ -1,10 +1,10 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Core.Domain.Common.Responses;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {

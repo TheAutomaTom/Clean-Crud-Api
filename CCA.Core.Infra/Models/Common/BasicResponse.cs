@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace CCA.Core.Domain.Common.Responses
+namespace CCA.Core.Infra.Models.Common
 {
   public class BasicResponse
   {

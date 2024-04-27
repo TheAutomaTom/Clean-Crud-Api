@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace CCA.Api.Middleware
 {
   /// <summary> This is only for handling unknown/ unanticipated exceptions (actual processing errors) </summary>
-  public class GlobalExceptionHandler : IExceptionHandler
+  public class ExceptionHandlerConfig : IExceptionHandler
   {
-    readonly ILogger<GlobalExceptionHandler> _logger;
+    readonly ILogger<ExceptionHandlerConfig> _logger;
     readonly string _env;
 
-    public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
+    public ExceptionHandlerConfig(ILogger<ExceptionHandlerConfig> logger)
     {
       _logger = logger;
       _env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!;

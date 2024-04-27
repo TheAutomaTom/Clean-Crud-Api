@@ -1,4 +1,4 @@
-﻿namespace CCA.Core.Domain.Common
+﻿namespace CCA.Core.Infra.Models.Common
 {
   public abstract class AuditableEntity
   {

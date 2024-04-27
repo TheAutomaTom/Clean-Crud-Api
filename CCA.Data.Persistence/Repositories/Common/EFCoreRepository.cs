@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Core.Domain.Common;
+﻿using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Infra.Models.Common;
 using CCA.Data.Persistence.Config.DbContexts;
-using Nest;
-using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {

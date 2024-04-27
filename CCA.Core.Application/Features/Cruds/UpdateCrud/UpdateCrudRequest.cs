@@ -1,6 +1,6 @@
-﻿using CCA.Core.Domain.Common.Responses;
-using CCA.Core.Domain.Models.Cruds.Responses;
+﻿using CCA.Core.Domain.Models.Cruds.Responses;
 using Mediator;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {

@@ -1,9 +1,9 @@
 ﻿using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Core.Domain.Common.Responses;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {

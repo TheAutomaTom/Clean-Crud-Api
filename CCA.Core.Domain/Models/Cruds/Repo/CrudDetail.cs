@@ -1,4 +1,5 @@
-﻿using CCA.Core.Domain.Common;
+﻿
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Domain.Models.Cruds.Repo
 {

@@ -1,5 +1,5 @@
-﻿using CCA.Core.Domain.Common.Responses;
-using Mediator;
+﻿using Mediator;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {

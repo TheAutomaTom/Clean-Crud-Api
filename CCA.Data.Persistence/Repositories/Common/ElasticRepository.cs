@@ -1,9 +1,7 @@
-﻿using Nest;
-using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Domain.Models.Cruds;
-using CCA.Core.Infra.Models.Emails;
-using CCA.Core.Domain.Common;
+using CCA.Core.Infra.Models.Common;
+using Nest;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
