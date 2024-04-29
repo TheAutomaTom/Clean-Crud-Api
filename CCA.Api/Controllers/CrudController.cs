@@ -7,8 +7,6 @@ using CCA.Core.Application.Features.Cruds.UpdateCrud;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Results;
 using CCA.Core.Infra.Models.Search;
-using HotChocolate.Types;
-using HotChocolate.Utilities;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -24,11 +22,11 @@ namespace CCA.Api.Controllers
     readonly IMediator _mediator;
     IOutputCacheStore _cache;
 
-    public CrudController(ILogger<CrudController> logger, IMediator mediator, IOutputCacheStore cache)
+    public CrudController(ILogger<CrudController> logger, IMediator mediator) //, IOutputCacheStore cache)
     {
       _logger = logger;
       _mediator = mediator;
-      _cache = cache;
+      //_cache = cache;
     }
 
     [HttpPost]
@@ -36,7 +34,7 @@ namespace CCA.Api.Controllers
     {
       var result = await _mediator.Send(request);
 
-      await _cache.EvictByTagAsync("Crud-Reader", ct);
+      //await _cache.EvictByTagAsync("Crud-Reader", ct);
 
       return Ok(result);
     }
@@ -58,7 +56,7 @@ namespace CCA.Api.Controllers
         results.Add(result.Data!);
       }
 
-      await _cache.EvictByTagAsync("Crud-Reader", ct);
+      //await _cache.EvictByTagAsync("Crud-Reader", ct);
       return Ok(new { Count = results.Count, Cruds = results });
     }
 
@@ -100,7 +98,7 @@ namespace CCA.Api.Controllers
         var create = new CreateCrudRequest(request);
         result = await _mediator.Send(create);
       }
-      await _cache.EvictByTagAsync("Crud-Reader", ct);
+      //await _cache.EvictByTagAsync("Crud-Reader", ct);
       return Ok(result);
     }
 
@@ -112,7 +110,7 @@ namespace CCA.Api.Controllers
       var request = new DeleteCrudByIdRequest(id);
       var result = await _mediator.Send(request);
 
-      await _cache.EvictByTagAsync("Crud-Reader", ct);
+      //await _cache.EvictByTagAsync("Crud-Reader", ct);
       return Ok(result);
     }
 

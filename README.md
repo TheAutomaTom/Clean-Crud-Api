@@ -53,7 +53,10 @@
 	
  
 	Redis caching details: https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-8.0#distributed-redis-cache
-		
+
+- Middleware chat
+
+	https://www.youtube.com/watch?v=TqCshF0o0nE&ab_channel=ShawnWildermuth
 		 
 
 ##### Standard operating procedure
