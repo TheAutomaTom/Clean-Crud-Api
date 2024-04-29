@@ -3,6 +3,7 @@ using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Infra.Models.Cache;
 using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Infra.Models.Results;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
@@ -23,12 +24,25 @@ namespace CCA.Data.Persistence.Cache
 
       _settings = settings.Value;
 
+
+      var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+      string connectionString;
+      if (env == "Test")
+      {
+        connectionString = Environment.GetEnvironmentVariable("RedisCache-Testing");
+      }
+      else
+      {
+        connectionString = _settings.Address;
+      }
+
+
       _config = new ConfigurationOptions()
       {
-        AbortOnConnectFail = false,
+        AbortOnConnectFail = true,
         User = _settings.User,
         Password = _settings.Password,
-        EndPoints = { _settings.Address },
+        EndPoints = { connectionString },
         SyncTimeout = _settings.MillisecondsToTimeout,
         AsyncTimeout = _settings.MillisecondsToTimeout,
         ConnectTimeout = _settings.MillisecondsToTimeout
