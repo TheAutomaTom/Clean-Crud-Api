@@ -1,9 +1,10 @@
-﻿using CCA.Core.Application.Features.Cruds.ReadCruds;
+﻿using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.Models.Responses;
 using Mediator;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 {
-  public class ReadCrudByIdRequest : IRequest<ReadCrudByIdResponse>
+  public class ReadCrudByIdRequest : IRequest<Result<Crud>>
   {
     public ReadCrudByIdRequest(int id)
     {
