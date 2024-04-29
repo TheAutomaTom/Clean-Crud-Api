@@ -1,5 +1,6 @@
 ﻿using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
+using static HotChocolate.ErrorCodes;
 
 namespace CCA.Core.Infra.Models.Responses
 {
@@ -7,9 +8,14 @@ namespace CCA.Core.Infra.Models.Responses
   {
     public T? Data { get; set; } = default(T);
 
+    public string DataType { get; set; }
+
+    public Result() { }
+
     public Result(T data)
     {
       Data = data;
+      DataType = data.GetType().Name;
     }
 
     public Result(Exception ex) : base(ex)
