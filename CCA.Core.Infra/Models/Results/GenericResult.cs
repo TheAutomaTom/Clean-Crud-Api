@@ -3,64 +3,33 @@ using FluentValidation.Results;
 
 namespace CCA.Core.Infra.Models.Responses
 {
-  public class Result<T>
+  public class Result<T> : Result
   {
     public T? Data { get; set; } = default(T);
 
-    public bool IsOk { get
-      {
-        var isOk = true;
-        if (ValidationErrors != null)
-        {
-          isOk = false;
-        }
-        if (Errors != null)
-        {
-          isOk = false;
-        }
-        if (Exception != null)
-        {
-          isOk = false;
-        }
-        return isOk;
-      } 
-    }
-
-    public IEnumerable<ValidationFailure>? ValidationErrors { get; set; }
-    public IEnumerable<Error> Errors { get; }
-    public Exception? Exception { get; set; }
-
-    public Result()
-    {
-      
-    }
     public Result(T data)
     {
       Data = data;
     }
 
-    public Result(Exception exception)
+    public Result(Exception ex) : base(ex)
     {
       Data = default(T);
-      Exception = exception;
     }
 
-    public Result(IEnumerable<ValidationFailure> validationErrors)
+    public Result(IEnumerable<ValidationFailure> validationErrors) : base(validationErrors)
     {
       Data = default(T);
-      ValidationErrors = validationErrors;
     }
 
-    public Result(IEnumerable<Error> errors)
+    public Result(IEnumerable<Error> errors) : base(errors)
     {
       Data = default(T);
-      Errors = errors;
     }
 
-    public Result(Error error)
+    public Result(Error error) : base(error)
     {
       Data = default(T);
-      Errors ??= new List<Error>() { error };
     }
 
     public static Result<T> Ok(T data) => new Result<T>(data);
@@ -68,7 +37,7 @@ namespace CCA.Core.Infra.Models.Responses
     public static Result<T> Fail(IEnumerable<Error> errors) => new(errors);
     public static Result<T> Fail(Error error) => new(error);
     public static Result<T> Fail(Exception ex) => new(ex);
-    public static Result<T> Fail() => new();
+    public static Result<T> Fail() => new(new Error(CommonError.Unknown.ToString()));
 
 
   }
