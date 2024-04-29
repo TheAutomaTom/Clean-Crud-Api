@@ -1,4 +1,3 @@
-using Azure.Core;
 using CCA.Api.Config;
 using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
@@ -8,8 +7,6 @@ using CCA.Data.Infra.Config;
 using CCA.Data.Persistence.Config;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
-using Microsoft.Extensions.Options;
 using Serilog;
 
 namespace CCA.Api
@@ -41,25 +38,13 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
-      builder.Services.AddOutputCache(o => {
-        o.AddBasePolicy(x => x.Expire(TimeSpan.FromMinutes(
-            Convert.ToInt32(builder.Configuration["Cache:MinutesToLive"])
-          )));
-        o.AddBasePolicy(builder => builder
-          .With(c => c.HttpContext.Request.Path.StartsWithSegments("/read"))
-          .Tag("Crud-Reader"));
-        }
-      );
-
-      //builder.Services.AddDistributedOutputCache(config);
+      //builder.Services.AddLocalOutputCache(config);
+      builder.Services.AddDistributedCache(config);
 
       // Internal services
-      builder.Services
-        .AddDbContexts(builder.Configuration)
-        .AddMeditorSupport()
-        .AddCache(builder.Configuration)
-        .AddElasticsearch(config);
-
+      builder.Services.AddDbContexts(builder.Configuration);
+      builder.Services.AddMeditorSupport();
+      builder.Services.AddElasticsearch(config);
       builder.Services.AddEmailService(builder.Configuration);
 
       // Exposed features
@@ -102,7 +87,7 @@ namespace CCA.Api
       //* Middleware *****************************************************************************//
       //app.UseCustomExceptionHandler();
       app.UseExceptionHandler(); // GlobalExceptionHandler
-      app.UseOutputCache();
+      //app.UseOutputCache();
 
       //******************************************************************************************//
 

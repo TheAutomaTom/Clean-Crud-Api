@@ -7,10 +7,10 @@ namespace CCA.Tests.EndToEnd.Config
 {
   public class E2ETestingWebAppFactory : WebApplicationFactory<Program>
   {
-
-    public E2ETestingWebAppFactory()
+    readonly string _env;
+    public E2ETestingWebAppFactory(string env = "Test")
     {
-
+      _env = env;
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -20,7 +20,7 @@ namespace CCA.Tests.EndToEnd.Config
       builder.ConfigureTestServices(services =>
       {
         // Override typical behavior here...
-        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Test");
+        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", _env);
 
       });
     }
