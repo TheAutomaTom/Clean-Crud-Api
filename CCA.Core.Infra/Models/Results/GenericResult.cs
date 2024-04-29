@@ -1,12 +1,16 @@
 ﻿using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
-using static HotChocolate.ErrorCodes;
 
 namespace CCA.Core.Infra.Models.Responses
 {
   public class Result<T> : Result
   {
     public T? Data { get; set; } = default(T);
+
+    // TODO: Think about how a non-generic Result is missing a detail about
+    //        how a call may have been successful but the request was invalid.
+    //      It seems like every request is at least Result<bool>,
+    //        but then the data delivered may be more complicated like GetCrusRequest, which has pagination info.
 
     public string DataType { get; set; }
 
