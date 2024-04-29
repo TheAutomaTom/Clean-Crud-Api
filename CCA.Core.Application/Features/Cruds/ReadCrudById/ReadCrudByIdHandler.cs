@@ -1,5 +1,4 @@
-﻿using CCA.Core.Application.Features.Cruds.ReadCruds;
-using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Responses;
 using Mediator;
@@ -12,6 +11,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
     readonly ICrudDetailRepository _details;
     readonly ICrudRepository _entities;
     readonly ILogger<ReadCrudByIdHandler> _logger;
+
     public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, ICrudRepository entities, ICrudDetailRepository details)
     {
       _logger = logger;
@@ -36,6 +36,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
         if (entity == null)
         {
           // This is not a failure, because the Db call was successful, but the entity did not exist.
+          // TODO: Think about another way to handle this.
           return Result<Crud>.Ok(null);
         }
 
