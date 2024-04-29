@@ -3,7 +3,6 @@ using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Infra.Models.Cache;
 using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Infra.Models.Results;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
@@ -21,9 +20,7 @@ namespace CCA.Data.Persistence.Cache
     public CacheService(IOptions<CacheSettings> settings, ILogger<CacheService> logger)
     {
       _logger = logger;
-
       _settings = settings.Value;
-
 
       var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
       string connectionString;
@@ -64,7 +61,7 @@ namespace CCA.Data.Persistence.Cache
         return Result<bool>.Fail(error);
       }
 
-      return new Result<bool>(created);
+      return Result<bool>.Ok(created);
     }
 
     public async Task<Result<bool>> Create<T>(string key, T value, TimeSpan? lifetime = null)
@@ -83,7 +80,7 @@ namespace CCA.Data.Persistence.Cache
         return Result<bool>.Fail(error);
       }
 
-      return new Result<bool>(created);
+      return Result<bool>.Ok(created);
     }
 
     public async Task<Result<bool>> Exists(string key)
@@ -99,7 +96,7 @@ namespace CCA.Data.Persistence.Cache
         var error = HandleException(ex);
         return Result<bool>.Fail(error);
       }
-      return new Result<bool>(exists);
+      return Result<bool>.Ok(exists);
     }
 
     public async Task<Result<string>> ReadString(string key)
@@ -110,7 +107,7 @@ namespace CCA.Data.Persistence.Cache
         var value = db.StringGet(new RedisKey(key));
 
         // Even if the value is null or empty, this was a successful call to the cache.
-        return new Result<string>(value);
+        return Result<string>.Ok(value);
 
       }
       catch (Exception ex)
@@ -130,7 +127,7 @@ namespace CCA.Data.Persistence.Cache
         var result = JsonSerializer.Deserialize<T>(value);
 
         // Even if the value is null or empty, this was a successful call to the cache.
-        return new Result<T>(result);
+        return Result<T>.Ok(result);
 
       }
       catch (Exception ex)
@@ -153,7 +150,7 @@ namespace CCA.Data.Persistence.Cache
         var error = HandleException(ex);
         return Result<bool>.Fail(error);
       }
-      return new Result<bool>(deleted);
+      return Result<bool>.Ok(deleted);
     }
 
 
