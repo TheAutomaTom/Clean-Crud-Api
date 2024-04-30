@@ -1,4 +1,5 @@
-﻿using CCA.Core.Application.Interfaces.Persistence.Cruds;
+﻿using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Responses;
 using Mediator;

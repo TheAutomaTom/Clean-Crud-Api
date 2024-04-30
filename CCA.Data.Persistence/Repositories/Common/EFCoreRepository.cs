@@ -1,4 +1,5 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Common;
 using CCA.Core.Infra.Models.Search;
 using CCA.Data.Persistence.Config.DbContexts;
@@ -7,22 +8,19 @@ using Microsoft.Extensions.Logging;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
-  public class EFCoreRepository<T> : IAsyncRepository<T> where T : AuditableEntity
+  public abstract class EFCoreRepository<T> : IAsyncRepository<AuditableEntity>
   {
-    readonly ILogger<EFCoreRepository<T>> _logger;
     protected readonly CrudContext _dbContext;
 
-    public EFCoreRepository(ILogger<EFCoreRepository<T>> logger, CrudContext dbContext)
+    public EFCoreRepository(CrudContext dbContext)
     {
-      _logger = logger;
       _dbContext = dbContext;
     }
     
-    public virtual async Task<int> Create(T item)
+    public virtual async Task<int> Create(AuditableEntity item)
     {
       try
       {
-
         _dbContext.Entry(item).State = EntityState.Added;
         await _dbContext.SaveChangesAsync();
         return item.Id;
@@ -35,17 +33,42 @@ namespace CCA.Data.Persistence.Repositories.Common
 
     }
 
-    public virtual async Task<T> Read(int id)
+    public virtual async Task<AuditableEntity> Read(int id)
     {
-      return await _dbContext.Set<T>().FindAsync(id);
+      return await _dbContext.Set<AuditableEntity>().FindAsync(id);
     }
 
-    public virtual async Task<IReadOnlyList<T>> Read()
+    public virtual async Task<IReadOnlyList<AuditableEntity>> Read()
     {
-      return await _dbContext.Set<T>().ToListAsync();
+      return await _dbContext.Set<AuditableEntity>().ToListAsync();
     }
 
-    public virtual async Task<bool> Update(T item)
+
+    public async Task<IReadOnlyList<AuditableEntity>> Read(Paging paging = default, DateRange dateRange = default)
+    {
+      var results = await _dbContext.Set<AuditableEntity>()
+        .Take(paging.CountPer)
+        .Where(c =>
+          (c.CreatedDate >= dateRange.From || c.LastModifiedDate >= dateRange.From)
+          && (c.CreatedDate <= dateRange.Until || c.LastModifiedDate <= dateRange.Until)
+        ).ToListAsync();
+
+      return results;
+    }
+
+    public async Task<int> Delete(int id)
+    {
+      var entity = await _dbContext.Cruds.FindAsync(id);
+      if (entity == null)
+      {
+        return 0;
+      }
+
+      _dbContext.Cruds.Remove(entity);
+      return await _dbContext.SaveChangesAsync();
+    }
+
+    public virtual async Task<bool> Update(AuditableEntity item)
     {
       try
       {
@@ -56,14 +79,14 @@ namespace CCA.Data.Persistence.Repositories.Common
       {
         // Ef Core throws when there is no entity to change.
         _dbContext.Entry(item).State = EntityState.Detached;
-        _logger.LogError(ex, $"Failed to update Entity ID# {item.Id}.");
+        //_logger.LogError(ex, $"Failed to update Entity ID# {item.Id}.");
         return false;
       }
     }
 
-    public virtual async Task<int> Delete(T item)
+    public virtual async Task<int> Delete(AuditableEntity item)
     {
-      var entity = _dbContext.Set<T>().Local.FirstOrDefault(entry => entry.Id.Equals(item.Id));
+      var entity = _dbContext.Set<AuditableEntity>().Local.FirstOrDefault(entry => entry.Id.Equals(item.Id));
 
       if (entity == null)
       {
@@ -75,23 +98,5 @@ namespace CCA.Data.Persistence.Repositories.Common
     }
 
 
-
-    public async Task<int> Delete(int id)
-    {
-      var entity = _dbContext.Set<T>().Local.FirstOrDefault(entry => entry.Id.Equals(id));
-
-      if (entity == null)
-      {
-        return 0;
-      }
-
-      _dbContext.Remove(entity);
-      return await _dbContext.SaveChangesAsync();
-    }
-
-    public Task<IReadOnlyList<T>> Read(Paging? paging = null, DateRange? dateRange = null)
-    {
-      throw new NotImplementedException();
-    }
   }
 }

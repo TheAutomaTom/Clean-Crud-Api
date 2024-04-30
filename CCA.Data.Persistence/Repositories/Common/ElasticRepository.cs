@@ -3,6 +3,7 @@ using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Common;
 using CCA.Core.Infra.Models.Search;
 using Nest;
+using DateRange = CCA.Core.Infra.Models.Search.DateRange;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
@@ -31,7 +32,7 @@ namespace CCA.Data.Persistence.Repositories.Common
     }
 
     /// <summary> This is, realistically, only used by Entities. </summary>
-    public Task<IReadOnlyList<T>> Read(Paging? paging = null, Core.Infra.Models.Search.DateRange? dateRange = null)
+    public Task<IReadOnlyList<T>> Read(Paging? paging = null, DateRange? dateRange = null)
     {     
       throw new NotImplementedException();
     }
@@ -83,20 +84,6 @@ namespace CCA.Data.Persistence.Repositories.Common
       return result.IsValid;
     }
 
-    public async Task<int> Delete(T item)
-    {
-      var deleteRequest = new DeleteRequest<T>(item);
-      var result = await _client.DeleteAsync(deleteRequest);
-
-      if(result.ServerError != null)
-      {
-        throw new Exception(result.ServerError.Error.Reason);
-      }
-
-      return result.IsValid ? 1 : 0;
-
-
-    }
 
     public async Task<int> Delete(int id)
     {

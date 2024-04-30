@@ -7,43 +7,37 @@ using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
+using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Data.Persistence.Repositories
 {
   public class CrudEntityRepository : EFCoreRepository<CrudEntity>, IManageCrudEntities
   {
-    readonly ILogger<CrudEntityRepository> _logger;
-    public CrudEntityRepository(ILogger<CrudEntityRepository> logger, CrudContext dbContext) : base(logger, dbContext)
+    readonly ILogger<AuditableEntity> _logger;
+    public CrudEntityRepository(ILogger<AuditableEntity> logger, CrudContext dbContext) : base(dbContext)
     {
       _logger = logger;
     }
 
-
-    public async Task<IReadOnlyList<CrudEntity>> Read(Paging paging = default, DateRange dateRange = default)
+    public Task<int> Create(CrudEntity item)
     {
-      var results = await _dbContext.Cruds
-        .Take(paging.CountPer)
-        .Where(c =>
-          (c.CreatedDate >= dateRange.From || c.LastModifiedDate >= dateRange.From)
-          && (c.CreatedDate <= dateRange.Until || c.LastModifiedDate <= dateRange.Until)
-        ).ToListAsync();
-
-      return results;
+      throw new NotImplementedException();
     }
 
-    public async Task<int> Delete(int id)
+    Task<IReadOnlyList<CrudEntity>> IAsyncRepository<CrudEntity>.Read(Paging? paging, DateRange? dateRange)
     {
-      var entity = await _dbContext.Cruds.FindAsync(id);
-      if (entity == null)
-      {
-        return 0;
-      }
-
-      _dbContext.Cruds.Remove(entity);
-      return await _dbContext.SaveChangesAsync();
+      throw new NotImplementedException();
     }
 
+    public Task<bool> Update(CrudEntity item)
+    {
+      throw new NotImplementedException();
+    }
 
-
+    Task<CrudEntity> IAsyncRepository<CrudEntity>.Read(int id)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

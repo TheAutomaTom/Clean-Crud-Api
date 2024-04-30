@@ -6,13 +6,11 @@ using Nest;
 
 namespace CCA.Data.Persistence.Repositories
 {
-  public class CrudDetailRepository : ElasticRepository<CrudDetail>, IManageCrudDetails
+  public class CrudDetailRepository : ElasticRepository<CrudDetail> , IManageCrudDetails
   {
 
     public CrudDetailRepository(IElasticClient client) : base(client)
-    {
-
-    }
+    { }
 
     /// <summary>
     /// Add CrudDetail from Elasticsearch to a list of CrudEntities
@@ -57,10 +55,6 @@ namespace CCA.Data.Persistence.Repositories
       return result.IsValid;
 
     }
-
-
-
-
 
 
 

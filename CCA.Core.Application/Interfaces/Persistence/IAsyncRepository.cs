@@ -10,7 +10,6 @@ namespace CCA.Core.Application.Interfaces.Persistence
     Task<IReadOnlyList<T>> Read(Paging? paging = null, DateRange? dateRange = null);
     Task<T> Read(int id);
     Task<bool> Update(T item);
-    Task<int> Delete(T item);
     Task<int> Delete(int id);
 
 

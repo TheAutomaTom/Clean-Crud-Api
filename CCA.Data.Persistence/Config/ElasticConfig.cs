@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories;

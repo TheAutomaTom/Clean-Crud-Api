@@ -6,6 +6,7 @@ using CCA.Data.Persistence.Repositories;
 using CCA.Data.Persistence.Repositories.Common;
 using CCA.Data.Persistence.Config.DbContexts;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
+using CCA.Core.Domain.Models.Cruds.Repo;
 
 namespace CCA.Data.Persistence.Config
 {
@@ -28,10 +29,9 @@ namespace CCA.Data.Persistence.Config
 
       services.AddDbContext<CrudContext>(options => options.UseSqlServer(connectionString));
            
-      services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));
+      //services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));
 
       services.AddScoped<IManageCrudEntities, CrudEntityRepository>();
-      services.AddScoped<IManageCrudDetails, CrudDetailRepository>();
 
       return services;
     }

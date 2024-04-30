@@ -1,4 +1,5 @@
 ﻿using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Infra.Models.Results;
