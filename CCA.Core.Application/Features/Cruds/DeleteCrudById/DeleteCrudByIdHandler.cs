@@ -1,5 +1,5 @@
 ﻿using CCA.Core.Application.Features.Cruds.CreateCrud;
-using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
@@ -10,11 +10,11 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {
   public class DeleteCrudByIdHandler : IRequestHandler<DeleteCrudByIdRequest, Result>
   {
-    readonly ICrudDetailRepository _details;
-    readonly ICrudRepository _entities;
+    readonly IManageCrudDetails _details;
+    readonly IManageCrudEntities _entities;
     readonly ILogger<DeleteCrudByIdHandler> _logger;
 
-    public DeleteCrudByIdHandler(ILogger<DeleteCrudByIdHandler> logger, ICrudRepository entities, ICrudDetailRepository details)
+    public DeleteCrudByIdHandler(ILogger<DeleteCrudByIdHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
     {
       _logger = logger;
       _entities = entities;

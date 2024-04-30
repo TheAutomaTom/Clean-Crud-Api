@@ -1,6 +1,7 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Common;
+using CCA.Core.Infra.Models.Search;
 using Nest;
 
 namespace CCA.Data.Persistence.Repositories.Common
@@ -27,6 +28,12 @@ namespace CCA.Data.Persistence.Repositories.Common
 
       return Int32.Parse(result.Id);
 
+    }
+
+    /// <summary> This is, realistically, only used by Entities. </summary>
+    public Task<IReadOnlyList<T>> Read(Paging? paging = null, Core.Infra.Models.Search.DateRange? dateRange = null)
+    {     
+      throw new NotImplementedException();
     }
 
     public async Task<IReadOnlyList<T>> Read()
@@ -103,9 +110,6 @@ namespace CCA.Data.Persistence.Repositories.Common
 
       return result.IsValid ? 1 : 0;
     }
-
-
-
 
   }
 }

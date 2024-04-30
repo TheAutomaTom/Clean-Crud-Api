@@ -5,6 +5,7 @@ using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Data.Persistence.Repositories;
 using CCA.Data.Persistence.Repositories.Common;
 using CCA.Data.Persistence.Config.DbContexts;
+using CCA.Core.Application.Interfaces.Persistence.Cruds;
 
 namespace CCA.Data.Persistence.Config
 {
@@ -29,8 +30,8 @@ namespace CCA.Data.Persistence.Config
            
       services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));
 
-      services.AddScoped<ICrudRepository, CrudRepository>();
-      services.AddScoped<ICrudDetailRepository, CrudDetailRepository>();
+      services.AddScoped<IManageCrudEntities, CrudEntityRepository>();
+      services.AddScoped<IManageCrudDetails, CrudDetailRepository>();
 
       return services;
     }

@@ -1,8 +1,8 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Infra.Models.Common;
+using CCA.Core.Infra.Models.Search;
 using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 
 namespace CCA.Data.Persistence.Repositories.Common
@@ -89,9 +89,9 @@ namespace CCA.Data.Persistence.Repositories.Common
       return await _dbContext.SaveChangesAsync();
     }
 
-
-
-
-
+    public Task<IReadOnlyList<T>> Read(Paging? paging = null, DateRange? dateRange = null)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

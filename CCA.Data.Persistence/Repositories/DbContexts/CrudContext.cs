@@ -85,12 +85,12 @@ namespace CCA.Data.Persistence.Config.DbContexts
 
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
-            entry.Entity.CreatedBy = nameof(CrudRepository);
+            entry.Entity.CreatedBy = nameof(CrudEntityRepository);
             break;
 
           case EntityState.Modified:
             entry.Entity.LastModifiedDate = DateTime.Now;
-            entry.Entity.LastModifiedBy = nameof(CrudRepository);
+            entry.Entity.LastModifiedBy = nameof(CrudEntityRepository);
             break;
 
         }

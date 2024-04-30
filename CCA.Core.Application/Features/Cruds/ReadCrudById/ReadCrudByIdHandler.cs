@@ -1,4 +1,4 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Responses;
 using Mediator;
@@ -8,11 +8,11 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 {
   public class ReadCrudByIdHandler : IRequestHandler<ReadCrudByIdRequest, Result<Crud>>
   {
-    readonly ICrudDetailRepository _details;
-    readonly ICrudRepository _entities;
+    readonly IManageCrudDetails _details;
+    readonly IManageCrudEntities _entities;
     readonly ILogger<ReadCrudByIdHandler> _logger;
 
-    public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, ICrudRepository entities, ICrudDetailRepository details)
+    public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
     {
       _logger = logger;
       _entities = entities;

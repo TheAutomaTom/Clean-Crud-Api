@@ -1,4 +1,4 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories.Common;
@@ -6,7 +6,7 @@ using Nest;
 
 namespace CCA.Data.Persistence.Repositories
 {
-  public class CrudDetailRepository : ElasticRepository<CrudDetail>, ICrudDetailRepository
+  public class CrudDetailRepository : ElasticRepository<CrudDetail>, IManageCrudDetails
   {
 
     public CrudDetailRepository(IElasticClient client) : base(client)

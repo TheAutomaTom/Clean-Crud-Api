@@ -1,4 +1,4 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Responses;
@@ -11,11 +11,11 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
   public class CreateCrudHandler : IRequestHandler<CreateCrudRequest, Result<Crud>>
   {
-    readonly ICrudDetailRepository _details;
-    readonly ICrudRepository _entities;
+    readonly IManageCrudDetails _details;
+    readonly IManageCrudEntities _entities;
     readonly ILogger<CreateCrudHandler> _logger;
 
-    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, ICrudRepository entities, ICrudDetailRepository details)
+    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
     {
       _logger = logger;
       _entities = entities;

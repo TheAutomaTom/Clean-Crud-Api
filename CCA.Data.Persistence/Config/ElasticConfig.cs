@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using CCA.Core.Application.Interfaces.Persistence;
+using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories;
 using Elasticsearch.Net;
@@ -35,7 +35,7 @@ namespace CCA.Data.Persistence.Config
       client.Map<CrudDetail>(m => m.Index(crudIndex).AutoMap()); 
 
       services.AddSingleton<IElasticClient>(client);
-      services.AddScoped<ICrudDetailRepository, CrudDetailRepository>();
+      services.AddScoped<IManageCrudDetails, CrudDetailRepository>();
 
     }
 

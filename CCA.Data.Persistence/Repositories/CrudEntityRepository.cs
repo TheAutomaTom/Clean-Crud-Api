@@ -1,19 +1,19 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
-using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Repositories.Common;
 using CCA.Core.Infra.Models.Search;
 using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
+using CCA.Core.Application.Interfaces.Persistence.Cruds;
 
 namespace CCA.Data.Persistence.Repositories
 {
-  public class CrudRepository : EFCoreRepository<CrudEntity>, ICrudRepository
+  public class CrudEntityRepository : EFCoreRepository<CrudEntity>, IManageCrudEntities
   {
-    readonly ILogger<CrudRepository> _logger;
-    public CrudRepository(ILogger<CrudRepository> logger, CrudContext dbContext) : base(logger, dbContext)
+    readonly ILogger<CrudEntityRepository> _logger;
+    public CrudEntityRepository(ILogger<CrudEntityRepository> logger, CrudContext dbContext) : base(logger, dbContext)
     {
       _logger = logger;
     }
