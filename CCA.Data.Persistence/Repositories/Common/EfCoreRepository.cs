@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CCA.Core.Infra.Models.Common;
 using CCA.Core.Infra.Models.Search;
-using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {

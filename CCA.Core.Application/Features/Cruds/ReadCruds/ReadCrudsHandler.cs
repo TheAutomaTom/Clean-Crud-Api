@@ -7,11 +7,11 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
 {
   public class ReadCrudsHandler : IRequestHandler<ReadCrudsRequest, ReadCrudsResponse>
   {
-    readonly IManageCrudDetails _details;
-    readonly IManageCrudEntities _entities;
+    readonly ICrudDetailsRepository _details;
+    readonly ICrudEntitiesRepository _entities;
     readonly ILogger<ReadCrudsHandler> _logger;
 
-    public ReadCrudsHandler(ILogger<ReadCrudsHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
+    public ReadCrudsHandler(ILogger<ReadCrudsHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
       _entities = entities;

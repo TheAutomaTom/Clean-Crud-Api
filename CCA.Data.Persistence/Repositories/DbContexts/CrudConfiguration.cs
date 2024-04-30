@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using CCA.Core.Domain.Models.Cruds.Repo;
 
-namespace CCA.Data.Persistence.Config.DbContexts
+namespace CCA.Data.Persistence.Repositories.DbContexts
 {
   public class CrudConfiguration : IEntityTypeConfiguration<CrudEntity>
   {

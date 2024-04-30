@@ -69,7 +69,7 @@ namespace CCA.Api.Controllers
       updatedFrom = updatedFrom ?? DateTime.MinValue;
       updatedUntil = updatedUntil ?? DateTime.MaxValue;
 
-      var request = new ReadCrudsRequest(new Paging(page, perPage), new DateRange(updatedFrom, updatedUntil));
+      var request = new ReadCrudsRequest(new Paging(page, perPage), new DateRangeFilter(updatedFrom, updatedUntil));
       var result = await _mediator.Send(request);
 
       return Ok(result);

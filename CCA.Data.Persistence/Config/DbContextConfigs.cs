@@ -3,10 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Data.Persistence.Repositories;
-using CCA.Data.Persistence.Repositories.Common;
-using CCA.Data.Persistence.Config.DbContexts;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
 namespace CCA.Data.Persistence.Config
 {

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using CCA.Data.Persistence.Config.DbContexts;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
 #nullable disable
 
 namespace CCA.Data.Persistence.Migrations.Cruds
 {
-  [DbContext(typeof(CrudContext))]
+  [DbContext(typeof(GeneralDbContext))]
     partial class CrudContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

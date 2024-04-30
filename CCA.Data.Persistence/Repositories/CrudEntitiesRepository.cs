@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Search;
-using CCA.Data.Persistence.Config.DbContexts;
 using CCA.Data.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
-using CCA.Core.Application.Interfaces.Persistence.Cruds;
+using CCA.Data.Persistence.Repositories.DbContexts;
 
 namespace CCA.Data.Persistence.Repositories
 {

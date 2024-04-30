@@ -11,11 +11,11 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {
   public class DeleteCrudByIdHandler : IRequestHandler<DeleteCrudByIdRequest, Result>
   {
-    readonly IManageCrudDetails _details;
-    readonly IManageCrudEntities _entities;
+    readonly ICrudDetailsRepository _details;
+    readonly ICrudEntitiesRepository _entities;
     readonly ILogger<DeleteCrudByIdHandler> _logger;
 
-    public DeleteCrudByIdHandler(ILogger<DeleteCrudByIdHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
+    public DeleteCrudByIdHandler(ILogger<DeleteCrudByIdHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
       _entities = entities;

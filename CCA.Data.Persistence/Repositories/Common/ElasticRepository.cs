@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.Common;
 using CCA.Core.Infra.Models.Search;
-using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Nest;
 

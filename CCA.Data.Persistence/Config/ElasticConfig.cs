@@ -36,7 +36,7 @@ namespace CCA.Data.Persistence.Config
       client.Map<CrudDetail>(m => m.Index(crudIndex).AutoMap()); 
 
       services.AddSingleton<IElasticClient>(client);
-      services.AddScoped<IManageCrudDetails, CrudDetailRepository>();
+      services.AddScoped<ICrudDetailsRepository, CrudDetailsRepository>();
 
     }
 

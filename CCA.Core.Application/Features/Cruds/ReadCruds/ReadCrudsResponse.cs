@@ -11,7 +11,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
       
     }
 
-    public ReadCrudsResponse(IEnumerable<Crud> cruds, Paging? paging, DateRange? updatedDateRange) : base()
+    public ReadCrudsResponse(IEnumerable<Crud> cruds, Paging? paging, DateRangeFilter? updatedDateRange) : base()
     {
       Cruds = cruds;
 
@@ -19,6 +19,6 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
 
       public IEnumerable<Crud> Cruds {get; set;}
       public Paging? Paging {get; set;}
-      public DateRange? UpdatedDateRange { get; set; }
+      public DateRangeFilter? UpdatedDateRange { get; set; }
   }
 }

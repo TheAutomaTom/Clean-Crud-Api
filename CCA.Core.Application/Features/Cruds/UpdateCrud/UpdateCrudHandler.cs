@@ -11,11 +11,11 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {
   public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, Result<Crud>>
   {
-    readonly IManageCrudDetails _details;
-    readonly IManageCrudEntities _entities;
+    readonly ICrudDetailsRepository _details;
+    readonly ICrudEntitiesRepository _entities;
     readonly ILogger<UpdateCrudHandler> _logger;
 
-    public UpdateCrudHandler(ILogger<UpdateCrudHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
+    public UpdateCrudHandler(ILogger<UpdateCrudHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
       _entities = entities;

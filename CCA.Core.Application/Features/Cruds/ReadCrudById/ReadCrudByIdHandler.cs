@@ -9,11 +9,11 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 {
   public class ReadCrudByIdHandler : IRequestHandler<ReadCrudByIdRequest, Result<Crud>>
   {
-    readonly IManageCrudDetails _details;
-    readonly IManageCrudEntities _entities;
+    readonly ICrudDetailsRepository _details;
+    readonly ICrudEntitiesRepository _entities;
     readonly ILogger<ReadCrudByIdHandler> _logger;
 
-    public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
+    public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
       _entities = entities;

@@ -12,11 +12,11 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
   public class CreateCrudHandler : IRequestHandler<CreateCrudRequest, Result<Crud>>
   {
-    readonly IManageCrudDetails _details;
-    readonly IManageCrudEntities _entities;
+    readonly ICrudDetailsRepository _details;
+    readonly ICrudEntitiesRepository _entities;
     readonly ILogger<CreateCrudHandler> _logger;
 
-    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, IManageCrudEntities entities, IManageCrudDetails details)
+    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
       _entities = entities;
