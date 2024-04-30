@@ -1,13 +1,10 @@
-﻿using Bogus;
+﻿using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Infra.Models.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
-using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Data.Persistence.Repositories;
-using CCA.Core.Infra.Models.Common;
-using CCA.Data.Persistence.Repositories.DbContexts;
 
-namespace CCA.Data.Persistence.Repositories.DbContexts
+namespace CCA.Data.Persistence.Config.DbContexts
 {
   public class GeneralDbContext : DbContext
   {
@@ -50,22 +47,29 @@ namespace CCA.Data.Persistence.Repositories.DbContexts
       model.Entity<CrudEntity>(entity =>
       {
         entity.HasKey(e => e.Id);
+        entity.Property(e => e.Id).ValueGeneratedOnAdd();
         entity.Property(e => e.LastModifiedBy).IsRequired(false);
-        entity.Property(e => e.LastModifiedDate).IsRequired(false);
+        //entity.Property(e => e.LastModifiedDate).IsRequired(false);
       });
+
+      /* This is not a very useful way to populate the database
+       * because it does not also create CrudDetails in Elastic.
+       * It's faster to use the seeder endpoint in swagger for demo data.
 
       var faker = new Faker<CrudEntity>()
         .RuleFor(s => s.Name, f => f.Commerce.ProductName())
-        .RuleFor(s => s.Department, f => f.Commerce.Department());
+        .RuleFor(s => s.Department, f => f.Commerce.Department())
+        .RuleFor(s => s.CreatedBy, "CCA")
+        .RuleFor(s => s.LastModifiedDate, DateTime.Now);
       var fakes = faker.Generate(10);
-
+      
       var i = 0;
       foreach (var fake in fakes)
       {
         fake.Id = ++i;
       }
-
       model.Entity<CrudEntity>().HasData(fakes);
+      */
 
       base.OnModelCreating(model);
     }

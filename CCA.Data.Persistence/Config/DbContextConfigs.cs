@@ -5,7 +5,7 @@ using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Data.Persistence.Repositories;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Data.Persistence.Repositories.DbContexts;
+using CCA.Data.Persistence.Config.DbContexts;
 
 namespace CCA.Data.Persistence.Config
 {
