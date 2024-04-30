@@ -7,7 +7,7 @@ using CCA.Core.Domain.Models.Cruds;
 
 namespace CCA.Core.Application.Interfaces.Persistence.Cruds
 {
-  public interface IManageCruds : IAsyncRepository<Crud>
+  public interface IManageCruds : IRepository<Crud>
   {
 
 

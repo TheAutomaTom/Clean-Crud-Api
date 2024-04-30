@@ -4,7 +4,7 @@ using CCA.Core.Infra.Models.Search;
 
 namespace CCA.Core.Application.Interfaces.Persistence
 {
-  public interface IManageCrudEntities : IAsyncRepository<CrudEntity>
+  public interface IManageCrudEntities : IRepository<CrudEntity>
   {
 
   }

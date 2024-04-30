@@ -75,10 +75,10 @@ namespace CCA.Data.Persistence.Config.DbContexts
     {
 #if DEBUG
       // This was helpful when diagnosing the "create new if no entity exists to update" issue.
-      var count = ChangeTracker.Entries<AuditableEntity>().Count();
+      var count = ChangeTracker.Entries<Auditable>().Count();
 #endif
 
-      foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+      foreach (var entry in ChangeTracker.Entries<Auditable>())
       {
         switch (entry.State)
         {
