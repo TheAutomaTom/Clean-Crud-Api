@@ -13,9 +13,7 @@
 
 <hr/>
 
-## Initial Setup
-
-### Recommended Tooling
+### Recommended Development Tooling
 
 #### EF Core
 
@@ -25,9 +23,70 @@
 
 #### Caching
 
-- Redis Insight cache browsing gui
+- Redis Insight
 
 	https://redis.io/insight/
+
+#### Elastic
+
+- Elasticvue browser extension
+
+	https://chromewebstore.google.com/detail/elasticvue/hkedbapjpblbodpgbajblpnlpenaebaa
+
+
+<hr/>
+
+### Container environment setup
+
+#### For most containers:
+
+1. Open a terminal at `.\CCA.TestSetup\Container-Manual-Setup`	
+1. Run `docker-compose up -d`
+
+#### For Elastic and Kibana, this repo is uses a fork of [deviantony/docker-elk](https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml):
+
+1. Open a terminal at `.\CCA.TestSetup\Container-Manual-Setup\fork-docker-elk`
+1. Run `docker-compose up setup`
+1. Run `docker-compose up -d`	
+
+	<small>_For further documentation, refer to `.\CCA.TestSetup\Container-Manual-Setup\fork-docker-elk\README.md`_</small>
+
+1. Run the app to ensure the logging idex is created.
+
+#### Local Kibana setup
+1. Open a browser to `http://localhost:5601` to view Kibana
+
+	Log in with default user `elastic` and pass `changeme`
+1. Click `Analytics/ Discorver`
+1. Click the `V` (down carrot) in the light blue box on the left that shold say `logs-*` by default.
+1. Click `Create data view` in the new menu.	
+1. Add an index pattern that matches the prefix of your index + *. Ex: `cca-*`
+
+#### Elasticvue GUI
+
+1. Add cluster
+1. Select `Basic Auth` and use default user `elastic` and pass `changeme`	
+1. Uri `http://localhost:9200`
+
+
+#### Redis Insight
+
+1. Add Redis database
+1. Host: `localhost`
+1. Port: `6379`
+1. Username: [none/ leave empty]
+1. Password: `Admin123!`
+
+#### Azure Data Studio
+
+1. New Connection
+1. Select `Connection String`
+1. Refer to Appsettings.Development.json.  Example:
+   
+	`Server=host.docker.internal,1433;User Id=sa;Password=Admin123!;TrustServerCertificate=True;`
+
+
+<hr/>
 
 ### Technical references
 
@@ -59,7 +118,7 @@
 	https://www.youtube.com/watch?v=TqCshF0o0nE&ab_channel=ShawnWildermuth
 		 
 
-##### Standard operating procedure
+##### EF Core Standard operating procedure
 
 1. In PackageManager window, select .Persistence as "Default project" on dropdown menu.
 1. EntityFrameworkCore\add-migration initial_Cruds -o Migrations/Cruds -Context CrudContext
@@ -94,7 +153,7 @@ GraphQL Tutorial by SingletonSean
 
 https://www.youtube.com/watch?v=iOQ74eYU2U4&list=PLA8ZIAm2I03g9z705U3KWJjTv0Nccw9pj&ab_channel=SingletonSean
 
-ELK Stack
+ELK Stack by `deviantony/docker-elk`
 
 https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml
 
