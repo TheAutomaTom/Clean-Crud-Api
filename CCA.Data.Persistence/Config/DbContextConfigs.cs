@@ -27,11 +27,9 @@ namespace CCA.Data.Persistence.Config
         connectionString = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
       }
 
-      services.AddDbContext<CrudContext>(options => options.UseSqlServer(connectionString));
+      services.AddDbContext<GeneralDbContext>(options => options.UseSqlServer(connectionString));
            
-      //services.AddScoped(typeof(IAsyncRepository<>), typeof(EFCoreRepository<>));
-
-      services.AddScoped<IManageCrudEntities, CrudEntityRepository>();
+      services.AddScoped<ICrudEntitiesRepository, CrudEntitiesRepository>();
 
       return services;
     }

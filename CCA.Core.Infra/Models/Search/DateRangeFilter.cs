@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CCA.Core.Infra.Models.Search
 {
-  public class DateRange
+  public class DateRangeFilter
   {
-    public DateRange(DateTime? from, DateTime? until)
+    public DateRangeFilter(DateTime? from, DateTime? until)
     {
       From = from ?? DateTime.MinValue;
       Until = until ?? DateTime.MaxValue;

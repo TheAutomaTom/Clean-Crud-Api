@@ -8,9 +8,9 @@ using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Data.Persistence.Config.DbContexts
 {
-  public class CrudContext : DbContext
+  public class GeneralDbContext : DbContext
   {
-    public CrudContext(DbContextOptions<CrudContext> options) : base(options)
+    public GeneralDbContext(DbContextOptions<GeneralDbContext> options) : base(options)
     {
       try
       {
@@ -44,7 +44,7 @@ namespace CCA.Data.Persistence.Config.DbContexts
 
     protected override void OnModelCreating(ModelBuilder model)
     {
-      model.ApplyConfigurationsFromAssembly(typeof(CrudContext).Assembly);
+      model.ApplyConfigurationsFromAssembly(typeof(GeneralDbContext).Assembly);
 
       model.Entity<CrudEntity>(entity =>
       {
@@ -85,12 +85,12 @@ namespace CCA.Data.Persistence.Config.DbContexts
 
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
-            entry.Entity.CreatedBy = nameof(CrudEntityRepository);
+            entry.Entity.CreatedBy = nameof(CCA);
             break;
 
           case EntityState.Modified:
             entry.Entity.LastModifiedDate = DateTime.Now;
-            entry.Entity.LastModifiedBy = nameof(CrudEntityRepository);
+            entry.Entity.LastModifiedBy = nameof(CCA);
             break;
 
         }
