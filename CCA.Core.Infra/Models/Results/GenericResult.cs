@@ -19,7 +19,12 @@ namespace CCA.Core.Infra.Models.Responses
     public Result(T data)
     {
       Data = data;
-      DataType = data.GetType().Name;
+
+      DataType = data != null 
+        ? data!.GetType().Name 
+        : String.Empty;
+
+
     }
 
     public Result(Exception ex) : base(ex)

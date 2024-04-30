@@ -62,24 +62,26 @@ namespace CCA.Tests.Integration
       Assert.Equal(value1, isReadingStrings.Data);
 
 
-      var key2 = $"TestString-{_rando.Next(1, 999)}";
+      var key2 = $"TestCrud-{_rando.Next(1, 999)}";
       var value2 = CrudFaker.Generate().First();
       
-      var isCachingObjects = await service.Create<Crud>(key2, value2);
+      var isCachingObjects = await service.Create<Crud>(key2, value2, new TimeSpan(0, 0, 3));
       Assert.True(isCachingObjects.IsOk);
 
       var isReadingObjects = await service.Read<Crud>(key2);
       Assert.True(isReadingObjects.IsOk);
+      Assert.NotNull(isReadingObjects.Data);
       Assert.Equal(value2.Id, isReadingObjects.Data.Id);
       Assert.Equal(value2.Name, isReadingObjects.Data.Name);
       Assert.Equal(value2.Detail.Id, isReadingObjects.Data.Detail.Id);
       Assert.Equal(value2.Detail.Tags, isReadingObjects.Data.Detail.Tags);
 
+      Thread.Sleep(3000); // Wait for isCachingObjects to expire;      
 
-
-
-
-
+      var objectsExpire = await service.Read<Crud>(key2);
+      Assert.True(objectsExpire.IsOk);
+      Assert.Null(objectsExpire.Data);
+      
 
 
 

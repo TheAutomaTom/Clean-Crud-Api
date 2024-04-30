@@ -124,10 +124,15 @@ namespace CCA.Data.Persistence.Cache
         var db = tryGetDatabase();
         var value = db.StringGet(new RedisKey(key));
 
-        var result = JsonSerializer.Deserialize<T>(value);
+        if(!value.IsNullOrEmpty)
+        {
+          var result = JsonSerializer.Deserialize<T>(value);
+          // Even if the value is null or empty, this was a successful call to the cache.
+          return Result<T>.Ok(result);
+        }
 
-        // Even if the value is null or empty, this was a successful call to the cache.
-        return Result<T>.Ok(result);
+        return Result<T>.Ok(default);
+
 
       }
       catch (Exception ex)
