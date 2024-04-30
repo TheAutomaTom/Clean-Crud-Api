@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>CCA.Api</RootNamespace>
+		<NoWarn>CS1591;</NoWarn>
 		<UserSecretsId>ffeb7ebb-f7a0-43d9-b9ef-0b6c23257257</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -17,10 +18,12 @@
 	<ItemGroup>
 		<PackageReference Include="HotChocolate.AspNetCore" Version="13.9.0" />
 		<PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.9.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OutputCaching.StackExchangeRedis" Version="8.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.4" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 		<PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
@@ -32,8 +35,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\CCA.Core.Application\CCA.Core.Application.csproj" />
-	  <ProjectReference Include="..\CCA.Infra.Persistence\CCA.Data.Persistence.csproj" />
-	  <ProjectReference Include="..\CCA.Infra.Services\CCA.Data.Infra.csproj" />		
+	  <ProjectReference Include="..\CCA.Data.Persistence\CCA.Data.Persistence.csproj" />
+	  <ProjectReference Include="..\CCA.Data.Infra\CCA.Data.Infra.csproj" />		
 	</ItemGroup>  
 	
 	<ItemGroup>

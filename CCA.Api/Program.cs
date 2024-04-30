@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Serilog;
-using Microsoft.AspNetCore.DataProtection;
 using CCA.Api.Config;
 using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
 using CCA.Core.Application.Config;
-using CCA.Infra.Services.Config;
-using CCA.Infra.Persistence.Config;
+using CCA.Data.Infra.Config;
+using CCA.Data.Persistence.Config;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Serilog;
 
 namespace CCA.Api
 {
@@ -32,18 +32,19 @@ namespace CCA.Api
         .AddJsonFile($"appsettings.{env}.json", optional: true
         ).Build();
 
+
       builder.Services.AddLogger(config, env);
       builder.Host.UseSerilog();
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
-      // Internal services
-      builder.Services
-        .AddDbContexts(builder.Configuration)
-        .AddMeditorSupport()
-        .AddCache(builder.Configuration)
-        .AddElasticsearch(config);
+      builder.Services.AddLocalOutputCache(config);
+      builder.Services.AddDistributedCache(config);
 
+      // Internal services
+      builder.Services.AddDbContexts(builder.Configuration);
+      builder.Services.AddMeditorSupport();
+      builder.Services.AddElasticsearch(config);
       builder.Services.AddEmailService(builder.Configuration);
 
       // Exposed features
@@ -59,6 +60,11 @@ namespace CCA.Api
       builder.Services.AddSwagger();
 
 
+      // New .Net 8 replacement for custom Exception Middleware
+      builder.Services.AddExceptionHandler<ExceptionHandlerConfig>();
+      builder.Services.AddProblemDetails();
+
+      // Required for some Docker server stuff.
       builder.Services.AddDataProtection()
           .PersistKeysToFileSystem(new DirectoryInfo(@"..\Docker\keys"));
 
@@ -67,20 +73,20 @@ namespace CCA.Api
       var app = builder.Build();
       //******************************************************************************************//
 
+      app.UseExceptionHandler();
+
+      app.UseOutputCache();
+
       app.UseCors(CorsConfig.Policy);
+      app.UseHttpsRedirection();
+      app.UseRouting();
+      app.UseAuthorization();
 
       app.UseSwagger();
       app.UseSwaggerUI();
 
-      app.UseHttpsRedirection();
-
-      app.UseAuthorization();
-
       app.MapControllers();
-      app.UseRouting();
       app.MapGraphQL();
-
-      app.UseCustomExceptionHandler();
 
       app.Run();
     }

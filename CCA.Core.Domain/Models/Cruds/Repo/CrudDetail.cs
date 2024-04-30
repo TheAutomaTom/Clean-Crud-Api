@@ -1,8 +1,9 @@
-﻿using CCA.Core.Domain.Common;
+﻿
+using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Domain.Models.Cruds.Repo
 {
-  public class CrudDetail : AuditableEntity
+  public class CrudDetail : Auditable
   {
     public int Id { get; set; }
     public string Description { get; set; }
@@ -13,6 +14,13 @@ namespace CCA.Core.Domain.Models.Cruds.Repo
       Id = id;
       Description = desc;
       Tags = tags;
+    }
+
+    public CrudDetail(CrudDetail cd) 
+    { 
+      Id = cd.Id;
+      Description = cd.Description;
+      Tags = cd.Tags;
     }
 
     /// <summary> Primarily for mocking libraries  </summary>

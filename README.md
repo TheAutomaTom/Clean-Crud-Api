@@ -17,15 +17,19 @@
 
 ### Recommended Tooling
 
-### Caching
+#### EF Core
+
+- Azure Data Studio
+
+	https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15
+
+#### Caching
 
 - Redis Insight cache browsing gui
 
 	https://redis.io/insight/
 
-### EF Core
-
-##### Technical references
+### Technical references
 
 - Entity Framework Code-First 
  
@@ -43,7 +47,17 @@
 	https://www.atomicjar.com/category/testcontainers/
 
 
-- 
+- Output caching
+
+	https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output?view=aspnetcore-8.0
+	
+ 
+	Redis caching details: https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-8.0#distributed-redis-cache
+
+- Middleware chat
+
+	https://www.youtube.com/watch?v=TqCshF0o0nE&ab_channel=ShawnWildermuth
+		 
 
 ##### Standard operating procedure
 
