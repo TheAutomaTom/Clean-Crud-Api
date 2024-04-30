@@ -33,6 +33,8 @@ namespace CCA.Data.Persistence.Cache
         connectionString = _settings.Address;
       }
 
+      var expiry = _settings.MinutesToLive > 0 ? _settings.MinutesToLive : 5;
+      _defaultLifetime = new TimeSpan(0, expiry, 0);
 
       _config = new ConfigurationOptions()
       {
@@ -44,16 +46,18 @@ namespace CCA.Data.Persistence.Cache
         AsyncTimeout = _settings.MillisecondsToTimeout,
         ConnectTimeout = _settings.MillisecondsToTimeout
       };
-      _defaultLifetime = new TimeSpan(0, _settings.MinutesToLive, 0);
+
     }
 
     public async Task<Result<bool>> Create(string key, string value, TimeSpan? lifetime = null)
     {
+      var expiry = lifetime ?? _defaultLifetime;
+
       bool created;
       try
       {
         var db = tryGetDatabase();
-        created = db.StringSet(new RedisKey(key), new RedisValue(value), lifetime);
+        created = db.StringSet(new RedisKey(key), new RedisValue(value), expiry);
       }
       catch (Exception ex)
       {
@@ -66,13 +70,15 @@ namespace CCA.Data.Persistence.Cache
 
     public async Task<Result<bool>> Create<T>(string key, T value, TimeSpan? lifetime = null)
     {
+      var expiry = lifetime ?? _defaultLifetime;
+
       bool created;
       try
       {
         var json = JsonSerializer.Serialize(value);
 
         var db = tryGetDatabase();
-        created = db.StringSet(new RedisKey(key), new RedisValue(json), lifetime);
+        created = db.StringSet(new RedisKey(key), new RedisValue(json), expiry);
       }
       catch (Exception ex)
       {
