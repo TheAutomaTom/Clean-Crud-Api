@@ -1,4 +1,5 @@
 ﻿using CCA.Core.Application.Features.Cruds.CreateCrud;
+using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Infra.Models.Responses;
@@ -13,11 +14,13 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;
+    readonly ICache _cache;
     readonly ILogger<DeleteCrudByIdHandler> _logger;
 
-    public DeleteCrudByIdHandler(ILogger<DeleteCrudByIdHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
+    public DeleteCrudByIdHandler(ILogger<DeleteCrudByIdHandler> logger, ICache cache, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
+      _cache = cache;
       _entities = entities;
       _details = details;
     }

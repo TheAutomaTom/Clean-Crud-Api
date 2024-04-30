@@ -1,4 +1,5 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Infrastructure;
+using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
@@ -7,6 +8,7 @@ using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
@@ -14,11 +16,13 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;
+    readonly ICache _cache;
     readonly ILogger<CreateCrudHandler> _logger;
 
-    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
+    public CreateCrudHandler(ILogger<CreateCrudHandler> logger, ICache cache, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
+      _cache = cache;
       _entities = entities;
       _details = details;
     }
@@ -30,11 +34,6 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
 
       if (validationResult.Errors.Count > 0)
       {
-        var errors = new List<ValidationFailure>();
-        foreach (var error in validationResult.Errors)
-        {
-          errors.Add(error);
-        }
         return Result<Crud>.Fail(validationResult.Errors);
       }
 
@@ -57,6 +56,16 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
         }
 
         var result = new Crud(createdId, entity, detail);
+
+        try
+        {        
+          var cache = await _cache.Create(CacheKey.Key(result.Id), result);
+        }
+        catch (Exception ex)
+        {
+          _logger.LogWarning($"Cache Failed while updating Crud ID# {result.Id}. {ex.Message}");
+        }
+
         return Result<Crud>.Ok(result);
 
       }

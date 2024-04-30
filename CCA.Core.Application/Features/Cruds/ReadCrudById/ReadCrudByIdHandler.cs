@@ -4,6 +4,7 @@ using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Responses;
 using Mediator;
 using Microsoft.Extensions.Logging;
+using Nest;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 {
@@ -54,10 +55,13 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 
         var crud = new Crud(entity, detail);
 
-        var cache = await _cache.Create(CacheKey.Key(request.Id), crud);
-        if (!cache.IsOk)
+        try
         {
-          _logger.LogWarning($"Failed to cache Crud ID# {crud.Id}.");
+          var cache = await _cache.Create(CacheKey.Key(crud.Id), crud);
+        }
+        catch (Exception ex)
+        {
+          _logger.LogWarning($"Cache Failed while updating Crud ID# {crud.Id}. {ex.Message}");
         }
 
         return Result<Crud>.Ok(crud);

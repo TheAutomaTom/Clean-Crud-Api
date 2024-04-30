@@ -1,4 +1,5 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Infrastructure;
+using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
@@ -13,11 +14,13 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;
+    readonly ICache _cache;
     readonly ILogger<UpdateCrudHandler> _logger;
 
-    public UpdateCrudHandler(ILogger<UpdateCrudHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
+    public UpdateCrudHandler(ILogger<UpdateCrudHandler> logger, ICache cache, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
+      _cache = cache;
       _entities = entities;
       _details = details;
     }
@@ -61,6 +64,15 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
         if (!detailUpdate)
         {
           return Result<Crud>.Fail(new Error("UpdateCrudHandler", $"{nameof(_entities)} Failed to update Detail ID# {request.Id}.  There may be remnants of an Entity without Detail saved."));
+        }
+
+        try
+        {
+          var removeFromCache = await _cache.Delete(CacheKey.Key(toUpdate.Id));
+          var cache = await _cache.Create(CacheKey.Key(toUpdate.Id), toUpdate);
+        } catch (Exception ex)
+        {
+          _logger.LogWarning($"Cache Failed while updating Crud ID# {toUpdate.Id}. {ex.Message}");
         }
 
         return Result<Crud>.Ok(toUpdate);
