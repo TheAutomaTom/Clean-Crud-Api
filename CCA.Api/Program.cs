@@ -38,7 +38,7 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
-      builder.Services.AddLocalOutputCache(config);
+      //builder.Services.AddLocalOutputCache(config);
       builder.Services.AddDistributedCache(config);
 
       // Internal services
@@ -75,7 +75,7 @@ namespace CCA.Api
 
       app.UseExceptionHandler();
 
-      app.UseOutputCache();
+      //app.UseOutputCache();
 
       app.UseCors(CorsConfig.Policy);
       app.UseHttpsRedirection();
