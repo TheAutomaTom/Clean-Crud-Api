@@ -10,6 +10,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Container-Manual-Setup\Elastic-Network\**" />
+	  <EmbeddedResource Remove="Container-Manual-Setup\Elastic-Network\**" />
+	  <None Remove="Container-Manual-Setup\Elastic-Network\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="coverlet.collector" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.4" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />

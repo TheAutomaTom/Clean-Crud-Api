@@ -5,7 +5,7 @@
 
 services:
   Redis:
-    container_name: zz-redis
+    container_name: cca-redis
     image: redis:7.2.4-alpine
     restart: always
     environment:
@@ -14,10 +14,10 @@ services:
       - '6379:6379'
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASS
     volumes:
-      - zz-cache:/data
+      - cca-cache:/data
 
-  zz-sqlserver:
-    container_name: zz-sqlserver
+  MsSqlServer:
+    container_name: cca-sqlserver
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
       - ${SQL_PORT}:1433
@@ -25,10 +25,10 @@ services:
       SA_PASSWORD: ${SQL_SA_PASS}
       ACCEPT_EULA: "Y"
     volumes:
-      - zz-sqldata:/var/opt/mssql
+      - cca-sqldata:/var/opt/mssql
 
 
 volumes:
-  zz-sqldata:
-  zz-cache:
+  cca-sqldata:
+  cca-cache:
     driver: local
