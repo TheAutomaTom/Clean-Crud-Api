@@ -17,11 +17,17 @@ namespace CCA.Data.Persistence.Repositories
 
     public async Task<IReadOnlyList<CrudEntity>> Read(Paging paging = default, DateRangeFilter dateRange = default)
     {
-      var results = await _dbContext.Set<CrudEntity>()
+      var results = await _dbContext.Set<CrudEntity>()        
         .Take(paging.CountPer)
+        .Skip(paging.Skip)
         .Where(c =>
-          (c.CreatedDate >= dateRange.From || c.LastModifiedDate >= dateRange.From)
-          && (c.CreatedDate <= dateRange.Until || c.LastModifiedDate <= dateRange.Until)
+          
+          // I initialize ModifiedDate with CreationData in order to make this search more efficient.
+          //(c.CreatedDate >= dateRange.From || c.LastModifiedDate >= dateRange.From)
+          //&& (c.CreatedDate <= dateRange.Until || c.LastModifiedDate <= dateRange.Until)
+          
+        (c.LastModifiedDate >= dateRange.From
+          && c.LastModifiedDate <= dateRange.Until)
         ).ToListAsync();
 
       return results;

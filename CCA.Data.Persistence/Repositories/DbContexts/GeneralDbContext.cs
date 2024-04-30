@@ -87,6 +87,10 @@ namespace CCA.Data.Persistence.Repositories.DbContexts
           case EntityState.Added:
             entry.Entity.CreatedDate = DateTime.Now;
             entry.Entity.CreatedBy = nameof(CCA);
+            // Initialize LastModifiedDate with CreatedDate to make the search more efficient.
+            entry.Entity.LastModifiedDate = DateTime.Now;
+            // Leave LastModifiedBy null to indicate that the entity has not been modified.
+            //entry.Entity.LastModifiedBy = nameof(CCA);
             break;
 
           case EntityState.Modified:

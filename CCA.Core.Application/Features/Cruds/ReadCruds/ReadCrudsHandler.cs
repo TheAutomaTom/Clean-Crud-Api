@@ -1,5 +1,6 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
+using CCA.Core.Infra.Models.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
@@ -34,7 +35,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
         var entities = await _entities.Read(request.Paging, request.UpdatedDateRange);
         if (!entities.Any())
         {
-          throw new Exception("No entities found.");
+          return new ReadCrudsResponse(new Error("WTF"));
         }
 
 
