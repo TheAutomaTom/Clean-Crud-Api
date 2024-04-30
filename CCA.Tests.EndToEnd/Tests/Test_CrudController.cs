@@ -4,9 +4,9 @@ using System.Text.Json;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Responses;
-using CCA.Tests.EndToEnd.Config;
+using CCA.TestSetup.Config;
 using Testcontainers.MsSql;
-using static CCA.Tests.EndToEnd.Mock.BogusGenerators;
+using static CCA.TestSetup.Mock.BogusGenerators;
 
 namespace CCA.Tests.EndToEnd.Tests
 {

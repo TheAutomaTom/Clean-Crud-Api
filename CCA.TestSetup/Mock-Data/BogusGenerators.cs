@@ -2,15 +2,15 @@
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 
-namespace CCA.Tests.EndToEnd.Mock
+namespace CCA.TestSetup.Mock
 {
-  internal static class BogusGenerators
+  public static class BogusGenerators
   {
     readonly static Random _rando = new Random();
     readonly static int _descLength = _rando.Next(3, 15);
     readonly static int _tagsCount = _rando.Next(1, 8);
 
-    internal static Faker<CrudEntity> CrudEntityFaker()
+    public static Faker<CrudEntity> CrudEntityFaker()
     {
       return new Faker<CrudEntity>()
         .RuleFor(s => s.Name, f => f.Commerce.ProductName())
@@ -18,7 +18,7 @@ namespace CCA.Tests.EndToEnd.Mock
 
     }
 
-    internal static Faker<CrudDetail> CrudDetailFaker()
+    public static Faker<CrudDetail> CrudDetailFaker()
     {
       return new Faker<CrudDetail>()
         .RuleFor(x => x.Id, 0)
@@ -27,9 +27,9 @@ namespace CCA.Tests.EndToEnd.Mock
 
     }
 
-    internal static class CrudFaker
+    public static class CrudFaker
     {
-      internal static IEnumerable<Crud> Generate(int items = 1)
+      public static IEnumerable<Crud> Generate(int items = 1)
       {
         var faker = new Faker<Crud>()
           .RuleFor(c => c.Id, f => f.Random.Int())

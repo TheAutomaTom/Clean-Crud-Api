@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 
-namespace CCA.Tests.EndToEnd.Config
+namespace CCA.TestSetup.Config
 {
   public class E2ETestingWebAppFactory : WebApplicationFactory<Program>
   {

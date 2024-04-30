@@ -1,14 +1,12 @@
-﻿using Bogus;
-using CCA.Core.Application.Interfaces.Infrastructure;
+﻿using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Data.Persistence.Cache;
-using CCA.Tests.EndToEnd.Config;
+using CCA.TestSetup.Config;
 using Microsoft.Extensions.DependencyInjection;
-using Testcontainers.MsSql;
 using Testcontainers.Redis;
-using static CCA.Tests.EndToEnd.Mock.BogusGenerators;
+using static CCA.TestSetup.Mock.BogusGenerators;
 
-namespace CCA.Tests.EndToEnd.Tests
+namespace CCA.Tests.Integration
 {
   public class Test_Connectivity
   {
