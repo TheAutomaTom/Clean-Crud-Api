@@ -1,4 +1,4 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
+﻿using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Responses;
@@ -11,11 +11,13 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;
+    readonly ICache _cache;
     readonly ILogger<ReadCrudByIdHandler> _logger;
-
-    public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
+    
+    public ReadCrudByIdHandler(ILogger<ReadCrudByIdHandler> logger, ICache cache, ICrudEntitiesRepository entities, ICrudDetailsRepository details)
     {
       _logger = logger;
+      _cache = cache;
       _entities = entities;
       _details = details;
     }
@@ -33,6 +35,13 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 
       try
       {
+        var cached = await _cache.Read<Crud>(CacheKey.Key(request.Id));
+        if (cached.Data != null)
+        {
+         return Result<Crud>.Ok(cached.Data);
+        }
+
+
         var entity = await _entities.Read(request.Id);
         if (entity == null)
         {
@@ -44,6 +53,12 @@ namespace CCA.Core.Application.Features.Cruds.ReadCrudById
         var detail = await _details.Read(entity.Id);
 
         var crud = new Crud(entity, detail);
+
+        var cache = await _cache.Create(CacheKey.Key(request.Id), crud);
+        if (!cache.IsOk)
+        {
+          _logger.LogWarning($"Failed to cache Crud ID# {crud.Id}.");
+        }
 
         return Result<Crud>.Ok(crud);
 
