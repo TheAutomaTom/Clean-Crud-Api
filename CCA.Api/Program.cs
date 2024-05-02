@@ -29,8 +29,8 @@ namespace CCA.Api
 
       var config = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddJsonFile($"appsettings.{env}.json", optional: true
-        ).Build();
+        .AddJsonFile($"appsettings.{env}.json", optional: true)
+        .Build();
 
 
       builder.Services.AddLogger(config, env);
@@ -38,7 +38,6 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
-      //builder.Services.AddLocalOutputCache(config);
       builder.Services.AddDistributedCache(config);
 
       // Internal services
@@ -75,7 +74,6 @@ namespace CCA.Api
 
       app.UseExceptionHandler();
 
-      //app.UseOutputCache();
 
       app.UseCors(CorsConfig.Policy);
       app.UseHttpsRedirection();

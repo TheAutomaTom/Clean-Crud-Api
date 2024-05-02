@@ -22,11 +22,11 @@ namespace CCA.Api.Controllers
     readonly IMediator _mediator;
     IOutputCacheStore _cache;
 
-    public CrudController(ILogger<CrudController> logger, IMediator mediator) //, IOutputCacheStore cache)
+    public CrudController(ILogger<CrudController> logger, IMediator mediator, IOutputCacheStore cache)
     {
       _logger = logger;
       _mediator = mediator;
-      //_cache = cache;
+      _cache = cache;
     }
 
     [HttpPost]
@@ -34,7 +34,7 @@ namespace CCA.Api.Controllers
     {
       var result = await _mediator.Send(request);
 
-      //await _cache.EvictByTagAsync("Crud-Reader", ct);
+      await _cache.EvictByTagAsync("Refresh-Crud-Readers", ct);
 
       return Ok(result);
     }
@@ -56,14 +56,13 @@ namespace CCA.Api.Controllers
         results.Add(result.Data!);
       }
 
-      //await _cache.EvictByTagAsync("Crud-Reader", ct);
+      await _cache.EvictByTagAsync("Refresh-Crud-Readers", ct);
       return Ok(new { Count = results.Count, Cruds = results });
     }
 
 
 
     [HttpGet]
-    [OutputCache(Tags =["Crud-Reader"])]
     public async Task<IActionResult> Read(int page = 1, int perPage = 10, DateTime? updatedFrom = null, DateTime? updatedUntil = null, CancellationToken ct = default)
     {
       updatedFrom = updatedFrom ?? DateTime.MinValue;
@@ -77,7 +76,6 @@ namespace CCA.Api.Controllers
 
 
     [HttpGet]
-    [OutputCache(Tags = ["Crud-Reader"])]
     public async Task<IActionResult> ReadById(int id)
     {
       var request = new ReadCrudByIdRequest(id);
@@ -98,7 +96,7 @@ namespace CCA.Api.Controllers
         var create = new CreateCrudRequest(request);
         result = await _mediator.Send(create);
       }
-      //await _cache.EvictByTagAsync("Crud-Reader", ct);
+      await _cache.EvictByTagAsync("Refresh-Crud-Readers", ct);
       return Ok(result);
     }
 
@@ -110,7 +108,7 @@ namespace CCA.Api.Controllers
       var request = new DeleteCrudByIdRequest(id);
       var result = await _mediator.Send(request);
 
-      //await _cache.EvictByTagAsync("Crud-Reader", ct);
+      await _cache.EvictByTagAsync("Refresh-Crud-Readers", ct);
       return Ok(result);
     }
 
