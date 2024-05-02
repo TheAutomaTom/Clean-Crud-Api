@@ -47,6 +47,10 @@ namespace CCA.Data.Persistence.Cache
         ConnectTimeout = _settings.MillisecondsToTimeout
       };
 
+#if DEBUG
+      var check = GetStatus();
+#endif
+
     }
 
     public async Task<Result<bool>> Create(string key, string value, TimeSpan? lifetime = null)
