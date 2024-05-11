@@ -1,0 +1,41 @@
+# To initialize containers:
+# 1. run docker desktop, 
+# 1. open a terminal at the directory containing this file, 
+# 1. run `docker compose up -d`
+
+services:
+
+  Keycloak:
+    image: bitnami/keycloak:latest
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_USER}      
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASS}
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASS}
+    ports:
+      - ${KEYCLOAK_PORT}:8080
+    volumes:
+      - keycloak_data:/opt/bitnami/keycloak/standalone/data
+      - keycloak_config:/opt/bitnami/keycloak/standalone/configuration
+    depends_on:
+      - Postgres
+
+  Postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASS}
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+
+volumes:
+  keycloak_data:
+  keycloak_config:
+  postgres_data:
