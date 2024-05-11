@@ -8,6 +8,7 @@ using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Results;
 using CCA.Core.Infra.Models.Search;
 using Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 
@@ -20,7 +21,7 @@ namespace CCA.Api.Controllers
   {
     readonly ILogger<CrudController> _logger;
     readonly IMediator _mediator;
-    IOutputCacheStore _cache;
+    //IOutputCacheStore _cache;
 
     public CrudController(ILogger<CrudController> logger, IMediator mediator) //, IOutputCacheStore cache)
     {
@@ -63,7 +64,7 @@ namespace CCA.Api.Controllers
 
 
     [HttpGet]
-    [OutputCache(Tags =["Crud-Reader"])]
+    //[OutputCache(Tags =["Crud-Reader"])]
     public async Task<IActionResult> Read(int page = 1, int perPage = 10, DateTime? updatedFrom = null, DateTime? updatedUntil = null, CancellationToken ct = default)
     {
       updatedFrom = updatedFrom ?? DateTime.MinValue;
@@ -77,7 +78,7 @@ namespace CCA.Api.Controllers
 
 
     [HttpGet]
-    [OutputCache(Tags = ["Crud-Reader"])]
+    //[OutputCache(Tags = ["Crud-Reader"])]
     public async Task<IActionResult> ReadById(int id)
     {
       var request = new ReadCrudByIdRequest(id);
