@@ -4,6 +4,7 @@ using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
 using CCA.Core.Application.Config;
 using CCA.Data.Infra.Config;
+using CCA.Data.Infra.Identities.Config;
 using CCA.Data.Persistence.Config;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -38,6 +39,7 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
 
+      builder.Services.AddUserIdentityService(builder.Configuration);
       //builder.Services.AddLocalOutputCache(config);
       builder.Services.AddDistributedCache(config);
 
