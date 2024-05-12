@@ -96,7 +96,7 @@
 #### Azure Data Studio for PostgresSQL
 
 1. Add ADS extention: PostgresSQL
-    
+	
 	https://github.com/Microsoft/azuredatastudio-postgresql/
 
 1. New Connection
@@ -147,25 +147,19 @@ _With the `Master` realm selected..._
 
 #### Keycloak Configuration
 
-| **Item**	  | Key				| Value								               | Note                                                |
-|	--- 																								         |                                                     |
-| **Realm**	  | Name			| `Clean-Crud`								       |                                                     |
-| **Client**  | Id				| `clean-crud-api`							     |                                                     |
-|	 		        | Name			| `Clean Crud Api`							     |                                                     |
-|	 		        | Secret	  | `aYbZ8SiXmRUEO97KLwm4zUFCvpB01Uai` | After creating a client, look in "Credentials" tab. |
-| **Client Role 1**		| Name			| `Unregistered`				 		 |                                                     |
-|	 										| Desc			| Default privilege for unknown a users.                                           |
-| **Client Role 2**		| Name			| `Admin`				 						 |                                                     |
-|	 										| Desc			| Elevated access.           |                                                     |
-| **Client Role 3**		| Name			| `Verified`								 |                                                     |
-|	 										| Desc			| Typical user access.			 |                                                     |
-| **User 1**  | Name			| `dev-user`							           |                                                     |
-|	 		        | Email	    | `admin@eieio.com`								   |                                                     |
-|	 		        | Password	| `devuser`								           |                                                     |
-| **User 2**  | Name			| `dev-reader`							         |                                                     |
-|	 		        | Roles	   	| none								               |                                                     |
-|	 		        | Password	| `devuser`								           |                                                     |
-|	 		        | Roles	   	| `Reader`							             |                                                     |
+| **Item**				| Key		| Value								             | Note													|
+|	--- 																			 |														|
+| **Realm**				| Name		| `Clean-Crud`	   						         |														|
+| **Api Client**		| Id		| `clean-crud-api`							     |														|
+|						| Name		| `Clean Crud Api`							     |														|
+|						| Secret	| `l10ptCQ2wRUgacxK6Ob9tdGSxVy4bgwb` | After client is created & saved, look in its "Credentials" tab.	|
+| **Ui Client**			| Id		| `clean-crud-ui`							     |														|
+|						| Name		| `Clean Crud Ui`							     |														|
+|						| Secret	| `sh5vuqdnjmLzzCmRCLDkYlHUhn2c4893` | After client is created & saved, look in its "Credentials" tab.	|
+| **Ui Client Role 1**	| Name		| `Unregistered`				 		||
+|                       | Desc		| Default privilege for unknown users.	||
+| **Ui Client Role 2**	| Name		| `Registered`							||
+|                       | Desc		| Typical user access.					||
 	
 
 <hr/>

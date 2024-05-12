@@ -40,6 +40,12 @@ namespace CCA.Api
       builder.Services.AddCorsPolicy(builder.Configuration);
 
       builder.Services.AddUserIdentityService(builder.Configuration);
+      builder.Services.AddAuth(builder.Configuration);
+
+      builder.Services.AddControllers();
+      // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+      builder.Services.AddEndpointsApiExplorer();
+
       //builder.Services.AddLocalOutputCache(config);
       builder.Services.AddDistributedCache(config);
 
@@ -82,6 +88,8 @@ namespace CCA.Api
       app.UseCors(CorsConfig.Policy);
       app.UseHttpsRedirection();
       app.UseRouting();
+
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseSwagger();
