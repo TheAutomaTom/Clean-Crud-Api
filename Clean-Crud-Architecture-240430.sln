@@ -7,14 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		Clean Crud Architecture.postman_collection.json = Clean Crud Architecture.postman_collection.json
 		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{14DD97F5-B9D4-45E8-B060-7E17DB038843}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DI & Config", "DI & Config", "{ED7A668D-461B-4BC9-9CF4-C94762960E11}"
-	ProjectSection(SolutionItems) = preProject
-		AddServiceTemplate.cs = AddServiceTemplate.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{EE599AC7-61AA-4823-B826-DABA873EE44E}"
@@ -92,8 +86,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{14DD97F5-B9D4-45E8-B060-7E17DB038843} = {D746AE6A-D8D3-439F-B400-72EB85B77F9D}
-		{ED7A668D-461B-4BC9-9CF4-C94762960E11} = {14DD97F5-B9D4-45E8-B060-7E17DB038843}
 		{29E572B3-255F-48D7-B93D-1CD2197724BF} = {EE599AC7-61AA-4823-B826-DABA873EE44E}
 		{57F6919E-21CF-4354-9059-6BF573D398FE} = {29E572B3-255F-48D7-B93D-1CD2197724BF}
 		{AF6F9FFB-BD28-464C-8676-C6B158029E36} = {EE599AC7-61AA-4823-B826-DABA873EE44E}
