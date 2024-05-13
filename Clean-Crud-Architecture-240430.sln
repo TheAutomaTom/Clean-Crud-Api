@@ -41,9 +41,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{C400FB86-E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCA.Core.Infra", "CCA.Core.Infra\CCA.Core.Infra.csproj", "{5F95AA5B-3015-4B0D-8240-9D64BDF15AEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCA.Tests.Integration", "CCA.Tests.Integration\CCA.Tests.Integration.csproj", "{3C3C9B2B-052B-4D6D-BBE9-2BEA5241A74E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCA.Tests.Integration", "CCA.Tests.Integration\CCA.Tests.Integration.csproj", "{3C3C9B2B-052B-4D6D-BBE9-2BEA5241A74E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCA.TestSetup", "CCA.TestSetup\CCA.TestSetup.csproj", "{951E7C81-D5F7-43B9-9D55-CAEC2DBB1B95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCA.TestSetup", "CCA.TestSetup\CCA.TestSetup.csproj", "{951E7C81-D5F7-43B9-9D55-CAEC2DBB1B95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

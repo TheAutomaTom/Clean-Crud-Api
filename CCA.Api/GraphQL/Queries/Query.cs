@@ -1,4 +1,6 @@
-﻿namespace CCA.Api.GraphQL.Queries
+﻿using HotChocolate.Authorization;
+
+namespace CCA.Api.GraphQL.Queries
 {
   public class Query
   {
@@ -16,6 +18,8 @@
 
     //    return response;
     //}
+
+    [Authorize(Policy = "Readers")]
     public async Task<string> GetString()
     {
       return "Working!";

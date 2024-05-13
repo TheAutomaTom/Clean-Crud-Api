@@ -8,9 +8,7 @@ using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.Models.Results;
 using CCA.Core.Infra.Models.Search;
 using Mediator;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OutputCaching;
 
 namespace CCA.Api.Controllers
 {

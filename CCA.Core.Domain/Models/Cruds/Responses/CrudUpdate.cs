@@ -1,8 +1,8 @@
 ﻿namespace CCA.Core.Domain.Models.Cruds.Responses
 {
+  /// <summary> This is used in the Dto for any new or altered Crud. </summary>
   public class CrudUpdate
-  {    
-    // Common
+  {
     public int Id { get; set; }
 
     // Entity
