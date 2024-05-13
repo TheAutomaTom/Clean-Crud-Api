@@ -20,8 +20,8 @@ namespace CCA.Core.Infra.Models.Identities
     [JsonPropertyName("emailVerified")]
     public bool   EmailVerified { get; set;}
 
-    [JsonPropertyName("enabled")]
-    public bool   Enabled {get; set; }
+		[JsonPropertyName("enabled")]
+		public bool Enabled { get; set; } = true;
 
     [JsonPropertyName("credentials")]
     public IdentityCredentials[] Credentials { get; set; }

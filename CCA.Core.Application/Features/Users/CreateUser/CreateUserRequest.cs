@@ -1,20 +1,20 @@
-﻿using CCA.Core.Infra.Models.Responses;
+﻿using CCA.Core.Infra.Models.Identities;
+using CCA.Core.Infra.Models.Responses;
 using Mediator;
-using CCA.Core.Infra.Models.Identities;
-using System.Text.Json.Serialization;
 
 namespace CCA.Core.Application.Features.Users.CreateUser
 {
-  public class CreateUserRequest : IRequest<Result<IdentityGetDto>>
+  public class CreateUserRequest : IRequest<Result>
   {
 
-    public CreateUserRequest(string username, string firstName, string lastName, string email, string password)
+    public CreateUserRequest(string username, string firstName, string lastName, string email, string password, string role)
     {
       Username = username;
       FirstName = firstName;
       LastName = lastName;
       Email = email;
       Password = password;
+			Role = role; // TODO: USe Enum
     }
 
     public IdentityCreateDto ToDto()
@@ -32,8 +32,9 @@ namespace CCA.Core.Application.Features.Users.CreateUser
     public string Username { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string Email { get; set; }    
+    public string Email { get; set; }
     public string Password { get; set; }
+    public string Role { get; set; }
 
   }
 }

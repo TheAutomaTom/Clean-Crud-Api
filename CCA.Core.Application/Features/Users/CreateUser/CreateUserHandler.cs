@@ -6,7 +6,7 @@ using CCA.Core.Infra.Models.Identities;
 
 namespace CCA.Core.Application.Features.Users.CreateUser
 {
-  public class CreateUserHandler : IRequestHandler< CreateUserRequest, Result<IdentityGetDto> >
+  public class CreateUserHandler : IRequestHandler< CreateUserRequest, Result >
   {
     readonly ILogger<CreateUserHandler> _logger;
     readonly IManageIdentities _users;
@@ -17,7 +17,7 @@ namespace CCA.Core.Application.Features.Users.CreateUser
 			_users = users;
     }
 
-    public async ValueTask<Result<IdentityGetDto>> Handle(CreateUserRequest request, CancellationToken cancellationToken)
+    public async ValueTask<Result> Handle(CreateUserRequest request, CancellationToken cancellationToken)
     {
       var validator = new CreateUserValidator();
       var validationResult = await validator.ValidateAsync(request);
@@ -29,8 +29,8 @@ namespace CCA.Core.Application.Features.Users.CreateUser
 
       var user = request.ToDto();
 
-      var result = await _users.CreateUser(user);
-      return Result<IdentityGetDto>.Ok(result);
+      var result = await _users.CreateUser(user, request.Role);
+      return result;
 
     }
   }
