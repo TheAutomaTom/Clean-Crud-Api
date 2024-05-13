@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Microsoft.OpenApi.Models;
-using CCA.Api.Config.Swagger;
 
 namespace CCA.Api.Config.Swagger
 {
@@ -15,12 +14,11 @@ namespace CCA.Api.Config.Swagger
         options.SwaggerDoc("v1", new OpenApiInfo
         {
           Version = "v1",
-          Title = "The Automa-Tom's Clean Architecture Template",
-          Description = "Helping you hurry onto Expectations.",
+          Title = "Clean Crud Architecture",
+          Description = "A basic C.R.U.D. api.",
           Contact = new OpenApiContact
           {
             Name = "Thomas Grossi",
-            Url = new Uri("https://SurrealityCheck.org"),
             Email = "TheAutomaTom@gmail.com"
           }
         });
