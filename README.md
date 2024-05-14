@@ -241,3 +241,30 @@ ValueTasks are Discriminated Unions which can represent one of two things: <T> o
 
 	https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml
 
+	
+## TODO
+
+#### API
+
+- Flush out Service Result returns
+	- How about one Error[] that could be an Exception, ValidationError, or custome ErrorMessage?
+	- `Dictionary<ErrorType, object>`?
+	- Is the Exception Middleware really doing anything well?  Is there any reason not to skip it?
+- Add Search endpoints that use Elasticsearch
+- Add a hosted service to that runs on a timer or by RabbitMq to generate a Crud Report (to MongoDb?)
+- User Management has a lot of features left to build
+- Add some extra element to users, like tracking their recent usage history.
+- Write tests!
+- How could custom Json converter be handy?  Maybe creating custom table view configurations.  I could make a demo Choose-your-own-adventure.
+- Add load testing/ benchmarking.
+- Add a Twilio interface?
+- 
+
+#### UI
+
+- Add user creation/ login/ logout features.
+- Write tests!
+- Consolidate logging to Kibana.
+- Add stuff to interact with Crud endpoints (fake work to show off an interface).
+- Add Google Ads, or at least create a demo.
+- DataTagging to Kibana?  Is that a thing?
