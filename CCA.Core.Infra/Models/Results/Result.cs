@@ -1,6 +1,11 @@
 ﻿using System;using CCA.Core.Infra.Models.Results;using FluentValidation.Results;namespace CCA.Core.Infra.Models.Responses{  public class Result  {
     public bool IsOk => ErrorList != null && ErrorList.Count > 0;		public IDictionary<ErrorType, object> ErrorList { get; set; }    public Result()    {    }    public Result(Exception exception)    {
-			ErrorList ??= new Dictionary<ErrorType, object>() { {ErrorType.Exception, exception } };    }    public Result(IEnumerable<ValidationFailure> validationErrors)
+			ErrorList ??= new Dictionary<ErrorType, object>() { {ErrorType.Exception, exception } };    }
+
+		public Result(ValidationFailure validationError)
+		{		
+			ErrorList ??= new Dictionary<ErrorType, object>() { { ErrorType.ExpectedError, validationError } };			
+		}    public Result(IEnumerable<ValidationFailure> validationErrors)
 		{
 			ErrorList ??= new Dictionary<ErrorType, object>();
 

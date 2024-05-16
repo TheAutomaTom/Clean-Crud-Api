@@ -27,7 +27,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
 
       if (validationResult.Errors.Count > 0)
       {
-        return new ReadCrudsResponse() { ValidationErrors = validationResult.Errors };
+        return new ReadCrudsResponse(validationResult.Errors);
       }
 
       try
