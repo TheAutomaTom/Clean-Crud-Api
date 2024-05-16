@@ -23,8 +23,6 @@ namespace CCA.Core.Infra.Models.Responses
       DataType = data != null 
         ? data!.GetType().Name 
         : String.Empty;
-
-
     }
 
     public Result(Exception ex) : base(ex)
@@ -37,24 +35,23 @@ namespace CCA.Core.Infra.Models.Responses
       Data = default(T);
     }
 
-    public Result(IEnumerable<Error> errors) : base(errors)
+    public Result(IEnumerable<ExpectedError> errors) : base(errors)
     {
       Data = default(T);
     }
 
-    public Result(Error error) : base(error)
+    public Result(ExpectedError error) : base(error)
     {
       Data = default(T);
     }
 
     public static Result<T> Ok(T data) => new Result<T>(data);
     public static Result<T> Fail(IEnumerable<ValidationFailure> vfs) => new(vfs);
-    public static Result<T> Fail(IEnumerable<Error> errors) => new(errors);
-    public static Result<T> Fail(Error error) => new(error);
+    public static Result<T> Fail(IEnumerable<ExpectedError> errors) => new(errors);
+    public static Result<T> Fail(ExpectedError error) => new(error);
     public static Result<T> Fail(Exception ex) => new(ex);
-    public static Result<T> Fail() => new(new Error(CommonError.Unknown.ToString()));
+    public static Result<T> Fail() => new(new ExpectedError(CommonError.Unknown.ToString()));
 
 
   }
 }
-

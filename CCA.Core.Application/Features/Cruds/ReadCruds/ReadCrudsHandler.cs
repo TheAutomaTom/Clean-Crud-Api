@@ -35,7 +35,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
         var entities = await _entities.Read(request.Paging, request.UpdatedDateRange);
         if (!entities.Any())
         {
-          return new ReadCrudsResponse(new Error("WTF"));
+          return new ReadCrudsResponse(new ExpectedError("WTF"));
         }
 
 

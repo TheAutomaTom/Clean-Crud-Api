@@ -12,7 +12,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
       
     }
 
-    public ReadCrudsResponse(Error error ) : base(error)
+    public ReadCrudsResponse(ExpectedError error ) : base(error)
     {
       
     }

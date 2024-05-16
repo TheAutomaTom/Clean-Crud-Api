@@ -37,18 +37,18 @@ namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 
       try
       {
-        var errors = new List<Error>();
+        var errors = new List<ExpectedError>();
 
         var entityAttempt = await _entities.Delete(request.Id);
         if (entityAttempt == 0)
         {
-          errors.Add( new Error("DeleteCrudByIdHandler", $"{nameof(_entities)} Failed to delete entity ID# {request.Id}."));
+          errors.Add( new ExpectedError("DeleteCrudByIdHandler", $"{nameof(_entities)} Failed to delete entity ID# {request.Id}."));
         }
 
         var detailAttempt = await _details.Delete(request.Id);
         if (detailAttempt == 0)
         {
-          errors.Add(new Error("DeleteCrudByIdHandler", $"{nameof(_details)} Failed to delete detail ID# {request.Id}."));
+          errors.Add(new ExpectedError("DeleteCrudByIdHandler", $"{nameof(_details)} Failed to delete detail ID# {request.Id}."));
           
         }
 
