@@ -10,7 +10,12 @@ namespace CCA.Core.Infra.Models.Results
 	{
 		Unknown,
 		Exception,
+
 		Validation,
-		ExpectedError
+
+		ExpectedError,
+		DoesNotExist,
+		DistributedCacheError,
+
 	}
 }

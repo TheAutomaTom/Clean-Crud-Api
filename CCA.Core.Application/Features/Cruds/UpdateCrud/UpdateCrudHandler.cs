@@ -57,7 +57,7 @@ namespace CCA.Core.Application.Features.Cruds.UpdateCrud
         var entityUpdate = await _entities.Update(toUpdate);
         if (!entityUpdate)
         {
-          return Result<Crud>.Fail(new ExpectedError("UpdateCrudHandler",CommonError.DoesNotExist.ToString()));
+          return Result<Crud>.Fail(new ExpectedError("UpdateCrudHandler", ErrorType.DoesNotExist.ToString()));
         }
 
         var detailUpdate = await _details.Update(toUpdate.Detail);

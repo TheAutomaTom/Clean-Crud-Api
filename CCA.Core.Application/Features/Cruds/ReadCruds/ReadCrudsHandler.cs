@@ -1,12 +1,13 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
+using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Infra.Models.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCruds
 {
-  public class ReadCrudsHandler : IRequestHandler<ReadCrudsRequest, ReadCrudsResponse>
+  public class ReadCrudsHandler : IRequestHandler<ReadCrudsRequest, Result<ReadCrudsResponse>>
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;
@@ -19,7 +20,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
       _details = details;
     }
 
-    public async ValueTask<ReadCrudsResponse> Handle(ReadCrudsRequest request, CancellationToken ct)
+    public async ValueTask<Result<ReadCrudsResponse>> Handle(ReadCrudsRequest request, CancellationToken ct)
     {
 
       var validator = new ReadCrudsValidator();
@@ -27,7 +28,7 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
 
       if (validationResult.Errors.Count > 0)
       {
-        return new ReadCrudsResponse(validationResult.Errors);
+        return new Result<ReadCrudsResponse> (validationResult.Errors);
       }
 
       try
@@ -35,18 +36,18 @@ namespace CCA.Core.Application.Features.Cruds.ReadCruds
         var entities = await _entities.Read(request.Paging, request.UpdatedDateRange);
         if (!entities.Any())
         {
-          return new ReadCrudsResponse(new ExpectedError("WTF"));
+          return new Result<ReadCrudsResponse>(new ExpectedError("WTF"));
         }
 
 
         var cruds = await _details.Read(entities);
 
-        return new ReadCrudsResponse(cruds, request.Paging, request.UpdatedDateRange);
+        return new Result<ReadCrudsResponse>(new ReadCrudsResponse(cruds, request.Paging, request.UpdatedDateRange));
 
       }
       catch (Exception ex)
       {
-        var response = new ReadCrudsResponse() { Exception = ex };
+				var response = new Result<ReadCrudsResponse>(ex);
         return response;
       }
     }

@@ -91,12 +91,16 @@ namespace CCA.Api.Controllers
     {
       var result = await _mediator.Send(request);
 
-      if (result.Errors.FirstOrDefault().desc == CommonError.DoesNotExist.ToString())
-      {
-        // If the item did not exist, create it with next typical Id.
-        var create = new CreateCrudRequest(request);
-        result = await _mediator.Send(create);
-      }
+			// If the item did not exist, send to typical `Create()` workflow.
+			foreach (var error in result.ErrorList)
+			{
+				if(error.Type == ErrorType.DoesNotExist )
+				{
+					var create = new CreateCrudRequest(request);
+					result = await _mediator.Send(create);
+				}
+			}
+
       //await _cache.EvictByTagAsync("Crud-Reader", ct);
       return Ok(result);
     }
