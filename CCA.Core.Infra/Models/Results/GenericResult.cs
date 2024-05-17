@@ -46,11 +46,11 @@ namespace CCA.Core.Infra.Models.Responses
     }
 
     public static Result<T> Ok(T data) => new Result<T>(data);
-    public static Result<T> Fail(IEnumerable<ValidationFailure> vfs) => new(vfs);
-    public static Result<T> Fail(IEnumerable<ExpectedError> errors) => new(errors);
-    public static Result<T> Fail(ExpectedError error) => new(error);
-    public static Result<T> Fail(Exception ex) => new(ex);
     public static Result<T> Fail() => new(new ExpectedError(ErrorCode.Unknown));
+    public static new Result<T> Fail(IEnumerable<ValidationFailure> vfs) => new(vfs);
+    public static new Result<T> Fail(IEnumerable<ExpectedError> errors) => new(errors);
+    public static new Result<T> Fail(ExpectedError error) => new(error);
+    public static new Result<T> Fail(Exception ex) => new(ex);
 
 
   }
