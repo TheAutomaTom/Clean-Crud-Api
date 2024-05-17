@@ -94,7 +94,7 @@ namespace CCA.Api.Controllers
 			// If the item did not exist, send to typical `Create()` workflow.
 			foreach (var error in result.ErrorList)
 			{
-				if(error.Type == ErrorType.DoesNotExist )
+				if(error.Type == ErrorCode.DoesNotExist )
 				{
 					var create = new CreateCrudRequest(request);
 					result = await _mediator.Send(create);

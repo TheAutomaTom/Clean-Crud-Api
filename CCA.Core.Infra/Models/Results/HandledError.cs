@@ -9,22 +9,22 @@ namespace CCA.Core.Infra.Models.Results
 {
 	public class HandledError
 	{
-		public ErrorType Type { get; set; }
+		public ErrorCode Type { get; set; }
 		public object Value { get; set; }
 
 		public HandledError(Exception ex)
 		{
-			Type = ErrorType.Exception;
+			Type = ErrorCode.Exception;
 			Value = ex;
 		}
 		public HandledError(ValidationFailure vf)
 		{
-			Type = ErrorType.Validation;
+			Type = ErrorCode.Validation;
 			Value = vf;
 		}
 		public HandledError(ExpectedError ee)
 		{
-			Type = ErrorType.ExpectedError;
+			Type = ErrorCode.ExpectedError;
 			Value = ee;
 		}
 

@@ -201,33 +201,33 @@ namespace CCA.Data.Persistence.Cache
 
     protected static ExpectedError HandleException(Exception ex)
     {
-      var title = "CommonError.DistributedCacheError";
+      var code = ErrorCode.DistributedCacheError;
 
       if (ex is RedisConnectionException)
       {
-        return new ExpectedError(title, $"Distributed cache error (Connection): {ex.Message}");
+        return new ExpectedError(code, $"Distributed cache error (Connection): {ex.Message}");
       }
 
       if (ex is RedisCommandException)
       {
-        return new ExpectedError(title, $"Distributed cache error (Invalid Command): {ex.Message}");
+        return new ExpectedError(code, $"Distributed cache error (Invalid Command): {ex.Message}");
       }
 
       if (ex is RedisException)
       {
         if (ex is RedisServerException)
         {
-          return new ExpectedError(title, $"Distributed cache error (Sever): {ex.Message}");
+          return new ExpectedError(code, $"Distributed cache error (Sever): {ex.Message}");
         }
-        return new ExpectedError(title, $"Distributed cache error (General): {ex.Message}");
+        return new ExpectedError(code, $"Distributed cache error (General): {ex.Message}");
       }
 
       if (ex is RedisTimeoutException)
       {
-        return new ExpectedError(title, $"Redis cache error (Timeout): {ex.Message}");
+        return new ExpectedError(code, $"Redis cache error (Timeout): {ex.Message}");
       }
 
-      return new ExpectedError(title, $"Redis cache error (Unknown): {ex.Message}");
+      return new ExpectedError(code, $"Redis cache error (Unknown): {ex.Message}");
     }
 
   }

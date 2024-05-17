@@ -50,7 +50,7 @@ namespace CCA.Core.Infra.Models.Responses
     public static Result<T> Fail(IEnumerable<ExpectedError> errors) => new(errors);
     public static Result<T> Fail(ExpectedError error) => new(error);
     public static Result<T> Fail(Exception ex) => new(ex);
-    public static Result<T> Fail() => new(new ExpectedError(CommonError.Unknown.ToString()));
+    public static Result<T> Fail() => new(new ExpectedError(ErrorCode.Unknown));
 
 
   }

@@ -3,7 +3,7 @@ using CCA.Core.Infra.Models.Responses;
 
 namespace CCA.Core.Infra.Models.Results
 {
-	public record ExpectedError(string code, string? desc = null)
+	public record ExpectedError(ErrorCode code, string? desc = null)
 	{
 		// This `implicit operator` will allows Error objects call the ctor of Result
 		// so Error can be written and appear as a substituted return type for Result!
@@ -14,6 +14,7 @@ namespace CCA.Core.Infra.Models.Results
 
 
 	}
+
 
 	//public enum CommonError
 	//{

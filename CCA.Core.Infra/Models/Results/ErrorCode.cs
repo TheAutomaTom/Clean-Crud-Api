@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CCA.Core.Infra.Models.Results
 {
-	public enum ErrorType
+	public enum ErrorCode
 	{
 		Unknown,
 		Exception,
@@ -15,7 +15,10 @@ namespace CCA.Core.Infra.Models.Results
 
 		ExpectedError,
 		DoesNotExist,
+		Connectivity,
 		DistributedCacheError,
 
 	}
+
+
 }

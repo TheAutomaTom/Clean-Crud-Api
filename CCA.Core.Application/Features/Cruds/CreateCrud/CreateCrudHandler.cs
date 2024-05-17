@@ -41,9 +41,10 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
       {
         var entity = new Crud(request.Name, request.Department);
         var createdId = await _entities.Create(entity);
+
         if (createdId == 0)
         {
-          var e = new ExpectedError("CreateCrudHandler", "Failed to create Entity.");
+          var e = new ExpectedError(ErrorCode.Connectivity, "Failed to create Entity.");
           return Result<Crud>.Fail(e);
         }
 
@@ -51,7 +52,7 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
         var createdDetailId = await _details.Create(detail);
         if (createdDetailId == 0)
         {
-          var e = new ExpectedError("CreateCrudHandler", "Failed to create Detail.  There may be remnants of a Entity with no related Detail.");
+          var e = new ExpectedError(ErrorCode.Connectivity, "Failed to create Detail.  There may be remnants of a Entity with no related Detail.");
           return Result<Crud>.Fail(e);
         }
 
