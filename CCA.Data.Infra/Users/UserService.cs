@@ -45,7 +45,7 @@ namespace CCA.Data.Infra.Users
 			_jsonOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 		}
 
-    public async Task<Result<User>> CreateUser(UserCreateRequest userRequest, string role)
+    public async Task<Result<User>> CreateUser(UserCreateRequest userRequest, UserRole role)
     {
       try
       {
@@ -76,7 +76,7 @@ namespace CCA.Data.Infra.Users
 
         var user = await getUser(search);
 
-				var assignedRole = await addRoleToUser(user, Enum.Parse<UserRole>(role));
+				var assignedRole = await addRoleToUser(user, role);
 				
 
         return Result<User>.Ok(user);

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
 using CCA.Data.Infra.Users.Config;
+using System.Text.Json.Serialization;
 
 namespace CCA.Api
 {
@@ -52,15 +53,19 @@ namespace CCA.Api
 
       // Internal services
       builder.Services.AddDbContexts(builder.Configuration);
-      builder.Services.AddMeditorSupport();
+      builder.Services.AddMediatorSupport();
       builder.Services.AddElasticsearch(config);
       builder.Services.AddEmailService(builder.Configuration);
 
       // Exposed features
       builder.Services.AddGraphQL(builder.Configuration);
 
-      builder.Services.AddControllers();
-      builder.Services.AddControllersWithViews(o =>
+      builder.Services.AddControllers()
+											.AddJsonOptions(o => { 
+												o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); 
+											});
+
+			builder.Services.AddControllersWithViews(o =>
       {
         o.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
       });

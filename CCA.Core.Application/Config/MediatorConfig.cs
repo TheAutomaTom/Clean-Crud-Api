@@ -4,7 +4,7 @@ namespace CCA.Core.Application.Config
 {
   public static class MediatorConfig
   {
-    public static IServiceCollection AddMeditorSupport(this IServiceCollection services)
+    public static IServiceCollection AddMediatorSupport(this IServiceCollection services)
     {
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
       services.AddMediator(o => o.ServiceLifetime = ServiceLifetime.Transient);

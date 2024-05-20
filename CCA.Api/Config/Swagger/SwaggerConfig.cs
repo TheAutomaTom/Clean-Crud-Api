@@ -1,17 +1,21 @@
 ﻿using System.Reflection;
+using CCA.Api.Controllers.ExamplesRequests;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace CCA.Api.Config.Swagger
 {
   public static class SwaggerConfig
   {
-
-    public static IServiceCollection AddSwagger(this IServiceCollection services)
-    {
-
-      services.AddSwaggerGen(options =>
+		public static IServiceCollection AddSwagger(this IServiceCollection services)
+		{
+			services.AddSwaggerExamplesFromAssemblyOf<CreateAccountRequestExample>();
+			services.AddSwaggerGen(options =>
       {
-        options.SwaggerDoc("v1", new OpenApiInfo
+        options.SchemaFilter<EnumSchemaFilter>();
+				options.ExampleFilters();
+
+				options.SwaggerDoc("v1", new OpenApiInfo
         {
           Version = "v1",
           Title = "Clean Crud Architecture",
@@ -25,11 +29,10 @@ namespace CCA.Api.Config.Swagger
         var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
         options.IncludeXmlComments(System.IO.Path.Combine(AppContext.BaseDirectory, xmlFilename), includeControllerXmlComments: true);
-        options.SchemaFilter<EnumSchemaFilter>();
 
 
-        // Add Auth token dialog
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+				// Add Auth token dialog
+				options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
           In = ParameterLocation.Header,
           Description = "Please enter a valid token",
@@ -55,9 +58,7 @@ namespace CCA.Api.Config.Swagger
       });
 
 
-
-
-      return services;
+			return services;
     }
 
 

@@ -1,0 +1,34 @@
+﻿using Bogus;
+using CCA.Core.Application.Features.Accounts.CreateAccount;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Infra.Models.Users;
+using StackExchange.Redis;
+using Swashbuckle.AspNetCore.Filters;
+
+namespace CCA.Api.Controllers.ExamplesRequests
+{
+	public class CreateAccountRequestExample : IExamplesProvider<CreateAccountRequest>
+	{
+
+		
+
+
+		public CreateAccountRequest GetExamples()
+		{
+
+			var faker =  new Faker<CreateAccountRequest>()
+				.RuleFor(x => x.Username, f => f.Person.UserName)
+				.RuleFor(x => x.Email, f => f.Person.Email)
+				.RuleFor(x => x.FirstName, f => f.Person.FirstName)
+				.RuleFor(x => x.LastName, f => f.Person.LastName)
+				.RuleFor(x => x.Password, f => "Admin123!")
+				.RuleFor(x => x.Role, f => UserRole.Registered);
+			
+			return faker.Generate();
+
+		}
+
+
+
+	}
+}

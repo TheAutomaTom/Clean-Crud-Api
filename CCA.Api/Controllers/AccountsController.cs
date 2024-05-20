@@ -1,9 +1,11 @@
 ﻿using Azure.Core;
+using CCA.Api.Controllers.ExamplesRequests;
 using CCA.Core.Application.Features.Accounts.CreateAccount;
 using CCA.Core.Application.Features.Accounts.CreateAccount.CreateUser;
 using CCA.Core.Application.Features.Accounts.LogIn;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace CCA.Api.Controllers
 {
@@ -21,7 +23,10 @@ namespace CCA.Api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest request, CancellationToken ct)
+		[SwaggerRequestExample(typeof(CreateAccountRequest), typeof(CreateAccountRequestExample))]
+		
+
+		public async Task<IActionResult> Register([FromBody] CreateAccountRequest request, CancellationToken ct)
 		{
 			var result = await _mediator.Send(request);
 
