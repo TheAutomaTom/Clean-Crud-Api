@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.Models.Common;
-using CCA.Core.Infra.Models.Search;
-using Microsoft.EntityFrameworkCore;
+﻿using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Infra.EntityUtilities;
+using CCA.Core.Infra.Models.SearchParams;
 using Nest;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
-  public abstract class ElasticRepository<T> : IRepository<T> where T : Auditable
+	public abstract class ElasticRepository<T> : IElasticRepository<T> where T : Auditable
   {
     protected readonly IElasticClient _client;
 
@@ -36,7 +30,7 @@ namespace CCA.Data.Persistence.Repositories.Common
     }
 
     /// <summary> This is, realistically, only used by Entities. </summary>
-    public Task<IReadOnlyList<T>> Read(Paging? paging = null, Core.Infra.Models.Search.DateRangeFilter? dateRange = null)
+    public Task<IReadOnlyList<T>> Read(Paging? paging = null, CCA.Core.Infra.Models.SearchParams.DateRangeFilter? dateRange = null)
     {
       throw new NotImplementedException();
     }
@@ -114,5 +108,8 @@ namespace CCA.Data.Persistence.Repositories.Common
 
       return result.IsValid ? 1 : 0;
     }
-  }
+
+
+
+	}
 }

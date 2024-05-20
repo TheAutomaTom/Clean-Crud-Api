@@ -1,14 +1,14 @@
 ﻿using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
-using CCA.Core.Infra.Models.Responses;
 using Mediator;
 using Microsoft.Extensions.Logging;
 using Nest;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCrudById
 {
-  public class ReadCrudByIdHandler : IRequestHandler<ReadCrudByIdRequest, Result<Crud>>
+	public class ReadCrudByIdHandler : IRequestHandler<ReadCrudByIdRequest, Result<Crud>>
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;

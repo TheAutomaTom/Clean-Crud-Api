@@ -3,14 +3,14 @@ using System.Text;
 using System.Text.Json;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Core.Domain.Models.Cruds;
-using CCA.Core.Infra.Models.Responses;
+using CCA.Core.Infra.ResultTypes;
 using CCA.TestSetup.Config;
 using Testcontainers.MsSql;
-using static CCA.TestSetup.Mock.BogusGenerators;
+using static CCA.TestSetup.MockData.BogusGenerators;
 
 namespace CCA.Tests.EndToEnd.Tests
 {
-  public class Test_CrudController : IDisposable
+	public class Test_CrudController : IDisposable
   {
     /* Lifecycle.....................................................*/
 

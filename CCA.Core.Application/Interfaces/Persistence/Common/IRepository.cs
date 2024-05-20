@@ -1,9 +1,8 @@
-﻿using CCA.Core.Infra.Models.Common;
-using CCA.Core.Infra.Models.Search;
+﻿using CCA.Core.Infra.EntityUtilities;
 
 namespace CCA.Core.Application.Interfaces.Persistence.Common
 {
-  public interface IRepository<T> where T : Auditable
+	public interface IRepository<T> where T : Auditable
   {
     Task<int> Create(T item);
     Task<T> Read(int id);

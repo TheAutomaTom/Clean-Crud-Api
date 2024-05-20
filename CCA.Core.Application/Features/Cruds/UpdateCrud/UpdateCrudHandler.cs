@@ -1,16 +1,14 @@
 ﻿using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.Models.Responses;
-using CCA.Core.Infra.Models.Results;
+using CCA.Core.Infra.ResultTypes;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
 namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {
-  public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, Result<Crud>>
+	public class UpdateCrudHandler : IRequestHandler<UpdateCrudRequest, Result<Crud>>
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;

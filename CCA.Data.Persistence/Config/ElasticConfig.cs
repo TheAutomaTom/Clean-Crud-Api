@@ -2,7 +2,7 @@
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Data.Persistence.Repositories;
+using CCA.Data.Persistence.Repositories.Cruds;
 using Elasticsearch.Net;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +10,7 @@ using Nest;
 
 namespace CCA.Data.Persistence.Config
 {
-  public static class ElasticConfig
+	public static class ElasticConfig
   {
 
     public static void AddElasticsearch(this IServiceCollection services, IConfiguration config)

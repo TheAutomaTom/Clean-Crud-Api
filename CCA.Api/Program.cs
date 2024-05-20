@@ -4,12 +4,12 @@ using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
 using CCA.Core.Application.Config;
 using CCA.Data.Infra.Emails.Config;
-using CCA.Data.Infra.Identities.Config;
 using CCA.Data.Persistence.Config;
 using Keycloak.AuthServices.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
+using CCA.Data.Infra.Users.Config;
 
 namespace CCA.Api
 {
@@ -40,7 +40,7 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
       
-      builder.Services.AddUserIdentityService(builder.Configuration);
+      builder.Services.AddUserService(builder.Configuration);
       builder.Services.AddAuth(builder.Configuration);
 
       builder.Services.AddControllers();

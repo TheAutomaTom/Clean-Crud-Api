@@ -1,18 +1,14 @@
 ﻿using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.Models.Responses;
-using CCA.Core.Infra.Models.Results;
-using FluentValidation.Results;
+using CCA.Core.Infra.ResultTypes;
 using Mediator;
 using Microsoft.Extensions.Logging;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
-  public class CreateCrudHandler : IRequestHandler<CreateCrudRequest, Result<Crud>>
+	public class CreateCrudHandler : IRequestHandler<CreateCrudRequest, Result<Crud>>
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;
@@ -40,15 +36,15 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
       try
       {
         var entity = new Crud(request.Name, request.Department);
-        var createdId = await _entities.Create(entity);
+        var created = await _entities.Create(entity);
 
-        if (createdId == 0)
+        if (created == null)
         {
           var e = new ExpectedError(ErrorCode.Connectivity, "Failed to create Entity.");
           return Result<Crud>.Fail(e);
         }
 
-        var detail = new CrudDetail(createdId, request.Description, request.Tags);
+        var detail = new CrudDetail(created.Id, request.Description, request.Tags);
         var createdDetailId = await _details.Create(detail);
         if (createdDetailId == 0)
         {
@@ -56,7 +52,7 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
           return Result<Crud>.Fail(e);
         }
 
-        var result = new Crud(createdId, entity, detail);
+        var result = new Crud(created.Id, entity, detail);
 
         try
         {        

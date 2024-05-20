@@ -10,9 +10,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Container-Manual-Setup\Elastic-Network\**" />
-	  <EmbeddedResource Remove="Container-Manual-Setup\Elastic-Network\**" />
-	  <None Remove="Container-Manual-Setup\Elastic-Network\**" />
+	  <Compile Remove="Containers\Elastic-Network\**" />
+	  <EmbeddedResource Remove="Containers\Elastic-Network\**" />
+	  <None Remove="Containers\Elastic-Network\**" />
 	</ItemGroup>
 
 	<ItemGroup>

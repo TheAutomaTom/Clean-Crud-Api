@@ -13,6 +13,7 @@
 		<PackageReference Include="coverlet.collector" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.4" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.2" />
 		<PackageReference Include="Testcontainers" Version="3.8.0" />
 		<PackageReference Include="Testcontainers.MsSql" Version="3.8.0" />
 		<PackageReference Include="Testcontainers.Redis" Version="3.8.0" />

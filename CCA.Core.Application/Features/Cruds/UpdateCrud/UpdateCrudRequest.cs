@@ -1,11 +1,11 @@
 ﻿using CCA.Core.Domain.Models.Cruds.Responses;
 using Mediator;
-using CCA.Core.Infra.Models.Responses;
 using CCA.Core.Domain.Models.Cruds;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Core.Application.Features.Cruds.UpdateCrud
 {
-  public class UpdateCrudRequest : IRequest<Result<Crud>>
+	public class UpdateCrudRequest : IRequest<Result<Crud>>
   {
     public UpdateCrudRequest()
     {

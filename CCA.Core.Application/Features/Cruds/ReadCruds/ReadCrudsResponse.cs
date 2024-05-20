@@ -1,5 +1,5 @@
 ﻿using CCA.Core.Domain.Models.Cruds;
-using CCA.Core.Infra.Models.Search;
+using CCA.Core.Infra.Models.SearchParams;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCruds
 {

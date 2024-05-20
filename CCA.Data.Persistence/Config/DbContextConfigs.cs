@@ -2,14 +2,16 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Data.Persistence.Repositories;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Data.Persistence.Config.DbContexts;
+using CCA.Data.Persistence.Repositories.Cruds;
+using CCA.Core.Application.Interfaces.Persistence.Accounts;
+using CCA.Data.Persistence.Repositories.Accounts;
 
 namespace CCA.Data.Persistence.Config
 {
-  public static class DbContextConfigs
+	public static class DbContextConfigs
   {
     public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
     {
@@ -23,12 +25,13 @@ namespace CCA.Data.Persistence.Config
       }
       else
       {
-        connectionString = $"{configuration.GetConnectionString("GeneralDb")}Database=Cruds;";
+        connectionString = $"{configuration.GetConnectionString("GeneralDb")}Database=CleanCrud;";
       }
 
       services.AddDbContext<GeneralDbContext>(options => options.UseSqlServer(connectionString));
            
       services.AddScoped<ICrudEntitiesRepository, CrudEntitiesRepository>();
+      services.AddScoped<IAccountSpecsRepository, AccountSpecsRepository>();
 
       return services;
     }

@@ -48,6 +48,18 @@
 1. Open a terminal at `.\CCA.TestSetup\Container-Manual-Setup`	
 1. Run `docker-compose up -d`
 
+##### EF Core Migrations
+
+###### Initial Setup
+
+1. In PackageManager window, select .Persistence as "Default project" on dropdown menu.
+1. Run `EntityFrameworkCore\add-migration initial_Cruds -o Migrations/Cruds -Context GeneralDbContext`
+
+	###### Reapplying Updates
+1. Run `EntityFrameworkCore\add-migration -o Migrations/Cruds -Context GeneralDbContext`
+1. Specify a unique name for this migration.
+1. 
+
 
 
 #### For Elastic and Kibana, this repo is uses a fork of [deviantony/docker-elk](https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml):
@@ -165,26 +177,8 @@ _With the `Master` realm selected..._
 <hr/>
 
 
-### Technical references
-		 
-
-##### EF Core Standard operating procedure
-
-1. In PackageManager window, select .Persistence as "Default project" on dropdown menu.
-1. EntityFrameworkCore\add-migration initial_Cruds -o Migrations/Cruds -Context CrudContext
-
-##### Example docker connection string
-
-- Server=172.25.128.1,1433;User Id=sa;Password=ayeCiEs2k24!;TrustServerCertificate=True;
-
-You may need to replace `172.25.128.1` with your own ip address.  From Docker's perspective, this is its Host's Ip4 number.
-
-1. Open a `cmd` terminal
-1. Run `ipconfig`
-1. In this case, it was labeled as the "Ethernet adapter vEthernet (WSL)" adapter.  
-- WSL stands for "Windows Subsystem for Linux" and is the preferred tech to use Docker on Windows.  
-- You may be using the Hyper-V alternative, so the label for the adapter could be different.
-- 
+### Technical notes
+ 
 #### On ValueTask as used in Handler return types
 	
 Tasks are references allocated to The Heap.  We label a return type as a async Task<T> in order to permit awaiting for other operations to complete.  Most often, the actual return will be just a T.
@@ -197,6 +191,21 @@ ValueTasks are Discriminated Unions which can represent one of two things: <T> o
 
 ## Technical Notes
 
+### Glossary
+
+#### Taxonomy
+
+- The suffix `Spec` indicates predictably structured data typical of a relational database.  This is an abbreviation of "specification."
+- The suffix `Detail` indicates blobs.
+
+- `IManage...` indicates a service is capable of read and write operations on a domain.
+
+- `ISend...` indicates outbound operations to a service outside of this api's domain.
+
+#### Auth and Accounts
+
+- `Accounts` have a username and password and can log in to use this service.  An `Account` has a `User`.
+- `Users` are Auth related entities.  This term originates in Keycloak's documentation.
 
 
 ## References

@@ -1,6 +1,6 @@
 ﻿using CCA.Core.Infra.Models.Cache;
 
-namespace CCA.Data.Infra.Config
+namespace CCA.Api.Config
 {
   public static class OutputCacheConfig
   {

@@ -1,10 +1,10 @@
-﻿using CCA.Core.Application.Features.Users.CreateUser;
+﻿using CCA.Core.Application.Features.Accounts.CreateAccount.CreateUser;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CCA.Api.Controllers
 {
-  [ApiController]
+	[ApiController]
   [Route("[controller]/[action]")]
   public class UserManagementTestHarnessController : Controller
   {

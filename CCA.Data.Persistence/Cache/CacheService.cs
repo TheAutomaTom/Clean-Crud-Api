@@ -1,15 +1,14 @@
 ﻿using System.Text.Json;
 using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Infra.Models.Cache;
-using CCA.Core.Infra.Models.Responses;
-using CCA.Core.Infra.Models.Results;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Data.Persistence.Cache
 {
-  public class CacheService : ICache
+	public class CacheService : ICache
   {
     readonly ILogger<CacheService> _logger;
     readonly CacheSettings _settings;   // from AppSettings

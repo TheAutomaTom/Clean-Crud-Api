@@ -1,9 +1,9 @@
 ﻿using Mediator;
-using CCA.Core.Infra.Models.Responses;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {
-  public class DeleteCrudByIdRequest : IRequest<Result>
+	public class DeleteCrudByIdRequest : IRequest<Result>
   {
     public DeleteCrudByIdRequest(int id)
     {

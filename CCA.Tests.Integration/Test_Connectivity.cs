@@ -4,7 +4,7 @@ using CCA.Data.Persistence.Cache;
 using CCA.TestSetup.Config;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.Redis;
-using static CCA.TestSetup.Mock.BogusGenerators;
+using static CCA.TestSetup.MockData.BogusGenerators;
 
 namespace CCA.Tests.Integration
 {

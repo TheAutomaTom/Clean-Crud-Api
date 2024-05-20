@@ -1,12 +1,13 @@
-﻿using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.Models.Common;
+﻿using CCA.Core.Domain.Models.Accounts.Repo;
+using CCA.Core.Domain.Models.Cruds.Repo;
+using CCA.Core.Infra.EntityUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace CCA.Data.Persistence.Config.DbContexts
 {
-  public class GeneralDbContext : DbContext
+	public class GeneralDbContext : DbContext
   {
     public GeneralDbContext(DbContextOptions<GeneralDbContext> options) : base(options)
     {
@@ -32,6 +33,7 @@ namespace CCA.Data.Persistence.Config.DbContexts
     }
 
     public DbSet<CrudEntity> Cruds { get; set; }
+    public DbSet<AccountSpec> Accounts { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,9 +54,17 @@ namespace CCA.Data.Persistence.Config.DbContexts
         //entity.Property(e => e.LastModifiedDate).IsRequired(false);
       });
 
-      /* This is not a very useful way to populate the database
-       * because it does not also create CrudDetails in Elastic.
+      model.Entity<AccountSpec>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        entity.Property(e => e.Id).ValueGeneratedOnAdd();
+        entity.Property(e => e.LastModifiedBy).IsRequired(false);
+      });
+
+      /* The following is not a very useful way to populate the database in this case
+       * because it does not also create related `Detail` blobs in Elastic.
        * It's faster to use the seeder endpoint in swagger for demo data.
+       * It would be cool in other circumstances, though.
 
       var faker = new Faker<CrudEntity>()
         .RuleFor(s => s.Name, f => f.Commerce.ProductName())

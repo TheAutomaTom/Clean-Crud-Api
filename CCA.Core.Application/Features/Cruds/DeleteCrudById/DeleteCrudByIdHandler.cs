@@ -2,15 +2,14 @@
 using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Application.Interfaces.Persistence;
 using CCA.Core.Application.Interfaces.Persistence.Cruds;
-using CCA.Core.Infra.Models.Responses;
-using CCA.Core.Infra.Models.Results;
 using FluentValidation.Results;
 using Mediator;
 using Microsoft.Extensions.Logging;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Core.Application.Features.Cruds.DeleteCrudById
 {
-  public class DeleteCrudByIdHandler : IRequestHandler<DeleteCrudByIdRequest, Result>
+	public class DeleteCrudByIdHandler : IRequestHandler<DeleteCrudByIdRequest, Result>
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;

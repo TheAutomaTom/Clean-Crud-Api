@@ -1,10 +1,10 @@
 ﻿using Mediator;
-using CCA.Core.Infra.Models.Search;
-using CCA.Core.Infra.Models.Responses;
+using CCA.Core.Infra.Models.SearchParams;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCruds
 {
-  public class ReadCrudsRequest : IRequest<Result<ReadCrudsResponse>>
+	public class ReadCrudsRequest : IRequest<Result<ReadCrudsResponse>>
   {
     public ReadCrudsRequest(Paging? paging, DateRangeFilter? updatedRange)
     {

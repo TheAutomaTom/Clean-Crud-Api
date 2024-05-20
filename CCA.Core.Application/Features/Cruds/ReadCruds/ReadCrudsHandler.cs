@@ -1,13 +1,11 @@
-﻿using CCA.Core.Application.Interfaces.Persistence;
-using CCA.Core.Application.Interfaces.Persistence.Cruds;
-using CCA.Core.Infra.Models.Responses;
-using CCA.Core.Infra.Models.Results;
+﻿using CCA.Core.Application.Interfaces.Persistence.Cruds;
+using CCA.Core.Infra.ResultTypes;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
 namespace CCA.Core.Application.Features.Cruds.ReadCruds
 {
-  public class ReadCrudsHandler : IRequestHandler<ReadCrudsRequest, Result<ReadCrudsResponse>>
+	public class ReadCrudsHandler : IRequestHandler<ReadCrudsRequest, Result<ReadCrudsResponse>>
   {
     readonly ICrudDetailsRepository _details;
     readonly ICrudEntitiesRepository _entities;

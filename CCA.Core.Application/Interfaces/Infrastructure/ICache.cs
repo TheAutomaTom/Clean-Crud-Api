@@ -1,8 +1,8 @@
-﻿using CCA.Core.Infra.Models.Responses;
+﻿using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Core.Application.Interfaces.Infrastructure
 {
-  public interface ICache
+	public interface ICache
   {
     Task<Result<bool>> Create(string key, string value, TimeSpan? lifetime = null);
     Task<Result<bool>> Create<T>(string key, T value, TimeSpan? lifetime = null);

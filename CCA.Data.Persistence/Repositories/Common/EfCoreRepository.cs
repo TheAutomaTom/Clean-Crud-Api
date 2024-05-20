@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CCA.Core.Infra.Models.Common;
-using CCA.Core.Infra.Models.Search;
-using Microsoft.EntityFrameworkCore;
+﻿using CCA.Core.Infra.EntityUtilities;
+using CCA.Core.Infra.Models.SearchParams;
 using CCA.Data.Persistence.Config.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
-  public abstract class EfCoreRepository<T> : IRepository<T> where T : Auditable
+	public abstract class EfCoreRepository<T> : IEfCoreRepository<T> where T : Auditable
   {
     protected readonly GeneralDbContext _dbContext;
 
@@ -19,19 +14,23 @@ namespace CCA.Data.Persistence.Repositories.Common
       _dbContext = context;
     }
 
-    public virtual async Task<int> Create(T item)
+    public virtual async Task<T> Create(T item)
     {
       try
       {
         _dbContext.Entry(item).State = EntityState.Added;
         await _dbContext.SaveChangesAsync();
-        return item.Id;
+        return item;
       }
       catch (DbUpdateConcurrencyException ex)
       {
         _dbContext.Entry(item).State = EntityState.Detached;
-        return 0;
+        return null;
       }
+			catch (Exception ex)
+			{
+				throw;
+			}
 
     }
 
@@ -45,7 +44,27 @@ namespace CCA.Data.Persistence.Repositories.Common
       return await _dbContext.Set<T>().ToListAsync();
     }
 
-    public async Task<int> Delete(int id)
+		public async Task<IReadOnlyList<T>> Read(Paging paging = default, DateRangeFilter dateRange = default)
+		{
+			var results = await _dbContext.Set<T>()
+				.Take(paging.CountPer)
+				.Skip(paging.Skip)
+				.Where(c =>
+
+				// I initialize ModifiedDate with CreationData in order to make this search more efficient.
+				//(c.CreatedDate >= dateRange.From || c.LastModifiedDate >= dateRange.From)
+				//&& (c.CreatedDate <= dateRange.Until || c.LastModifiedDate <= dateRange.Until)
+
+				c.LastModifiedDate >= dateRange.From
+					&& c.LastModifiedDate <= dateRange.Until
+				).ToListAsync();
+
+			return results;
+		}
+
+
+
+		public async Task<int> Delete(int id)
     {
       var entity = await _dbContext.Cruds.FindAsync(id);
       if (entity == null)

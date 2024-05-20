@@ -5,15 +5,15 @@ using CCA.Core.Application.Features.Cruds.ReadCrudById;
 using CCA.Core.Application.Features.Cruds.ReadCruds;
 using CCA.Core.Application.Features.Cruds.UpdateCrud;
 using CCA.Core.Domain.Models.Cruds;
-using CCA.Core.Infra.Models.Results;
-using CCA.Core.Infra.Models.Search;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using CCA.Core.Infra.Models.SearchParams;
+using CCA.Core.Infra.ResultTypes;
 
 namespace CCA.Api.Controllers
 {
-  /// <summary> Basic C.R.U.D. operations on an example object. </summary>
-  [ApiController]
+	/// <summary> Basic C.R.U.D. operations on an example object. </summary>
+	[ApiController]
   [Route("[controller]/[action]")]
   public class CrudController : Controller
   {
