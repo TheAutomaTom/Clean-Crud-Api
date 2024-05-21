@@ -7,11 +7,8 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace CCA.Api.Controllers.ExamplesRequests
 {
-	public class CreateAccountRequestExample : IExamplesProvider<CreateAccountRequest>
+	public class Example_CreateAccountRequest : IExamplesProvider<CreateAccountRequest>
 	{
-
-		
-
 
 		public CreateAccountRequest GetExamples()
 		{

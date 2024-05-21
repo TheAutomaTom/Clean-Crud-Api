@@ -8,10 +8,7 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
 {
 	public class CreateCrudRequest : IRequest<Result<Crud>>
   {
-    public CreateCrudRequest()
-    {
-
-    }
+    public CreateCrudRequest() { }
 
     public CreateCrudRequest(CrudUpdate crud)
     {
@@ -30,7 +27,6 @@ namespace CCA.Core.Application.Features.Cruds.CreateCrud
       Tags = toCreate.Tags;
 
     }
-
 
     public string Name { get; set; }
 

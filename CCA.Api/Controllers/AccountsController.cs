@@ -23,7 +23,7 @@ namespace CCA.Api.Controllers
 		}
 
 		[HttpPost]
-		[SwaggerRequestExample(typeof(CreateAccountRequest), typeof(CreateAccountRequestExample))]
+		[SwaggerRequestExample(typeof(CreateAccountRequest), typeof(Example_CreateAccountRequest))]
 		
 
 		public async Task<IActionResult> Register([FromBody] CreateAccountRequest request, CancellationToken ct)

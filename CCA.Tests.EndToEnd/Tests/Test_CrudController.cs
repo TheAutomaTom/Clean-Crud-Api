@@ -6,6 +6,7 @@ using CCA.Core.Domain.Models.Cruds;
 using CCA.Core.Infra.ResultTypes;
 using CCA.TestSetup.Config;
 using Testcontainers.MsSql;
+using Testcontainers.Redis;
 using static CCA.TestSetup.MockData.BogusGenerators;
 
 namespace CCA.Tests.EndToEnd.Tests
@@ -15,7 +16,8 @@ namespace CCA.Tests.EndToEnd.Tests
     /* Lifecycle.....................................................*/
 
     E2ETestingWebAppFactory _factory;
-    HttpClient _client;
+		readonly RedisContainer _redisContainer;
+		HttpClient _client;
     MsSqlContainer _msSqlContainer;
     Random _rando = new Random();
 
@@ -25,12 +27,16 @@ namespace CCA.Tests.EndToEnd.Tests
       // This ctor sets the environment variable.
       _factory = new E2ETestingWebAppFactory();
 
+			_redisContainer = new RedisBuilder().Build();
+			_redisContainer.StartAsync().Wait();
+			var cacheCs = _redisContainer.GetConnectionString();
+			Environment.SetEnvironmentVariable("RedisCache-Testing", cacheCs);
 
-      _msSqlContainer = new MsSqlBuilder().Build();
+			_msSqlContainer = new MsSqlBuilder().Build();
       _msSqlContainer.StartAsync().Wait();
 
-      var cs = _msSqlContainer.GetConnectionString();
-      Environment.SetEnvironmentVariable("GeneralDb-Testing", cs);
+      var msSqlCs = _msSqlContainer.GetConnectionString();
+      Environment.SetEnvironmentVariable("GeneralDb-Testing", msSqlCs);
 
       _client = _factory.CreateClient();
     }

@@ -31,11 +31,19 @@ namespace CCA.Api.Controllers
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateCrudRequest request, CancellationToken ct = default)
     {
-      var result = await _mediator.Send(request);
+			try
+			{
+				var result = await _mediator.Send(request);
+				return Ok(result);
+
+			} 
+			catch (Exception ex)
+			{
+				return BadRequest(ex);
+			}
 
       //await _cache.EvictByTagAsync("Crud-Reader", ct);
 
-      return Ok(result);
     }
 
     /// <summary> Create and save randomized Cruds. </summary>

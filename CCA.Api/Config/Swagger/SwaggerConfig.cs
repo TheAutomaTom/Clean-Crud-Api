@@ -9,7 +9,7 @@ namespace CCA.Api.Config.Swagger
   {
 		public static IServiceCollection AddSwagger(this IServiceCollection services)
 		{
-			services.AddSwaggerExamplesFromAssemblyOf<CreateAccountRequestExample>();
+			services.AddSwaggerExamplesFromAssemblyOf<Example_CreateAccountRequest>();
 			services.AddSwaggerGen(options =>
       {
         options.SchemaFilter<EnumSchemaFilter>();
