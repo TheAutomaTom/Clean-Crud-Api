@@ -1,16 +1,12 @@
-﻿using Azure.Core;
-using CCA.Api.Controllers.ExamplesRequests;
-using CCA.Core.Application.Features.Accounts.CreateAccount;
-using CCA.Core.Application.Features.Accounts.CreateAccount.CreateUser;
-using CCA.Core.Application.Features.Accounts.LogIn;
+﻿using CCA.Core.Application.Features.Accounts.LogIn;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Filters;
+using CCA.Core.Application.Features.Accounts.Register;
 
 namespace CCA.Api.Controllers
 {
 	[ApiController]
-	[Route("[controller]/[action]")]
+	[Route("api-v1/[controller]/[action]")]
 	public class AccountsController : Controller
 	{
 		readonly ILogger<AccountsController> _logger;
@@ -23,14 +19,16 @@ namespace CCA.Api.Controllers
 		}
 
 		[HttpPost]
-		[SwaggerRequestExample(typeof(CreateAccountRequest), typeof(Example_CreateAccountRequest))]
-		
-
-		public async Task<IActionResult> Register([FromBody] CreateAccountRequest request, CancellationToken ct)
+		public async Task<IActionResult> Register([FromBody] RegisterAccountRequest request, CancellationToken ct)
 		{
 			var result = await _mediator.Send(request);
 
-			return Ok(result);
+			if (!result.IsOk)
+			{
+				return BadRequest(result.ErrorList);
+			}
+			return Ok(result.Data);
+
 		}
 
 		[HttpPost]
@@ -39,8 +37,14 @@ namespace CCA.Api.Controllers
 			var request = new LogInRequest(username, password);
 			var result = await _mediator.Send(request);
 
-			return Ok(result);
+			if(!result.IsOk)
+			{
+				return BadRequest(result.ErrorList);
+			}
+			return Ok(result.Data);
+			
 		}
+
 
 
 

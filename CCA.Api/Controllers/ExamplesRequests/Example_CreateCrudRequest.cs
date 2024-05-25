@@ -1,8 +1,6 @@
 ﻿using Bogus;
-using CCA.Core.Application.Features.Accounts.CreateAccount;
 using CCA.Core.Application.Features.Cruds.CreateCrud;
 using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.Models.Users;
 using StackExchange.Redis;
 using Swashbuckle.AspNetCore.Filters;
 

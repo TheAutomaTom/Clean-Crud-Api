@@ -1,6 +1,6 @@
-﻿using CCA.Core.Application.Features.Accounts.CreateAccount.CreateUser;
-using Mediator;
+﻿using Mediator;
 using Microsoft.AspNetCore.Mvc;
+using CCA.Core.Application.Features.Accounts.Register.CreateUser;
 
 namespace CCA.Api.Controllers
 {

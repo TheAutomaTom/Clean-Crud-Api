@@ -14,7 +14,7 @@ namespace CCA.Api.Controllers
 {
 	/// <summary> Basic C.R.U.D. operations on an example object. </summary>
 	[ApiController]
-  [Route("[controller]/[action]")]
+  [Route("api-v1/[controller]/[action]")]
   public class CrudController : Controller
   {
     readonly ILogger<CrudController> _logger;
