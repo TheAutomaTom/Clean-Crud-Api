@@ -1,7 +1,7 @@
-﻿using CCA.Core.Application.Features.Accounts.LogIn;
+﻿using CCA.Core.Application.Features.Accounts.CreateAccount;
+using CCA.Core.Application.Features.Accounts.LogIn;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
-using CCA.Core.Application.Features.Accounts.Register;
 
 namespace CCA.Api.Controllers
 {
@@ -19,7 +19,7 @@ namespace CCA.Api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Register([FromBody] RegisterAccountRequest request, CancellationToken ct)
+		public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken ct)
 		{
 			var result = await _mediator.Send(request);
 

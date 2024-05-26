@@ -1,11 +1,11 @@
 ﻿using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.EntityUtilities;
+using CCA.Core.Infra.Models.Common;
 using CCA.Core.Infra.Models.SearchParams;
 using Nest;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
-	public abstract class ElasticRepository<T> : IElasticRepository<T> where T : Auditable
+	public abstract class ElasticRepository<T> : IElasticRepository<T> where T : AuditableEntity
   {
     protected readonly IElasticClient _client;
 

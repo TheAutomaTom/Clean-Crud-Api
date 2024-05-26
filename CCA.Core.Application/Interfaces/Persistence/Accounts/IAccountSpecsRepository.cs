@@ -1,11 +1,11 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence.Common;
-using CCA.Core.Domain.Models.Accounts.Repo;
+using CCA.Core.Infra.Models.Accounts.Entities;
 
 namespace CCA.Core.Application.Interfaces.Persistence.Accounts
 {
-	public interface IAccountSpecsRepository : IEfCoreRepository<AccountSpec>
+	public interface IAccountSpecsRepository : IEfCoreRepository<UserEntity>
 	{		
-		Task<AccountSpec> Read(string guid);
+		Task<UserEntity> Read(string guid);
 
 
 	}

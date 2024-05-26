@@ -1,11 +1,11 @@
-﻿using CCA.Core.Infra.EntityUtilities;
+﻿using CCA.Core.Infra.Models.Common;
 using CCA.Core.Infra.Models.SearchParams;
 using CCA.Data.Persistence.Config.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace CCA.Data.Persistence.Repositories.Common
 {
-	public abstract class EfCoreRepository<T> : IEfCoreRepository<T> where T : Auditable
+	public abstract class EfCoreRepository<T> : IEfCoreRepository<T> where T : AuditableEntity
   {
     protected readonly GeneralDbContext _dbContext;
 

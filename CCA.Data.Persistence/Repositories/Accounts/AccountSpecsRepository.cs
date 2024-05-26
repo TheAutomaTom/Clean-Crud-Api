@@ -1,15 +1,15 @@
 ﻿using CCA.Core.Application.Interfaces.Persistence.Accounts;
 using CCA.Core.Application.Interfaces.Persistence.Common;
-using CCA.Core.Domain.Models.Accounts.Repo;
 using CCA.Core.Domain.Models.Cruds.Repo;
 using CCA.Core.Infra.Models.SearchParams;
 using CCA.Data.Persistence.Config.DbContexts;
 using CCA.Data.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
+using CCA.Core.Infra.Models.Accounts.Entities;
 
 namespace CCA.Data.Persistence.Repositories.Accounts
 {
-	public class AccountSpecsRepository : EfCoreRepository<AccountSpec>, IAccountSpecsRepository
+	public class AccountSpecsRepository : EfCoreRepository<UserEntity>, IAccountSpecsRepository
 	{
 		public AccountSpecsRepository(GeneralDbContext context) : base(context)
 		{
@@ -17,7 +17,7 @@ namespace CCA.Data.Persistence.Repositories.Accounts
 		}
 
 
-		public async Task<AccountSpec> Read(string guid)
+		public async Task<UserEntity> Read(string guid)
 		{
 			var g = new Guid(guid);
 			var result = await _dbContext.Accounts.Where(a => a.Guid == g).FirstOrDefaultAsync();

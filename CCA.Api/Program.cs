@@ -9,8 +9,8 @@ using Keycloak.AuthServices.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
-using CCA.Data.Infra.Users.Config;
 using System.Text.Json.Serialization;
+using CCA.Data.Infra.Auth.Config;
 
 namespace CCA.Api
 {
@@ -41,7 +41,7 @@ namespace CCA.Api
 
       builder.Services.AddCorsPolicy(builder.Configuration);
       
-      builder.Services.AddUserService(builder.Configuration);
+      builder.Services.AddAuthService(builder.Configuration);
       builder.Services.AddAuth(builder.Configuration);
 
       builder.Services.AddControllers();

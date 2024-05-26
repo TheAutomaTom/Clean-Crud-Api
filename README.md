@@ -250,6 +250,10 @@ ValueTasks are Discriminated Unions which can represent one of two things: <T> o
 
 	https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml
 
+- Rando articles
+
+	https://lostechies.com/jimmybogard/2016/12/12/dealing-with-duplication-in-mediatr-handlers/
+
 	
 ## TODO
 

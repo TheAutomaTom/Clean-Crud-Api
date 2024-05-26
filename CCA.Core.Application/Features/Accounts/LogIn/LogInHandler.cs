@@ -1,56 +1,59 @@
 ﻿using CCA.Core.Application.Interfaces.Infrastructure;
 using CCA.Core.Application.Interfaces.Persistence.Accounts;
-using CCA.Core.Domain.Models.Accounts;
+using CCA.Core.Infra.Models.Accounts.Results;
 using CCA.Core.Infra.ResultTypes;
+using CCA.Core.Infra.Services;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
 namespace CCA.Core.Application.Features.Accounts.LogIn
 {
-	public class LogInHandler : IRequestHandler<LogInRequest, Result<LogInResponse>>
+	public class LogInHandler : IRequestHandler<LogInRequest, Result<AuthenticatedAccount>>
 	{
-		readonly IManageUsers _users;
-		readonly IAccountSpecsRepository _accounts;
+		readonly IManageAuth _authService;
+		readonly IAccountSpecsRepository _accountsRepo;
 		readonly ILogger<LogInHandler> _logger;
 
-		public LogInHandler(ILogger<LogInHandler> logger, IManageUsers identities, IAccountSpecsRepository users)
+		public LogInHandler(ILogger<LogInHandler> logger, IManageAuth authService, IAccountSpecsRepository accountsRepo)
 		{
 			_logger = logger;
-			_users = identities;
-			_accounts = users;
+			_authService = authService;
+			_accountsRepo = accountsRepo;
 		}
 
-		public async ValueTask<Result<LogInResponse>> Handle(LogInRequest request, CancellationToken cancellationToken)
+		public async ValueTask<Result<AuthenticatedAccount>> Handle(LogInRequest request, CancellationToken cancellationToken)
 		{
 			var validator = new LogInValidator();
 			var validationResult = await validator.ValidateAsync(request);
 
 			if (validationResult.Errors.Count > 0)
 			{
-				return Result<LogInResponse>.Fail(validationResult.Errors);
+				return Result<AuthenticatedAccount>.Fail(validationResult.Errors);
 			}
 
 			try
 			{
-				var authInfo = await _users.AuthenticateUser(request.Username, request.Password);
-
-				if (!authInfo.IsOk)
+				// Get token from auth service
+				var authAttempt = await _authService.AuthenticateUser(request.Username, request.Password);
+				if (!authAttempt.IsOk)
 				{
-					return Result<LogInResponse>.Fail(authInfo.ErrorList!);
+					return Result<AuthenticatedAccount>.Fail(authAttempt.ErrorList!);
 				}
 
-				var accountSpec = await _accounts.Read(authInfo.Data.User.Guid);
-				// TODO: var accountDetail = await _accounts.Read(authInfo.Data.User.Guid);
-				var accountInfo = new AccountInfo(accountSpec);
 
-				var result = new LogInResponse(authInfo.Data, accountInfo);
+				// Get account data from database
+				var account = await _accountsRepo.Read(authAttempt.Data!.AuthUserId);
 
-				return new Result<LogInResponse>(result);
+				// Future enhancement: check if account has notifications, etc.				
+
+				var result = new AuthenticatedAccount(authAttempt.Data, account);
+
+				return new Result<AuthenticatedAccount>(result);
 
 			}
 			catch (Exception ex)
 			{
-				var response = new Result<LogInResponse>(ex);
+				var response = new Result<AuthenticatedAccount>(ex);
 				return response;
 			}
 

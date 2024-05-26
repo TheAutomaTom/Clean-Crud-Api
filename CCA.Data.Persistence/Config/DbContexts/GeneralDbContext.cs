@@ -1,9 +1,9 @@
-﻿using CCA.Core.Domain.Models.Accounts.Repo;
-using CCA.Core.Domain.Models.Cruds.Repo;
-using CCA.Core.Infra.EntityUtilities;
+﻿using CCA.Core.Domain.Models.Cruds.Repo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
+using CCA.Core.Infra.Models.Common;
+using CCA.Core.Infra.Models.Accounts.Entities;
 
 namespace CCA.Data.Persistence.Config.DbContexts
 {
@@ -33,7 +33,7 @@ namespace CCA.Data.Persistence.Config.DbContexts
     }
 
     public DbSet<CrudEntity> Cruds { get; set; }
-    public DbSet<AccountSpec> Accounts { get; set; }
+    public DbSet<UserEntity> Accounts { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -54,7 +54,7 @@ namespace CCA.Data.Persistence.Config.DbContexts
         //entity.Property(e => e.LastModifiedDate).IsRequired(false);
       });
 
-      model.Entity<AccountSpec>(entity =>
+      model.Entity<UserEntity>(entity =>
       {
         entity.HasKey(e => e.Id);
         entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -90,10 +90,10 @@ namespace CCA.Data.Persistence.Config.DbContexts
     {
 #if DEBUG
       // This was helpful when diagnosing the "create new if no entity exists to update" issue.
-      var count = ChangeTracker.Entries<Auditable>().Count();
+      var count = ChangeTracker.Entries<AuditableEntity>().Count();
 #endif
 
-      foreach (var entry in ChangeTracker.Entries<Auditable>())
+      foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
       {
         switch (entry.State)
         {

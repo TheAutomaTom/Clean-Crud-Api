@@ -1,8 +1,8 @@
-﻿using CCA.Core.Infra.EntityUtilities;
+﻿using CCA.Core.Infra.Models.Common;
 
 namespace CCA.Core.Domain.Models.Cruds.Repo
 {
-	public class CrudDetail : Auditable
+	public class CrudDetail : AuditableEntity
   {
     public int Id { get; set; }
     public string Description { get; set; }
