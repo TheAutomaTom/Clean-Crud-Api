@@ -9,14 +9,14 @@ namespace CCA.Core.Application.Features.Accounts.CreateAccount
 {
 	public class RegisterRequest : IRequest<Result<AuthenticatedAccount>>
 	{
-		public RegisterRequest(string username, string firstName, string lastName, string email, string password, UserRole role)
+		public RegisterRequest(string username, string firstName, string lastName, string email, string password)
 		{
 			Username = username;
 			Email = email;
 			FirstName = firstName;
 			LastName = lastName;
 			Password = password;
-			Role = role; // TODO: Use Enum
+			
 		}
 
 		public RegisterRequest(){ }
@@ -26,7 +26,7 @@ namespace CCA.Core.Application.Features.Accounts.CreateAccount
 		public string LastName { get; set; }
 		public string Email { get; set; }
 		public string Password { get; set; }
-		public UserRole Role { get; set; }
+		
 
 		
 

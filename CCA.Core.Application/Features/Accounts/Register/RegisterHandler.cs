@@ -38,7 +38,7 @@ namespace CCA.Core.Application.Features.Accounts.CreateAccount
 				var createUserRequest = new UserCreateRequestDto(
 					request.Username, request.FirstName, request.LastName, request.Email, request.Password
 				);
-				var createUserResult = await _authService.CreateUser(createUserRequest, request.Role);
+				var createUserResult = await _authService.CreateUser(createUserRequest);
 				if (!createUserResult.IsOk)
 				{
 					return Result<AuthenticatedAccount>.Fail(new ExpectedError(ErrorCode.Unknown, "Failure during new user creation."));

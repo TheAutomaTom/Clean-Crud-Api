@@ -8,7 +8,7 @@ namespace CCA.Core.Application.Interfaces.Infrastructure
 {
 	public interface IManageAuth
 	{
-		Task<Result<User>> CreateUser(UserCreateRequestDto user, UserRole role);
+		Task<Result<User>> CreateUser(UserCreateRequestDto user);
 		
 		Task<Result<AuthCredential>> AuthenticateUser(string username, string password);
 

@@ -47,7 +47,7 @@ namespace CCA.Data.Infra.Auth
 			_jsonOptions = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
 		}
 
-    public async Task<Result<User>> CreateUser(UserCreateRequestDto userRequest, UserRole role)
+    public async Task<Result<User>> CreateUser(UserCreateRequestDto userRequest)
     {
       try
       {
@@ -78,7 +78,7 @@ namespace CCA.Data.Infra.Auth
 
         var user = await getUser(search);
 
-				var assignedRole = await addRoleToUser(user, role);
+				var assignedRole = await addRoleToUser(user, UserRole.Registered);
 				
 
         return Result<User>.Ok(user);

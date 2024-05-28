@@ -11,13 +11,12 @@ namespace CCA.Api.Controllers.ExamplesRequests
 		public RegisterRequest GetExamples()
 		{
 
-			var faker =  new Faker<RegisterRequest>()
+			var faker = new Faker<RegisterRequest>()
 				.RuleFor(x => x.Username, f => f.Person.UserName)
 				.RuleFor(x => x.Email, f => f.Person.Email)
 				.RuleFor(x => x.FirstName, f => f.Person.FirstName)
 				.RuleFor(x => x.LastName, f => f.Person.LastName)
-				.RuleFor(x => x.Password, f => "Admin123!")
-				.RuleFor(x => x.Role, f => UserRole.Registered);
+				.RuleFor(x => x.Password, f => "Admin123!");
 			
 			return faker.Generate();
 

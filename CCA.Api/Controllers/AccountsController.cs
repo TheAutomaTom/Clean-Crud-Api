@@ -31,10 +31,11 @@ namespace CCA.Api.Controllers
 
 		}
 
+
+
 		[HttpPost]
-		public async Task<IActionResult> LogIn(string username= "test-registered", string password= "Admin123!")
-		{
-			var request = new LogInRequest(username, password);
+		public async Task<IActionResult> LogIn([FromBody] LogInRequest request)
+		{		
 			var result = await _mediator.Send(request);
 
 			if(!result.IsOk)
@@ -44,9 +45,6 @@ namespace CCA.Api.Controllers
 			return Ok(result.Data);
 			
 		}
-
-
-
 
 	}
 }
