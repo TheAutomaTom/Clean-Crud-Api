@@ -10,7 +10,7 @@ namespace CCA.Api.Config
 
       services
         .AddGraphQLServer()
-        .AddQueryType<Query>();
+        .AddQueryType<CrudQueries>();
       //.AddMutationType<BaseMutation>();
       //.AddMutationType<BaseSubscription>();
 
