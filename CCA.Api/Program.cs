@@ -1,20 +1,21 @@
+using System.Text.Json.Serialization;
 using CCA.Api.Config;
 using CCA.Api.Config.Routing;
 using CCA.Api.Config.Swagger;
 using CCA.Api.Middleware;
 using CCA.Core.Application.Config;
+using CCA.Data.Infra.Auth.Config;
 using CCA.Data.Infra.Emails.Config;
 using CCA.Data.Persistence.Config;
+using Keycloak.AuthServices.Authentication;
 using Keycloak.AuthServices.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Serilog;
-using System.Text.Json.Serialization;
-using CCA.Data.Infra.Auth.Config;
 
 namespace CCA.Api
 {
-  public class Program
+	public class Program
   {
     public static void Main(string[] args)
     {
@@ -36,15 +37,15 @@ namespace CCA.Api
         ).Build();
 
 
-      builder.Services.AddLogger(config, env);
+      builder.Services.AddLogger(config, env!);
       builder.Host.UseSerilog();
 
       builder.Services.AddCorsPolicy(builder.Configuration);
-      
-      builder.Services.AddAuthService(builder.Configuration);
-      builder.Services.AddAuth(builder.Configuration);
 
-      builder.Services.AddControllers();
+      builder.Services.AddAuthService(builder.Configuration);
+			builder.Services.AddAuth(builder.Configuration, env!);
+
+			builder.Services.AddControllers();
       // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
       builder.Services.AddEndpointsApiExplorer();
 
@@ -99,9 +100,9 @@ namespace CCA.Api
       app.UseAuthorization();
 
       app.UseSwagger();
-      app.UseSwaggerUI();
+			app.UseSwaggerUI(o => o.EnableTryItOutByDefault());
 
-      app.MapControllers();
+			app.MapControllers();
       app.MapGraphQL();
 
       app.Run();
