@@ -11,6 +11,9 @@ namespace CCA.Core.Infra.Models.Auth.Service.ResponseDtos
 		[JsonPropertyName("expires_in")]
 		public int ExpiresInSeconds { get; set; }
 
+		[JsonPropertyName("refresh_token")]
+		public string RefreshToken { get; set; }
+
 		[JsonPropertyName("refresh_expires_in")]
 		public int RefreshExpiresInSeconds { get; set; }
 
@@ -19,6 +22,9 @@ namespace CCA.Core.Infra.Models.Auth.Service.ResponseDtos
 
 		[JsonPropertyName("not-before-policy")]
 		public int NotBeforePolicy { get; set; }
+
+		[JsonPropertyName("session_state")]
+		public string SessionState { get; set; }
 
 		[JsonPropertyName("scope")]
 		public string Scope { get; set; }

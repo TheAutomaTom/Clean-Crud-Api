@@ -19,16 +19,19 @@ namespace CCA.Core.Infra.Services
 				...
 			}
 		*/
-		public AuthCredential Decode(string accessToken)
+		public AuthCredential Decode(string accessToken, string refreshToken)
 		{
 			var jsonToken = _handler.ReadToken(accessToken) as JwtSecurityToken;
 
 			var result = new AuthCredential()
 			{
-				AccessToken = accessToken,
+				AccessToken = accessToken,				
 				AuthUserId = jsonToken!.Subject,
 				Roles = jsonToken!.Claims.Where(c => c.Type == "roles").Select(c => c.Value).ToArray()
 			};
+
+			result.RefreshToken = refreshToken;
+
 			return result;
 
 		}

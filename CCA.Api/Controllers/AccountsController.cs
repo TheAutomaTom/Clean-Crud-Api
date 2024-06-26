@@ -31,8 +31,6 @@ namespace CCA.Api.Controllers
 
 		}
 
-
-
 		[HttpPost]
 		public async Task<IActionResult> LogIn([FromBody] LogInRequest request)
 		{		

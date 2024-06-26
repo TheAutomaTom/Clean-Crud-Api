@@ -10,6 +10,7 @@ namespace CCA.Core.Infra.Models.Auth.Service.Results
 	public class AuthCredential
 	{
 		public string AccessToken { get; set; }
+		public string RefreshToken { get; set; }
 		public string AuthUserId { get; set; }
 		public string[] Roles { get; set; }
 

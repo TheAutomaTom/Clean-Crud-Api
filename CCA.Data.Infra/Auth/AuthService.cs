@@ -4,17 +4,16 @@ using System.Text;
 using System.Text.Json;
 using System.Web;
 using CCA.Core.Application.Interfaces.Infrastructure;
-using CCA.Core.Infra.ResultTypes;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using CCA.Core.Infra.Models.Auth.Service;
 using CCA.Core.Infra.Models.Auth.Service.Config;
-using CCA.Data.Infra.Auth;
 using CCA.Core.Infra.Models.Auth.Service.RequestDtos.Create;
 using CCA.Core.Infra.Models.Auth.Service.RequestDtos.Search;
 using CCA.Core.Infra.Models.Auth.Service.ResponseDtos;
 using CCA.Core.Infra.Models.Auth.Service.Results;
+using CCA.Core.Infra.ResultTypes;
 using CCA.Core.Infra.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CCA.Data.Infra.Auth
 {
@@ -271,9 +270,8 @@ namespace CCA.Data.Infra.Auth
 			var tokenResponse = await getUserToken(username, password);
 
 			var jwtDecoder = new JwtDecoder();
-			AuthCredential credential = jwtDecoder.Decode(tokenResponse.AccessToken);
-						
-			
+			AuthCredential credential = jwtDecoder.Decode(tokenResponse.AccessToken, tokenResponse.RefreshToken);
+
 			var result = Result<AuthCredential>.Ok(credential);
 			return result;
 
