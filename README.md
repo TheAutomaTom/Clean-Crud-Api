@@ -1,4 +1,4 @@
-﻿# Clean Crud Architecture
+# Clean Crud Architecture
 ### Just a _basic C.R.U.D. Api"_ using Clean Architecture principles
 
 <small>Version: 240417</small>
@@ -32,7 +32,7 @@
 
 	https://redis.io/insight/
 
-#### Postgress for Keycloak configuration
+#### Postgres for Keycloak configuration
 
 - Azure Data Studio Extension: PostgresSQL 
 
@@ -43,9 +43,9 @@
 
 ### Container environment setup
 
-#### For CCA Api containers:
+#### For native CCA Api containers:
 
-1. Open a terminal at `.\CCA.TestSetup\Container-Manual-Setup`	
+1. Open a terminal at `.\CCA.TestSetup\Containers\sql-etc`
 1. Run `docker-compose up -d`
 
 ##### EF Core Migrations
@@ -58,11 +58,8 @@
 	###### Reapplying Updates
 1. Run `EntityFrameworkCore\add-migration -o Migrations/Cruds -Context GeneralDbContext`
 1. Specify a unique name for this migration.
-1. 
 
-
-
-#### For Elastic and Kibana, this repo is uses a fork of [deviantony/docker-elk](https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml):
+#### For Elastic and Kibana, we fork [deviantony/docker-elk](https://github.com/deviantony/docker-elk/blob/main/elasticsearch/config/elasticsearch.yml):
 
 1. Open a terminal at `.\CCA.TestSetup\Container-Manual-Setup\fork-docker-elk`
 1. Run `docker-compose up setup`
@@ -120,15 +117,12 @@
 1. Name(optional): `Clean Crud Postgres`
 		
 
-#### For Auth realted containers (Keycloak & Postgres):
+#### For Auth related containers (Keycloak & Postgres):
 
 1. Open a terminal at `.\CCA.TestSetup\Container-Manual-Setup\keycloak`	
 1. Run `docker-compose up -d`
 
 	<small>_Keycloak will take about 1 full minute to be available.  The logs will help indicate when set up is complete._</small>
-
-##### Connect to the Postgres server
-
 
 
 ##### Create a Keycloak client for user management
@@ -138,8 +132,14 @@ _With the `Master` realm selected..._
 1. Note the Id you assign.
 1. Enable `Client authentication`
 1. Enable `Service account roles`
+1. Disable other options that may be on by default
 1. Click on Clients/ \{your newly created client}
 1. Select "Credentials" tab and note `client secret` for future use.
+1. Click on Clients/ \{your newly created client} again
+1. Click `Service accounts roles`, then `Assign role`
+1. From the filter select menu: `Filter by clients`
+1. Find and enable `manage-users`
+
 
 ##### Create a Keycloak client for user interactions
 
@@ -226,7 +226,8 @@ ValueTasks are Discriminated Unions which can represent one of two things: <T> o
 	
 	https://www.youtube.com/watch?v=iOQ74eYU2U4&list=PLA8ZIAm2I03g9z705U3KWJjTv0Nccw9pj&ab_channel=SingletonSean
 				
-- `Bogus` data generator 		
+- `Bogus` data generator 	
+	
 	https://github.com/bchavez/Bogus
 
 - `Testcontainers`
